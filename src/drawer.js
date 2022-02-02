@@ -5,22 +5,16 @@ import Titlelogo from '../img/chucar_logo.png';
 // src
 import Root from './root';
 import MyPage from './page/mypage';
-import LoginPage from './page/loginpage';
-import SignupPage from './page/signuppage';
-import MainPage from './page/mainpage';
 
 // lib
 import * as React from 'react';
 import { Button, View, Text,Image } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function MyDrawer({navigation}) {
 
 const Drawer = createDrawerNavigator();
-
     return (
     <Drawer.Navigator
       initialRouteName="Root"
