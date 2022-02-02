@@ -20,7 +20,7 @@ navigation.setOptions({ headerShown: false });
         <View style={{flexDirection:'row',justifyContent:'center'}}>
             <TouchableOpacity style={styles.buttonbg1} 
             onPress={() => {
-                navigation.navigate('견적1')
+                navigation.navigate('EstimatePage1')
             }}>
                 <Text style={styles.buttontxt1}>견적신청하기</Text>
             </TouchableOpacity>

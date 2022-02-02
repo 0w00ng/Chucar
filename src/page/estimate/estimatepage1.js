@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text,TouchableOpacity } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 
-export default function estimatePageScreen1({ navigation }) {
+export default function EstimatePageScreen1({ navigation }) {
   const [checkstate1, setcheckstate1] = useState(false)
   const [checkstate2, setcheckstate2] = useState(false)
   const [checkstate3, setcheckstate3] = useState(false)
@@ -74,7 +74,7 @@ export default function estimatePageScreen1({ navigation }) {
           </View>
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={styles.buttonbg3}
-            onPress={() => navigation.navigate('견적2')}>
+            onPress={() => navigation.navigate('EstimatePage2')}>
                 <Text style={styles.buttontxt3}>계속하기(1/5)</Text>
             </TouchableOpacity>
           </View>

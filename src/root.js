@@ -31,13 +31,13 @@ export default function Root() {
         headerStyle:{backgroundColor:"white"},
         headerTitle:""
       }}>
-        <Stack.Screen name="메인" component={MainPage} />
-        <Stack.Screen name="로그인" component={LoginPage} />
-        <Stack.Screen name="견적1" component={EstimatePage1} />
-        <Stack.Screen name="견적2" component={EstimatePage2} />
-        <Stack.Screen name="견적3" component={EstimatePage3} />
-        <Stack.Screen name="견적4" component={EstimatePage4} />
-        <Stack.Screen name="견적5" component={EstimatePage5} />
+        <Stack.Screen name="Main" component={MainPage} />
+        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="EstimatePage1" component={EstimatePage1} />
+        <Stack.Screen name="EstimatePage2" component={EstimatePage2} />
+        <Stack.Screen name="EstimatePage3" component={EstimatePage3} />
+        <Stack.Screen name="EstimatePage4" component={EstimatePage4} />
+        <Stack.Screen name="EstimatePage5" component={EstimatePage5} />
       </Stack.Navigator>
     );
   }

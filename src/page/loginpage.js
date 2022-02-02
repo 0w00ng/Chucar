@@ -5,7 +5,7 @@ import Root from '../root';
 import MyPage from './mypage';
 import LoginPage from './loginpage';
 import SignupPage from './signuppage';
-export default function loginPageScreen({ navigation }) {
+export default function LoginPageScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>LoginPage</Text>

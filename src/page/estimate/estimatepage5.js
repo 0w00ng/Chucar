@@ -3,7 +3,7 @@ import { View, Text,TouchableOpacity } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import { TextInput } from 'react-native-paper';
 
-export default function estimatePageScreen1({ navigation }) {
+export default function EstimatePageScreen5({ navigation }) {
   const [menufact, setMenufact] = React.useState("");
   const [model, setModel] = React.useState("");
   const [grade, setGrade] = React.useState("");
@@ -13,13 +13,12 @@ export default function estimatePageScreen1({ navigation }) {
           <View>
             <Text style={styles.title}>
                 견적 신청이 완료되었습니다 !{'\n'}
-
             </Text>
           </View>
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={styles.buttonbg3}
             onPress={() => navigation.popToTop()}>
-                <Text style={styles.buttontxt3}>완료(5/5)</Text>
+                <Text style={styles.buttontxt3}>돌아가기(5/5)</Text>
             </TouchableOpacity>
           </View>
       </View>
