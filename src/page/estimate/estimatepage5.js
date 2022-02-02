@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, Text,TouchableOpacity } from 'react-native';
+import { View, Text,TouchableOpacity,Image } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import { TextInput } from 'react-native-paper';
+import success from '../../../img/Success.png'
 
 export default function EstimatePageScreen5({ navigation }) {
   const [menufact, setMenufact] = React.useState("");
@@ -10,11 +11,18 @@ export default function EstimatePageScreen5({ navigation }) {
 
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
-          <View>
+        <View style={{alignItems:'center'}}>
+            <Image 
+              source={success} style={{width:'40%'}}
+              resizeMode='contain'
+            />
+          </View>
+          <View style={{alignItems:'center'}}>
             <Text style={styles.title}>
                 견적 신청이 완료되었습니다 !{'\n'}
             </Text>
           </View>
+          
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={styles.buttonbg3}
             onPress={() => navigation.popToTop()}>
@@ -27,7 +35,6 @@ export default function EstimatePageScreen5({ navigation }) {
 
 const styles = {
     container: {
-      flex: 1,
       alignItems: "center",
       justifyContent: "center",
     },
@@ -37,7 +44,7 @@ const styles = {
       marginLeft: 20,
     },
     title: {
-      margin: 20,
+      marginBottom: 30,
       fontSize: 25,
       fontWeight: 'bold',
       color:'navy'
