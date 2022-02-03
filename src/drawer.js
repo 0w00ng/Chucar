@@ -6,6 +6,8 @@ import Titlelogo from '../img/chucar_logo.png';
 import Root from './root';
 import MyPage from './page/mypage';
 import EstimatePage from './page/estimate/estimatepage';
+import EstlistPage from './page/estlistpage';
+import s from './style';
 
 // lib
 import * as React from 'react';
@@ -24,17 +26,9 @@ const Drawer = createDrawerNavigator();
       }}
     >
       <Drawer.Screen name="Root" component={Root} options={{title:"홈"}}/>
-      <Drawer.Screen name="견적신청" component={EstimatePage} />
-      <Drawer.Screen name="견적내역" component={EstimatePage} />
-      <Drawer.Screen name="마이페이지" component={MyPage} />
+      <Drawer.Screen name="EstimatePage" component={EstimatePage} options={{title:"견적신청"}}/>
+      <Drawer.Screen name="EstlistPage" component={EstlistPage} options={{title:"견적내역"}}/>
+      <Drawer.Screen name="MyPage" component={MyPage} options={{title:"마이페이지"}}/>
     </Drawer.Navigator>
     );
   }
-
-const styles ={
-    headericon: {
-    height:30, 
-    width:30,
-    margin:10
-    }
-}

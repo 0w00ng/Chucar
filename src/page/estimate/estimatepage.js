@@ -33,11 +33,3 @@ export default function EstimatePageScreen({navigation}) {
       </Stack.Navigator>
     );
   }
-
-  const styles ={
-    headericon: {
-    height:30, 
-    width:30,
-    margin:10
-    }
-}

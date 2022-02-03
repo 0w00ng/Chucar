@@ -6,14 +6,12 @@ import Titlelogo from '../img/chucar_logo.png';
 import MyPage from './page/mypage';
 import LoginPage from './page/loginpage';
 import SignupPage from './page/signuppage';
-import Headerbar from './header';
+import Headerbar from './headbar';
 import MainPage from './page/mainpage';
 import EstimatePage from './page/estimate/estimatepage';
-import EstimatePage1 from './page/estimate/estimatepage1';
-import EstimatePage2 from './page/estimate/estimatepage2';
-import EstimatePage3 from './page/estimate/estimatepage3';
-import EstimatePage4 from './page/estimate/estimatepage4';
-import EstimatePage5 from './page/estimate/estimatepage5';
+import EstlistPage from './page/estlistpage';
+import s from './style';
+
 // lib
 import * as React from 'react';
 import { Button, View, Text,Image } from 'react-native';
@@ -29,14 +27,14 @@ export default function Root({navigation}) {
   navigation.setOptions({
     headerRight: () => (
       <TouchableOpacity 
-      onPress={() => navigation.navigate('마이페이지')}>
-          <Image source={UserIcon} style={styles.headericon}/>
+      onPress={() => navigation.navigate('MyPage')}>
+          <Image source={UserIcon} style={s.headericon}/>
       </TouchableOpacity>
     ),
     headerLeft: () => (
       <TouchableOpacity 
       onPress={() => navigation.toggleDrawer()}>
-          <Image source={Menubar} style={styles.headericon}/>
+          <Image source={Menubar} style={s.headericon}/>
       </TouchableOpacity>
     ),
     headerTitle:"CHUCAR"
@@ -46,7 +44,7 @@ export default function Root({navigation}) {
     return (
       <Stack.Navigator
       screenOptions={{
-        headerShown: true, 
+        headerShown: false, 
         headerTintColor:'navy',
         headerStyle:{backgroundColor:"white"},
         headerTitle:""
@@ -54,14 +52,7 @@ export default function Root({navigation}) {
         <Stack.Screen name="Main" component={MainPage} />
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="EstimatePage" component={EstimatePage} />
+        <Stack.Screen name="EstlistPage" component={EstlistPage} />
       </Stack.Navigator>
     );
   }
-
-  const styles ={
-    headericon: {
-    height:30,
-    width:30,
-    margin:10
-    }
-}
