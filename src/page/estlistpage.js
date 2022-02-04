@@ -22,7 +22,7 @@ export default function EstlistPageScreen({ navigation }) {
             onPress={() => {
               navigation.navigate('Root',{screen:'Main'})
               }}>
-                <Text style={s.buttontxt3}>돌아가기</Text>
+                <Text style={s.buttontxt3}>홈으로 돌아가기</Text>
             </TouchableOpacity>
           </View>
       </View>

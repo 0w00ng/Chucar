@@ -63,6 +63,18 @@ export default function MyPageScreen({navigation }) {
           borderWidth:3
         }}>
           <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
+          onPress={() => navigation.navigate('LoginPage')}
+          >
+            <Text style={{margin:10, color:'#a0a0a0', fontSize:15}}>로그인</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{
+          width:'100%',height:70,justifyContent:'center',
+          borderColor:'#f0f0f0',
+          borderBottomColor:'#a0a0a0',
+          borderWidth:3
+        }}>
+          <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
           onPress={() => navigation.navigate('EstlistPage')}
           >
             <Text style={{margin:10, color:'#a0a0a0', fontSize:15}}>로그아웃</Text>

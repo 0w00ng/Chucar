@@ -66,7 +66,8 @@ module.exports = StyleSheet.create({
         height:50,
         borderColor:'navy',
         backgroundColor:'white',
-        justifyContent:'center'
+        justifyContent:'center',
+        alignItems:'center'
     },
     buttontxt3: {
         textAlign: 'center',
@@ -128,7 +129,7 @@ module.exports = StyleSheet.create({
         backgroundColor: 'white',
         fontSize: 20,
         labelSize: 20,
-        margin: 20,
+        margin: 10,
         width:'50%',
       textAlign: 'right',
       },

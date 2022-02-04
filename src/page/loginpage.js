@@ -1,20 +1,47 @@
-import * as React from 'react';
-import { Button, View, Text } from 'react-native';
-// src
-import Root from '../root';
-import MyPage from './mypage';
-import LoginPage from './loginpage';
-import SignupPage from './signuppage';
+import React, { useState } from "react";
+import { View, Text,TouchableOpacity } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import s from '../style'
+
 export default function LoginPageScreen({ navigation }) {
+  const [ID, setID] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [grade, setGrade] = React.useState("");
+
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>LoginPage</Text>
-        <Button
-          title="회원가입"
-          onPress={() =>
-            navigation.navigate('회원가입')
-          }
-        />
+      <View style={{ flex: 1, backgroundColor:'white'}}>
+          <View>
+            <Text style={s.title}>
+                로그인
+            </Text>
+          </View>
+          <View style={s.rowcontainer}>
+            <TextInput style={s.inputL}
+              label="아이디"
+              value={ID}
+              onChangeText={ID => setID(ID)}
+            />
+          </View>
+          <View style={s.rowcontainer}>
+            <TextInput style={s.inputL}
+              label="비밀번호"
+              value={password}
+              onChangeText={password => setpassword(password)}
+            />
+          </View>
+          <View style={{alignItems:'center'}}>
+            <TouchableOpacity style={s.buttonbg3}
+            onPress={() => navigation.navigate('RegisterPage')}>
+                <Text style={s.buttontxt3}>로그인 하기</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{alignItems:'center'}}>
+            <Text style={s.label}> 아직 계정이 없으신가요? </Text>
+            <TouchableOpacity style={s.buttonbg1}
+            onPress={() => navigation.navigate('RegisterPage')}>
+                <Text style={s.buttontxt1}>회원가입</Text>
+            </TouchableOpacity>
+          </View>
       </View>
     );
-  }
+}

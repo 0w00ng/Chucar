@@ -7,6 +7,8 @@ import Root from './root';
 import MyPage from './page/mypage';
 import EstimatePage from './page/estimate/estimatepage';
 import EstlistPage from './page/estlistpage';
+import LoginPage from './page/loginpage';
+import RegisterPage from './page/registerpage';
 import s from './style';
 
 // lib
@@ -29,6 +31,8 @@ const Drawer = createDrawerNavigator();
       <Drawer.Screen name="EstimatePage" component={EstimatePage} options={{title:"견적신청"}}/>
       <Drawer.Screen name="EstlistPage" component={EstlistPage} options={{title:"견적내역"}}/>
       <Drawer.Screen name="MyPage" component={MyPage} options={{title:"마이페이지"}}/>
+      <Drawer.Screen name="LoginPage" component={LoginPage} options={{title:"로그인"}}/>
+      <Drawer.Screen name="RegisterPage" component={RegisterPage} options={{title:"회원가입"}}/>
     </Drawer.Navigator>
     );
   }
