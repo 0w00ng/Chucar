@@ -10,7 +10,7 @@ export default function RegistePageScreen3({ route,navigation }) {
 
   const {id,password,nickname,email,phone} = route.params;  // Page2에서 보낸 데이터저장
 
-  axios.post(`http://34.64.207.117:3000/signup`, {
+  axios.post(`http://34.64.207.117:3000/signup`, {    //DB 전송
         id:id,
         password:password,
         nickname:nickname,
