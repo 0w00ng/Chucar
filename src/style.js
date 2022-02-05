@@ -49,7 +49,7 @@ module.exports = StyleSheet.create({
         margin:10,
         borderWidth:3,
         borderRadius: 15,
-        borderColor:'white',
+        borderColor:'navy',
         backgroundColor:'white',
         justifyContent:"space-between",
         flexDirection:'row',
@@ -86,7 +86,7 @@ module.exports = StyleSheet.create({
         margin:10,
         borderWidth:3,
         borderRadius: 15,
-        borderColor:'white',
+        borderColor:'navy',
         backgroundColor:'white',
     },
     container: {

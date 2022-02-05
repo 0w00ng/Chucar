@@ -185,16 +185,12 @@
 				C497A53F27AB0FBD00B9EBF8 /* EvilIcons.ttf */,
 				C497A54A27AB0FBE00B9EBF8 /* Feather.ttf */,
 				C497A53C27AB0FBD00B9EBF8 /* FontAwesome.ttf */,
-				C497A54327AB0FBD00B9EBF8 /* FontAwesome5_Brands.ttf */,
 				C497A53D27AB0FBD00B9EBF8 /* FontAwesome5_Regular.ttf */,
 				C497A54927AB0FBE00B9EBF8 /* FontAwesome5_Solid.ttf */,
 				C497A54427AB0FBD00B9EBF8 /* Fontisto.ttf */,
-				C497A54027AB0FBD00B9EBF8 /* Foundation.ttf */,
 				C497A54827AB0FBE00B9EBF8 /* Ionicons.ttf */,
 				C497A53B27AB0FBD00B9EBF8 /* MaterialCommunityIcons.ttf */,
-				C497A54727AB0FBE00B9EBF8 /* MaterialIcons.ttf */,
 				C497A54527AB0FBD00B9EBF8 /* Octicons.ttf */,
-				C497A54627AB0FBD00B9EBF8 /* SimpleLineIcons.ttf */,
 				C497A53E27AB0FBD00B9EBF8 /* Zocial.ttf */,
 			);
 			path = Fonts;

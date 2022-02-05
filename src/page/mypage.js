@@ -21,12 +21,12 @@ export default function MyPageScreen({navigation }) {
             <Image source={UserIcon} style={s.headericon}/>
         </TouchableOpacity>
       ),
-      headerLeft: () => (
-        <TouchableOpacity 
-        onPress={() => navigation.toggleDrawer()}>
-            <Image source={Menubar} style={s.headericon}/>
-        </TouchableOpacity>
-      ),
+      // headerLeft: () => (
+      //   <TouchableOpacity 
+      //   onPress={() => navigation.toggleDrawer()}>
+      //       <Image source={Menubar} style={s.headericon}/>
+      //   </TouchableOpacity>
+      // ),
       headerTitle:"CHUCAR"
     })   
 

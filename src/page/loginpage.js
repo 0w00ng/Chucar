@@ -6,7 +6,6 @@ import s from '../style'
 export default function LoginPageScreen({ navigation }) {
   const [ID, setID] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [grade, setGrade] = React.useState("");
 
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
@@ -25,8 +24,9 @@ export default function LoginPageScreen({ navigation }) {
           <View style={s.rowcontainer}>
             <TextInput style={s.inputL}
               label="비밀번호"
-              value={password}
-              onChangeText={password => setpassword(password)}
+              secureTextEntry={true}        // 비밀번호 마스킹 
+              value={password} 
+              onChangeText={password => setPassword(password)}
             />
           </View>
           <View style={{alignItems:'center'}}>

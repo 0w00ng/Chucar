@@ -17,61 +17,73 @@ export default function EstimatePageScreen1({ navigation }) {
                 선택 해주세요
             </Text>
           </View>
-          <View style={s.checkboxContainer}>
-          <CheckBox
-            disabled={false}
-            value={checkstate1}
-            onValueChange={(newValue) => {
-                setcheckstate1(newValue)
+          <View >
+            <TouchableOpacity style={s.checkboxContainer}
+              onPress={()=>{
+                setcheckstate1(checkstate1 ? 0:1)         //Check Toggle
                 setcheckstate2(false)
                 setcheckstate3(false)
                 setcheckstate4(false)
-            }}
-            style={s.checkbox}
-            />
-            <Text style={s.label}>할부로 진행할게요</Text>
+              }}
+            >
+              <CheckBox                                   // 1번 체크박스
+                disabled={true}
+                value={checkstate1}
+                style={s.checkbox}
+                />
+                <Text style={s.label}>할부로 진행할게요</Text>
+            </TouchableOpacity>
           </View>
-          <View style={s.checkboxContainer}>
-          <CheckBox
-            disabled={false}
-            value={checkstate2}
-            onValueChange={(newValue) => {
+          <View >
+            <TouchableOpacity style={s.checkboxContainer}
+              onPress={()=>{
+                setcheckstate2(checkstate2 ? 0:1)
                 setcheckstate1(false)
-                setcheckstate2(newValue)
                 setcheckstate3(false)
                 setcheckstate4(false)
-            }}
-            style={s.checkbox}
-            />
-            <Text style={s.label}>렌트로 진행할게요</Text>
+              }}
+            >
+              <CheckBox                                   // 2번 체크박스
+                disabled={true}
+                value={checkstate2}
+                style={s.checkbox}
+                />
+                <Text style={s.label}>현금으로 진행할게요</Text>
+            </TouchableOpacity>
           </View>
-          <View style={s.checkboxContainer}>
-          <CheckBox
-            disabled={false}
-            value={checkstate3}
-            onValueChange={(newValue) => {
+          <View >
+            <TouchableOpacity style={s.checkboxContainer}
+              onPress={()=>{
+                setcheckstate3(checkstate3 ? 0:1)
                 setcheckstate1(false)
                 setcheckstate2(false)
-                setcheckstate3(newValue)
                 setcheckstate4(false)
-            }}
-            style={s.checkbox}
-            />
-            <Text style={s.label}>리스로 진행할게요</Text>
+              }}
+            >
+              <CheckBox                                   // 3번 체크박스
+                disabled={true}
+                value={checkstate3}
+                style={s.checkbox}
+                />
+                <Text style={s.label}>렌트로 진행할게요</Text>
+            </TouchableOpacity>
           </View>
-          <View style={s.checkboxContainer}>
-          <CheckBox
-            disabled={false}
-            value={checkstate4}
-            onValueChange={(newValue) => {
+          <View >
+            <TouchableOpacity style={s.checkboxContainer}
+              onPress={()=>{
+                setcheckstate4(checkstate4 ? 0:1)
                 setcheckstate1(false)
                 setcheckstate2(false)
                 setcheckstate3(false)
-                setcheckstate4(newValue)
-            }}
-            style={s.checkbox}
-            />
-            <Text style={s.label}>현금으로 진행할게요</Text>
+              }}
+            >
+              <CheckBox                                   // 4번 체크박스
+                disabled={true}
+                value={checkstate4}
+                style={s.checkbox}
+                />
+                <Text style={s.label}>리스로 진행할게요</Text>
+            </TouchableOpacity>
           </View>
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={s.buttonbg3}

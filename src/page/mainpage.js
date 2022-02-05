@@ -4,15 +4,16 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import banner_black from '../../img/banner_black.jpg'
 import s from '../style'
 
-
 export default function MainPageScreen({ navigation }) {
 
-navigation.setOptions({ headerShown: false });
+    
+
+navigation.setOptions({ headerShown: false });      // 헤더바 숨기기
 
     return (
-      <View style={{flex:1,flexDirection:'column',alignItems:'stretch'}}>
+      <View style={{flex:1,flexDirection:'column',alignItems:'stretch',backgroundColor:'white'}}>
         <View style={{flex:0.7}}>
-            <Image 
+            <Image                                      // 배너사진
             style={{width:'100%',height:'100%'}}
             source={banner_black}
             resizeMode='cover'
@@ -21,19 +22,19 @@ navigation.setOptions({ headerShown: false });
         <View style={{flexDirection:'row',justifyContent:'center'}}>
             <TouchableOpacity style={s.buttonbg1} 
             onPress={() => {
-                navigation.navigate('Root', {screen: 'EstimatePage'})
+                navigation.navigate('Root', {screen: 'EstimatePage'})   //견적신청 화면전환
             }}>
                 <Text style={s.buttontxt1}>견적신청하기</Text>
             </TouchableOpacity>
             <TouchableOpacity style={s.buttonbg2}
             onPress={() => {
-                navigation.navigate('Root', {screen: 'EstlistPage'})
+                navigation.navigate('Root', {screen: 'EstlistPage'})    //견적내역 화면전환
             }}>
                 <Text style={s.buttontxt2}>견적내역확인</Text>
             </TouchableOpacity>
         </View>
         <View style={{flexDirection:'row'}}>
-            <Text style={s.tradetitle1}>누적거래수</Text>
+            <Text style={s.title}>최근 받은 견적</Text>
         </View>
         <View style={s.tradeview}>
             <View>
@@ -47,16 +48,11 @@ navigation.setOptions({ headerShown: false });
                 <Text style={s.tradetxt}>123</Text>
             </View>
         </View>
-        <View style={{alignItems:'center'}}>
-            <TouchableOpacity style={s.buttonbg3}>
-                <Text style={s.buttontxt3}>딜러 이용권 결제</Text>
-            </TouchableOpacity>
-        </View>
         
         <View style={s.Noticeview}>
             <View style={{flexDirection:'row',justifyContent:"space-between"}}>
-                <Text style={s.Noticetitle}>공지사항</Text>
-                <Text style={{textAlign:"right",margin:5}}>전체보기</Text>
+                <Text style={s.title}>공지사항</Text>
+                <Text style={{textAlign:"right",margin:10}}>전체보기</Text>
             </View>
             <View style={{justifyContent:"flex-start"}}>
                 <Text style={s.tradetxt}>[공지] 이 프로젝트는 김동규 회사 과제입니다.</Text>

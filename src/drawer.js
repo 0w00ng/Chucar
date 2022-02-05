@@ -16,6 +16,7 @@ import * as React from 'react';
 import { Button, View, Text,Image } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import axios from 'axios';
 
 export default function MyDrawer({navigation}) {
 
