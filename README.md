@@ -5,7 +5,7 @@
 
 # 적용기술
 
-Navigator : Nesting Drawer & Stack Navigator
+Navigation : Nesting Drawer & Stack Navigator
 
 # 기술스택
 
