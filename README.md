@@ -9,7 +9,7 @@ Navigator : Nesting Drawer & Stack Navigator
 
 # 기술스택
 
-ReactNative\n
+ReactNative{\n}
 Axios
 NodeJS
 MySQL
