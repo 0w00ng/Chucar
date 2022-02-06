@@ -4,10 +4,10 @@ import CheckBox from '@react-native-community/checkbox'
 import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
-export default function EstimatePageScreen4({ navigation }) {
-  const [menufact, setMenufact] = React.useState("");
-  const [model, setModel] = React.useState("");
-  const [grade, setGrade] = React.useState("");
+export default function EstimatePageScreen4({ route, navigation }) {
+  const {kind,menufact,model,grade,price,mprice,distance} = route.params;
+  const [option, setOption] = React.useState("");
+  const [comment, setComment] = React.useState("");
 
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
@@ -20,8 +20,8 @@ export default function EstimatePageScreen4({ navigation }) {
           <View style={s.rowcontainer}>
             <TextInput style={s.inputL}
               label="필요옵션 ex) 기본옵션, 선루프, 열선시트"
-              value={menufact}
-              onChangeText={menufact => setMenufact(menufact)}
+              value={option}
+              onChangeText={option => setOption(option)}
             />
           </View>
           <View style={{
@@ -40,13 +40,23 @@ export default function EstimatePageScreen4({ navigation }) {
               multiline
               maxLength={500}
               label="딜러에게 하고싶은 말"
-              value={model}
-              onChangeText={model => setModel(model)}
+              value={comment}
+              onChangeText={comment => setComment(comment)}
             />
           </View>
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={s.buttonbg3}
-            onPress={() => navigation.navigate('EstimatePage5')}>
+            onPress={() => navigation.navigate('EstimatePage5',{
+              kind:kind,
+              menufact:menufact,
+              model:model,
+              grade:grade,
+              price:price,
+              mprice:mprice,
+              distance:distance,
+              option:option,
+              comment:comment
+            })}>
                 <Text style={s.buttontxt3}>계속하기(4/5)</Text>
             </TouchableOpacity>
           </View>

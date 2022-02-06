@@ -1,47 +1,125 @@
-import React, { useState } from "react";
-import { View, Text,TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import React from 'react';
+
+import { View,TouchableOpacity,Text } from "react-native";
+
+import { WebView } from 'react-native-webview';
 import s from '../style'
 
-export default function LoginPageScreen({ navigation }) {
-  const [ID, setID] = React.useState("");
-  const [password, setPassword] = React.useState("");
+import axios from 'axios';
+
+ 
+
+// other import settings...
+
+const runFirst = `window.ReactNativeWebView.postMessage("this is message from web");`;
+
+ 
+
+const KakaoLogin = ({ navigation }) => {
+
+ 
+
+    function LogInProgress(data) {
+
+        // access code는 url에 붙어 장황하게 날아온다.
+
+        // substringd으로 url에서 code=뒤를 substring하면 된다.
+
+        const exp = "code=";
+
+        var condition = data.indexOf(exp);
+
+        if (condition != -1) {
+
+            var request_code = data.substring(condition + exp.length);
+
+            console.log("access code :: " + request_code);
+
+            // 토큰값 받기
+
+            requestToken(request_code);
+
+        }
+
+    };
+
+ 
+
+    const requestToken = async (request_code) => {
+
+        var returnValue = "none";
+
+        var request_token_url = "https://kauth.kakao.com/oauth/token";
+
+ 
+
+        axios({
+
+            method: "post",
+
+            url: request_token_url,
+
+            params: {
+
+                grant_type: 'authorization_code',
+
+                client_id:  '9e7627ff0adc857af4fd5e69de0222e6',
+
+                redirect_uri: 'http://34.64.207.117:3000/oauth',
+
+                code: request_code,
+
+            },
+
+        }).then(function (response) {
+
+            returnValue = response.data.access_token;
+
+ 
+
+        }).catch(function (error) {
+
+            console.log('error', error);
+
+        });
+
+    };
+
+ 
 
     return (
-      <View style={{ flex: 1, backgroundColor:'white'}}>
-          <View>
-            <Text style={s.title}>
-                로그인
-            </Text>
-          </View>
-          <View style={s.rowcontainer}>
-            <TextInput style={s.inputL}
-              label="아이디"
-              value={ID}
-              onChangeText={ID => setID(ID)}
+        <View style={{ flex: 1,backgroundColor:'white'}}>
+
+            <WebView
+
+                originWhitelist={['*']}
+
+                scalesPageToFit={false}
+
+                source={{ uri: 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=9e7627ff0adc857af4fd5e69de0222e6,&redirect_uri=http://34.64.207.117:3000/oauth'}}
+
+                injectedJavaScript={runFirst}
+
+                javaScriptEnabled={true}
+
+                onMessage={(event) => { LogInProgress(event.nativeEvent["url"]); }}
+
+            // onMessage ... :: webview에서 온 데이터를 event handler로 잡아서 logInProgress로 전달
+
             />
-          </View>
-          <View style={s.rowcontainer}>
-            <TextInput style={s.inputL}
-              label="비밀번호"
-              secureTextEntry={true}        // 비밀번호 마스킹 
-              value={password} 
-              onChangeText={password => setPassword(password)}
-            />
-          </View>
-          <View style={{alignItems:'center'}}>
+            <View style={{alignItems:'center'}}>
             <TouchableOpacity style={s.buttonbg3}
-            onPress={() => navigation.navigate('RegisterPage')}>
-                <Text style={s.buttontxt3}>로그인 하기</Text>
+            onPress={() => {
+              navigation.navigate('Root',{screen:'Main'})              
+              }}>
+                <Text style={s.buttontxt3}>돌아가기</Text>
             </TouchableOpacity>
-          </View>
-          <View style={{alignItems:'center'}}>
-            <Text style={s.label}> 아직 계정이 없으신가요? </Text>
-            <TouchableOpacity style={s.buttonbg1}
-            onPress={() => navigation.navigate('RegisterPage')}>
-                <Text style={s.buttontxt1}>회원가입</Text>
-            </TouchableOpacity>
-          </View>
-      </View>
+            </View>
+        </View>
     );
-}
+
+};
+
+ 
+
+export default KakaoLogin;
