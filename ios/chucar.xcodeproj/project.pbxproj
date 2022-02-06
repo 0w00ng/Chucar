@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* chucarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* chucarTests.m */; };
+		11EE1D69D32E3F2FE9C61257 /* libPods-chucar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFDCAFDDA746B730DE2C0666 /* libPods-chucar.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		498F60734E090132EBFD03E6 /* libPods-chucar-chucarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 067F094F048D8CACD8874401 /* libPods-chucar-chucarTests.a */; };
-		4B9DB1EF426A5DFD87C45D74 /* libPods-chucar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C47C36397FC20A21509BAE02 /* libPods-chucar.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		FDF27CF5762C9413DBD4C346 /* libPods-chucar-chucarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD0C64983173A57C11E81124 /* libPods-chucar-chucarTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,17 +30,19 @@
 		00E356EE1AD99517003FC87E /* chucarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = chucarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* chucarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = chucarTests.m; sourceTree = "<group>"; };
-		067F094F048D8CACD8874401 /* libPods-chucar-chucarTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chucar-chucarTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* chucar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chucar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = chucar/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = chucar/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = chucar/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = chucar/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = chucar/main.m; sourceTree = "<group>"; };
-		7850374A79033C827F3EAEBC /* Pods-chucar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chucar.release.xcconfig"; path = "Target Support Files/Pods-chucar/Pods-chucar.release.xcconfig"; sourceTree = "<group>"; };
+		5CA5DA4D8C06FF22CBFDBDCE /* Pods-chucar-chucarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chucar-chucarTests.debug.xcconfig"; path = "Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests.debug.xcconfig"; sourceTree = "<group>"; };
+		65A9872B7EBA1CAB7B777C51 /* Pods-chucar-chucarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chucar-chucarTests.release.xcconfig"; path = "Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = chucar/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ACE8F60C0DDDC7D6BD285B9F /* Pods-chucar-chucarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chucar-chucarTests.debug.xcconfig"; path = "Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C47C36397FC20A21509BAE02 /* libPods-chucar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chucar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		838BA9BA6825033D8A7FE18C /* Pods-chucar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chucar.debug.xcconfig"; path = "Target Support Files/Pods-chucar/Pods-chucar.debug.xcconfig"; sourceTree = "<group>"; };
+		95A27DD1001D00E263968736 /* Pods-chucar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chucar.release.xcconfig"; path = "Target Support Files/Pods-chucar/Pods-chucar.release.xcconfig"; sourceTree = "<group>"; };
+		AD0C64983173A57C11E81124 /* libPods-chucar-chucarTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chucar-chucarTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFDCAFDDA746B730DE2C0666 /* libPods-chucar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chucar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C497A53B27AB0FBD00B9EBF8 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		C497A53C27AB0FBD00B9EBF8 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		C497A53D27AB0FBD00B9EBF8 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
@@ -55,9 +57,7 @@
 		C497A54A27AB0FBE00B9EBF8 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		CAB7B5F1D75B4586B9826EF2 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		D3F25A7CBA1F455E9EBB2B50 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		D99DDCCDED37A0D1224D9745 /* Pods-chucar-chucarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chucar-chucarTests.release.xcconfig"; path = "Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests.release.xcconfig"; sourceTree = "<group>"; };
 		E0095E1C26354042BFB750C0 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		EBC5B96D538F7DE96656257C /* Pods-chucar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chucar.debug.xcconfig"; path = "Target Support Files/Pods-chucar/Pods-chucar.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FEB14D6B9E334E36A5003C8C /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				498F60734E090132EBFD03E6 /* libPods-chucar-chucarTests.a in Frameworks */,
+				FDF27CF5762C9413DBD4C346 /* libPods-chucar-chucarTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B9DB1EF426A5DFD87C45D74 /* libPods-chucar.a in Frameworks */,
+				11EE1D69D32E3F2FE9C61257 /* libPods-chucar.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,8 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C47C36397FC20A21509BAE02 /* libPods-chucar.a */,
-				067F094F048D8CACD8874401 /* libPods-chucar-chucarTests.a */,
+				BFDCAFDDA746B730DE2C0666 /* libPods-chucar.a */,
+				AD0C64983173A57C11E81124 /* libPods-chucar-chucarTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,10 +136,10 @@
 		5CE158B795FFE13BE81BF8C1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EBC5B96D538F7DE96656257C /* Pods-chucar.debug.xcconfig */,
-				7850374A79033C827F3EAEBC /* Pods-chucar.release.xcconfig */,
-				ACE8F60C0DDDC7D6BD285B9F /* Pods-chucar-chucarTests.debug.xcconfig */,
-				D99DDCCDED37A0D1224D9745 /* Pods-chucar-chucarTests.release.xcconfig */,
+				838BA9BA6825033D8A7FE18C /* Pods-chucar.debug.xcconfig */,
+				95A27DD1001D00E263968736 /* Pods-chucar.release.xcconfig */,
+				5CA5DA4D8C06FF22CBFDBDCE /* Pods-chucar-chucarTests.debug.xcconfig */,
+				65A9872B7EBA1CAB7B777C51 /* Pods-chucar-chucarTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -203,12 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "chucarTests" */;
 			buildPhases = (
-				4ACFC9B6037C07F7EAAE287F /* [CP] Check Pods Manifest.lock */,
+				01D6607A593E0691CCCD580F /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				A753DA02628F6B5B6B8EB30A /* [CP] Embed Pods Frameworks */,
-				10C1E1B526677778EAD09409 /* [CP] Copy Pods Resources */,
+				6A1411A004ACE6329B0F96A0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -224,14 +223,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "chucar" */;
 			buildPhases = (
-				1955CEBEF8ADEED5FBE2209C /* [CP] Check Pods Manifest.lock */,
+				3914CE96C6639DCCF313DA56 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				50992996406BF88C534C41AF /* [CP] Embed Pods Frameworks */,
-				00950D98998389716C4AFE2C /* [CP] Copy Pods Resources */,
+				38CB0B5AA2C4460F62491F7A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -298,23 +296,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00950D98998389716C4AFE2C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chucar/Pods-chucar-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chucar/Pods-chucar-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-chucar/Pods-chucar-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -329,46 +310,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		10C1E1B526677778EAD09409 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1955CEBEF8ADEED5FBE2209C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-chucar-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4ACFC9B6037C07F7EAAE287F /* [CP] Check Pods Manifest.lock */ = {
+		01D6607A593E0691CCCD580F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -390,38 +332,60 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		50992996406BF88C534C41AF /* [CP] Embed Pods Frameworks */ = {
+		38CB0B5AA2C4460F62491F7A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chucar/Pods-chucar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-chucar/Pods-chucar-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chucar/Pods-chucar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-chucar/Pods-chucar-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-chucar/Pods-chucar-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-chucar/Pods-chucar-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A753DA02628F6B5B6B8EB30A /* [CP] Embed Pods Frameworks */ = {
+		3914CE96C6639DCCF313DA56 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-chucar-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A1411A004ACE6329B0F96A0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-chucar-chucarTests/Pods-chucar-chucarTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -476,7 +440,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACE8F60C0DDDC7D6BD285B9F /* Pods-chucar-chucarTests.debug.xcconfig */;
+			baseConfigurationReference = 5CA5DA4D8C06FF22CBFDBDCE /* Pods-chucar-chucarTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -503,7 +467,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D99DDCCDED37A0D1224D9745 /* Pods-chucar-chucarTests.release.xcconfig */;
+			baseConfigurationReference = 65A9872B7EBA1CAB7B777C51 /* Pods-chucar-chucarTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -527,7 +491,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EBC5B96D538F7DE96656257C /* Pods-chucar.debug.xcconfig */;
+			baseConfigurationReference = 838BA9BA6825033D8A7FE18C /* Pods-chucar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -553,7 +517,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7850374A79033C827F3EAEBC /* Pods-chucar.release.xcconfig */;
+			baseConfigurationReference = 95A27DD1001D00E263968736 /* Pods-chucar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

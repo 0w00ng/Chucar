@@ -69,6 +69,8 @@ const KakaoLogin = ({ navigation }) => {
 
                 code: request_code,
 
+                clientSecret: '9F00S9wCb8X6cggmdqesUVTYoQeD41P4',
+
             },
 
         }).then(function (response) {
@@ -96,7 +98,7 @@ const KakaoLogin = ({ navigation }) => {
 
                 scalesPageToFit={false}
 
-                source={{ uri: 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=9e7627ff0adc857af4fd5e69de0222e6,&redirect_uri=http://34.64.207.117:3000/oauth'}}
+                source={{ uri: 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id={id},&redirect_uri=http://34.64.207.117:3000/oauth'}}
 
                 injectedJavaScript={runFirst}
 
