@@ -9,15 +9,14 @@ export default function EstimatePageScreen1({ navigation }) {
   const [checkstate2, setcheckstate2] = useState(false);
   const [checkstate3, setcheckstate3] = useState(false);
   const [checkstate4, setcheckstate4] = useState(false);
-  const [kind, setKind] = useState(0);
+  const [kind, setKind] = useState(1);
 
   const checkf = (check) => {
     setKind(check)        //kind 값 입력
-
-    if(check==1) setcheckstate1(checkstate1 ? 0:1);      // Toggle Switch
-    if(check==2) setcheckstate2(checkstate2 ? 0:1);
-    if(check==3) setcheckstate3(checkstate3 ? 0:1);
-    if(check==4) setcheckstate4(checkstate4 ? 0:1);
+    if(check==1) setcheckstate1(true);      //Check
+    if(check==2) setcheckstate2(true);
+    if(check==3) setcheckstate3(true);
+    if(check==4) setcheckstate4(true);
     if(check!=1) setcheckstate1(false);               // Other False
     if(check!=2) setcheckstate2(false);
     if(check!=3) setcheckstate3(false);

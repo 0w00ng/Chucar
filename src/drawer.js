@@ -9,6 +9,7 @@ import EstimatePage from './page/estimate/estimatepage';
 import EstlistPage from './page/estlistpage';
 import LoginPage from './page/loginpage';
 import RegisterPage from './page/registerpage';
+import IntroScreen from './page/intro';
 import s from './style';
 
 // lib
@@ -23,11 +24,12 @@ export default function MyDrawer({navigation}) {
 const Drawer = createDrawerNavigator();
     return (
     <Drawer.Navigator
-      initialRouteName="Root"
+      initialRouteName="Intro"
       screenOptions={{
         drawerType: 'front',    
       }}
     >
+      <Drawer.Screen name="Intro" component={IntroScreen} options={{hidden:true, headerShown: true}} />
       <Drawer.Screen name="Root" component={Root} options={{title:"홈"}}/>
       <Drawer.Screen name="EstimatePage" component={EstimatePage} options={{title:"견적신청"}}/>
       <Drawer.Screen name="EstlistPage" component={EstlistPage} options={{title:"견적내역"}}/>

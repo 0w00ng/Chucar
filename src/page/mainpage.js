@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import banner_black from '../../img/banner_black.jpg'
+import IntroScreen from './intro';
 import s from '../style'
 
 export default function MainPageScreen({ navigation }) {

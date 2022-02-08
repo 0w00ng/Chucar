@@ -9,8 +9,6 @@ export default function EstimatePageScreen2({ route, navigation }) {
   const [model, setModel] = React.useState("");
   const [grade, setGrade] = React.useState("");
 
-  console.log(kind)
-
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
           <View>

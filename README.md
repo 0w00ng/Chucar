@@ -11,7 +11,6 @@
 Navigation : Nesting Drawer & Stack Navigator
 RestAPI
 Kakao API
-WebView
 
 # 기술스택
 
@@ -21,6 +20,8 @@ NodeJS,
 MySQL
 
 # 실행방법
+
+npm install
 
 1st Terminal : npm start
 2nd Terminal : react-native run-ios

@@ -14,22 +14,6 @@ export default function MyPageScreen({navigation }) {
     const userid = 1//route.params.userid ? route.params.userid : 'null';
     const username = 2//route.params.username ? route.params.username : 'null';
 
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity 
-        onPress={() => navigation.navigate('MyPage')}>
-            <Image source={UserIcon} style={s.headericon}/>
-        </TouchableOpacity>
-      ),
-      // headerLeft: () => (
-      //   <TouchableOpacity 
-      //   onPress={() => navigation.toggleDrawer()}>
-      //       <Image source={Menubar} style={s.headericon}/>
-      //   </TouchableOpacity>
-      // ),
-      headerTitle:"CHUCAR"
-    })   
-
     return (
       <View>
         <View style={{

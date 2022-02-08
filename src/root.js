@@ -10,6 +10,7 @@ import Headerbar from './headbar';
 import MainPage from './page/mainpage';
 import EstimatePage from './page/estimate/estimatepage';
 import EstlistPage from './page/estlistpage';
+import IntroScreen from './page/intro';
 import s from './style';
 
 // lib

@@ -6,6 +6,7 @@ import MyPage from './src/page/mypage';
 import LoginPage from './src/page/loginpage';
 import SignupPage from './src/page/signuppage';
 import MyDrawer from './src/drawer';
+import IntroScreen from './src/page/intro';
 // lib
 import * as React from 'react';
 import { Button, View, Text,Image, StatusBar } from 'react-native';
