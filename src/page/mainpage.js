@@ -5,11 +5,11 @@ import banner_black from '../../img/banner_black.jpg'
 import IntroScreen from './intro';
 import s from '../style'
 
-export default function MainPageScreen({ navigation }) {
+export default function MainPageScreen({ route,navigation }) {
 
-    
-
-navigation.setOptions({ headerShown: false });      // 헤더바 숨기기
+    const user  = route.params;
+    console.log(user);
+    navigation.setOptions({ headerShown: false });      // 헤더바 숨기기
 
     return (
       <View style={{flex:1,flexDirection:'column',alignItems:'stretch',backgroundColor:'white'}}>

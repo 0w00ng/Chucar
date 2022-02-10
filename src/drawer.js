@@ -15,6 +15,8 @@ import s from './style';
 // lib
 import * as React from 'react';
 import { Button, View, Text,Image } from 'react-native';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import axios from 'axios';
@@ -23,19 +25,22 @@ export default function MyDrawer({navigation}) {
 
 const Drawer = createDrawerNavigator();
     return (
-    <Drawer.Navigator
-      initialRouteName="Intro"
-      screenOptions={{
-        drawerType: 'front',    
-      }}
-    >
-      <Drawer.Screen name="Intro" component={IntroScreen} options={{hidden:true, headerShown: true}} />
-      <Drawer.Screen name="Root" component={Root} options={{title:"홈"}}/>
-      <Drawer.Screen name="EstimatePage" component={EstimatePage} options={{title:"견적신청"}}/>
-      <Drawer.Screen name="EstlistPage" component={EstlistPage} options={{title:"견적내역"}}/>
-      <Drawer.Screen name="MyPage" component={MyPage} options={{title:"마이페이지"}}/>
-      <Drawer.Screen name="LoginPage" component={LoginPage} options={{title:"로그인"}}/>
-      <Drawer.Screen name="RegisterPage" component={RegisterPage} options={{title:"회원가입"}}/>
-    </Drawer.Navigator>
+    <NavigationContainer>
+      <StatusBar hidden={true}/>
+      <Drawer.Navigator
+        initialRouteName="Intro"
+        screenOptions={{
+          drawerType: 'front',    
+        }}
+      >
+        <Drawer.Screen name="Intro" component={IntroScreen} options={{lazy:true, headerShown: true}} />
+        <Drawer.Screen name="Root" component={Root} options={{title:"홈"}}/>
+        <Drawer.Screen name="EstimatePage" component={EstimatePage} options={{title:"견적신청"}}/>
+        <Drawer.Screen name="EstlistPage" component={EstlistPage} options={{title:"견적내역"}}/>
+        <Drawer.Screen name="MyPage" component={MyPage} options={{title:"마이페이지"}}/>
+        <Drawer.Screen name="LoginPage" component={LoginPage} options={{title:"로그인"}}/>
+        <Drawer.Screen name="RegisterPage" component={RegisterPage} options={{title:"회원가입"}}/>
+      </Drawer.Navigator>
+    </NavigationContainer>
     );
   }

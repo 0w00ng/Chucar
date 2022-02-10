@@ -82,12 +82,28 @@ const KakaoLogin = ({ navigation }) => {
             expires_in:token.data.expires_in
           }
             await storeData(storeToken); //token storing into local storage
-            const asd =  await getData(); //token getting from local storage
-            console.log(asd.access_token); // access token 만 출력해보기
-            console.log(asd.refresh_token);
-            console.log(asd.expires_in); // 만료까지 남은 시간(초)임 나중에 백엔드로 토큰 보내는 함수마다 항상 뽑아서 확인하기
-            navigation.navigate('Root',{screen:'Main'})
-        //여기서 로그인 성공 화면 띄우면 될듯? 그리고 확인버튼 누르면 초기화면으로 넘겨줘
+            const chutoken =  await getData(); //token getting from local storage
+            console.log(chutoken.access_token); // access token 만 출력해보기
+            console.log(chutoken.refresh_token);
+            console.log(chutoken.expires_in); // 만료까지 남은 시간(초)임 나중에 백엔드로 토큰 보내는 함수마다 항상 뽑아서 확인하기
+
+            axios.get(`http://34.64.207.117:3000/token`, {
+                headers:{
+                    Authorization: `${chutoken.access_token}`,
+                    'content-type':'application/x-www-form-urlencoded;charset=utf-8'
+                }
+            })
+            .then(function (res) { //성공
+                console.log(res.data);
+                navigation.navigate('Root',{
+                    screen:'Main',
+                    user:res.data
+                });
+            })
+            .catch(function (err) { //실패
+                console.log(err.data);
+            })
+            
     }catch(err){
       console.log('로그인에 실패했습니다.');
       console.log(err.data);
@@ -100,8 +116,7 @@ const KakaoLogin = ({ navigation }) => {
       <WebView
         originWhitelist={['*']}
         scalesPageToFit={false}
-        source={{ uri: 'https://kauth.kakao.com/oauth/authorize?client_id=9e7627ff0adc857af4fd5e69de0222e6&redirect_uri=http://34.64.207.117:3000/oauth&response_type=code&prompt=login'}}
-        // source={{ uri: 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=9e7627ff0adc857af4fd5e69de0222e6,&redirect_uri=http://34.64.207.117:3000/oauth'}}            
+        source={{ uri: 'https://kauth.kakao.com/oauth/authorize?client_id=9e7627ff0adc857af4fd5e69de0222e6&redirect_uri=http://34.64.207.117:3000/oauth&response_type=code&prompt=login'}}            
         injectedJavaScript={runFirst}
           javaScriptEnabled={true}
           onMessage={(event) => {LogInProgress(event.nativeEvent.url); }}

@@ -22,7 +22,7 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 
  
 
-const IntroScreen = ({ route, navigation }) => {
+const IntroScreen = ({ navigation }) => {
   const [showRealApp, setShowRealApp] = useState(false);
 
   const onDone = () => {

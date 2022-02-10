@@ -17,7 +17,7 @@ export default function EstimatePageScreen1({ navigation }) {
     if(check==2) setcheckstate2(true);
     if(check==3) setcheckstate3(true);
     if(check==4) setcheckstate4(true);
-    if(check!=1) setcheckstate1(false);               // Other False
+    if(check!=1) setcheckstate1(false);     // Other False
     if(check!=2) setcheckstate2(false);
     if(check!=3) setcheckstate3(false);
     if(check!=4) setcheckstate4(false);
