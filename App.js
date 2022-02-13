@@ -8,6 +8,6 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-      <MyDrawer />
+    <MyDrawer />
   );
 }

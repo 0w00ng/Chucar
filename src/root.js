@@ -45,7 +45,6 @@ export default function Root({navigation}) {
         headerTitle:""
       }}>
         <Stack.Screen name="Main" component={MainPage} />
-        <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="EstimatePage" component={EstimatePage} />
         <Stack.Screen name="EstlistPage" component={EstlistPage} />
       </Stack.Navigator>

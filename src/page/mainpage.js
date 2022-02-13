@@ -23,13 +23,13 @@ export default function MainPageScreen({ route,navigation }) {
         <View style={{flexDirection:'row',justifyContent:'center'}}>
             <TouchableOpacity style={s.buttonbg1} 
             onPress={() => {
-                navigation.navigate('Root', {screen: 'EstimatePage'})   //견적신청 화면전환
+                navigation.navigate('EstimatePage')   //견적신청 화면전환
             }}>
                 <Text style={s.buttontxt1}>견적신청하기</Text>
             </TouchableOpacity>
             <TouchableOpacity style={s.buttonbg2}
             onPress={() => {
-                navigation.navigate('Root', {screen: 'EstlistPage'})    //견적내역 화면전환
+                navigation.navigate('EstlistPage')    //견적내역 화면전환
             }}>
                 <Text style={s.buttontxt2}>견적내역확인</Text>
             </TouchableOpacity>

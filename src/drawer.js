@@ -33,7 +33,7 @@ const Drawer = createDrawerNavigator();
           drawerType: 'front',    
         }}
       >
-        <Drawer.Screen name="Intro" component={IntroScreen} options={{lazy:true, headerShown: true}} />
+        <Drawer.Screen name="Intro" component={IntroScreen} options={{headerShown: true}} />
         <Drawer.Screen name="Root" component={Root} options={{title:"홈"}}/>
         <Drawer.Screen name="EstimatePage" component={EstimatePage} options={{title:"견적신청"}}/>
         <Drawer.Screen name="EstlistPage" component={EstlistPage} options={{title:"견적내역"}}/>

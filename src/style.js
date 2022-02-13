@@ -110,11 +110,17 @@ module.exports = StyleSheet.create({
         fontSize: 20,
         marginRight: 20,
       },
-    title: {
+      title: {
         margin: 20,
         fontSize: 30,
         fontWeight: 'bold',
         color:'navy'
+    },
+    title2: {
+        margin: 20,
+        fontSize: 30,
+        fontWeight: 'bold',
+        color:'white'
     },
     inputL: {
         selectionColor: 'black',
@@ -138,4 +144,30 @@ module.exports = StyleSheet.create({
         alignItems:'center',
         justifyContent:'space-around'
     },
+    estlistContainer: {
+        backgroundColor:'#f0f0f0',
+        borderColor:'navy',
+        borderWidth:3,
+        borderRadius:10,
+        height:106,
+        margin: 10,
+        padding: 10,
+        alignItems:'stretch',
+        flexDirection:'column'
+    },
+    estlistTextV:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        margin:5,
+        fontWeight:'bold'
+    },
+    estlistText:{
+        fontWeight:'bold'
+    },
+    estlistTitle: {
+        color:'navy',
+        fontSize:20,
+        fontWeight: 'bold',
+        textAlign:'center',
+    }
 });
