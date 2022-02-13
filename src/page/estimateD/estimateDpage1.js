@@ -4,10 +4,10 @@ import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
 export default function EstimatePageScreen2({ route, navigation }) {
-  const {kind} = route.params;
   const [model, setModel] = React.useState("");
   const [price, setPrice] = React.useState("");
   const [distance, setDistance] = React.useState("");
+  const [option, setOption] = React.useState("");
 
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
@@ -18,14 +18,14 @@ export default function EstimatePageScreen2({ route, navigation }) {
             </Text>
           </View>
           <View style={s.rowcontainer}>
-            <Text style={s.label}>모델</Text>
-            <TextInput style={s.inputS}
+            <TextInput style={s.inputL}
+              label="차량 모델"
               value={model}
               onChangeText={model => setModel(model)}
             />
           </View>
           <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-            <Text style={s.label}>차량 가격</Text>
+            <Text style={s.label}>희망 가격</Text>
             <TextInput style={s.inputS}
               value={price}
               onChangeText={price => setPrice(price)}
@@ -40,15 +40,22 @@ export default function EstimatePageScreen2({ route, navigation }) {
             />
             <Text style={s.label2}>km</Text>
           </View>
+          <View style={s.rowcontainer}>
+            <TextInput style={s.inputL}
+              label="필요옵션 ex) 기본옵션, 선루프, 열선시트"
+              value={option}
+              onChangeText={option => setOption(option)}
+            />
+          </View>
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={s.buttonbg3}
-            onPress={() => navigation.navigate('EstimatePage3',{
-              kind:kind,
+            onPress={() => navigation.navigate('EstimatePage2',{
               model:model,
               price:price,
-              distance:distance
+              distance:distance,
+              option:option
             })}>
-                <Text style={s.buttontxt3}>계속하기(2/4)</Text>
+                <Text style={s.buttontxt3}>계속하기(1/3)</Text>
             </TouchableOpacity>
           </View>
       </View>

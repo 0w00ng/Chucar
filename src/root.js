@@ -8,7 +8,8 @@ import LoginPage from './page/loginpage';
 import SignupPage from './page/signuppage';
 import Headerbar from './headbar';
 import MainPage from './page/mainpage';
-import EstimatePage from './page/estimate/estimatepage';
+import EstimatePage from './page/estimateC/estimatepage';
+import EstimateDPage from './page/estimateD/estimateDpage';
 import EstlistPage from './page/estlistpage';
 import EstlistVPage from './page/estlistVpage';
 import IntroScreen from './page/intro';
@@ -47,6 +48,7 @@ export default function Root({navigation}) {
       }}>
         <Stack.Screen name="Main" component={MainPage} />
         <Stack.Screen name="EstimatePage" component={EstimatePage} />
+        <Stack.Screen name="EstimateDPage" component={EstimateDPage} />
         <Stack.Screen name="EstlistPage" component={EstlistPage} />
         <Stack.Screen name="EstlistVPage" component={EstlistVPage} />
       </Stack.Navigator>

@@ -5,7 +5,7 @@ import Titlelogo from '../img/chucar_logo.png';
 // src
 import Root from './root';
 import MyPage from './page/mypage';
-import EstimatePage from './page/estimate/estimatepage';
+import EstimatePage from './page/estimateC/estimatepage';
 import EstlistPage from './page/estlistpage';
 import LoginPage from './page/loginpage';
 import RegisterPage from './page/registerpage';
@@ -26,7 +26,6 @@ export default function MyDrawer({navigation}) {
 const Drawer = createDrawerNavigator();
     return (
     <NavigationContainer>
-      <StatusBar hidden={true}/>
       <Drawer.Navigator
         initialRouteName="Intro"
         screenOptions={{

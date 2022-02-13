@@ -74,7 +74,11 @@ export default function EstlistViewPageScreen({ route, navigation }) {
             </View>
            <Text>{comment}</Text>
            <View style={{alignItems:'center'}}>
-            <TouchableOpacity style={s.buttonbg3}>
+            <TouchableOpacity 
+            style={s.buttonbg3}
+            onPress={()=>navigation.navigate('EstimateDPage')
+            }
+            >
               <Text style={s.buttontxt2}>견적서 보내기</Text>
             </TouchableOpacity>
            </View>

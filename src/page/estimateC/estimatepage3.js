@@ -5,8 +5,8 @@ import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
 export default function EstimatePageScreen4({ route, navigation }) {
-  const {kind,menufact,model,grade,price,mprice,distance} = route.params;
-  const [option, setOption] = React.useState("");
+  const {kind,model,price,distance,option} = route.params;
+  const [title, setTitle] = React.useState("");
   const [comment, setComment] = React.useState("");
 
     return (
@@ -19,9 +19,9 @@ export default function EstimatePageScreen4({ route, navigation }) {
           </View>
           <View style={s.rowcontainer}>
             <TextInput style={s.inputL}
-              label="필요옵션 ex) 기본옵션, 선루프, 열선시트"
-              value={option}
-              onChangeText={option => setOption(option)}
+              label="요청서 제목"
+              value={title}
+              onChangeText={title => setTitle(title)}
             />
           </View>
           <View style={{
@@ -35,11 +35,11 @@ export default function EstimatePageScreen4({ route, navigation }) {
                 backgroundColor: 'white',
                 fontSize: 20,
                 width:'90%',
-                height:300
+                height:400
               }}
               multiline
               maxLength={500}
-              label="딜러에게 하고싶은 말"
+              label="요청서 내용"
               value={comment}
               onChangeText={comment => setComment(comment)}
             />
@@ -48,14 +48,12 @@ export default function EstimatePageScreen4({ route, navigation }) {
             <TouchableOpacity style={s.buttonbg3}
             onPress={() => navigation.navigate('EstimatePage4',{
               kind:kind,
-              menufact:menufact,
               model:model,
-              grade:grade,
               price:price,
-              mprice:mprice,
               distance:distance,
               option:option,
-              comment:comment
+              title:title,
+              comment:comment,
             })}>
                 <Text style={s.buttontxt3}>계속하기(3/4)</Text>
             </TouchableOpacity>
