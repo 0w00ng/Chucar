@@ -93,7 +93,7 @@ export default function EstimatePageScreen1({ navigation }) {
               navigation.navigate('EstimatePage2',{
               kind:kind});
             }}>
-                <Text style={s.buttontxt3}>계속하기(1/5)</Text>
+                <Text style={s.buttontxt3}>계속하기(1/4)</Text>
             </TouchableOpacity>
           </View>
       </View>

@@ -1,39 +1,82 @@
 import React, { useState } from "react";
-import { View, Text,TouchableOpacity,Image } from 'react-native';
+import { View, Text,TouchableOpacity,Image,StyleSheet,StatusBar,FlatList } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import s from '../style'
 import estlist_empty from '../../img/estlist.jpg'
 import DefaultUser from '../../img/Default_Profile.png'
+import EstlistViewPageScreen from "./estlistVpage";
 
 export default function EstlistPageScreen({ navigation }) {
-
-  const empty = true
   navigation.setOptions({ headerShown: true });      // 헤더바 숨기기
 
-  function Estlist(){
-    return(
-      <TouchableOpacity style={s.estlistContainer}>
-        <Text style={s.estlistTitle}>BMW 320d 1000만원 부탁드려요</Text>
+  const empty = true;
+  const DATA = [
+    {
+      id: '1',
+      title: 'BMW 320d 1000만원대 원합니다.',
+      model:'BMW 320d',
+      price:'1000~2000만원',
+      kind:1,
+      deadline:false,
+    },
+    {
+      id: '2',
+      title: '영웅이가 타던 K5 삽니다',
+      model:'K5',
+      price:'880만원',
+      kind:1,
+      deadline:true,
+    },
+  ];
+  const Item = ({ title,model,price,kind }) => (
+    <TouchableOpacity 
+      style={s.estlistContainer}
+      onPress={()=>navigation.navigate('EstlistVPage',{
+        title:title,
+        model:model,
+        price:price,
+        kind:kind
+      })}
+    >
+        <Text style={s.estlistTitle}>{title}</Text>
         <View style={s.estlistTextV}>
-          <Text style={s.estlistText}> 차종 : BMW 320d</Text>
-          <Text style={s.estlistText}> 가격 : 1000~2000만원</Text>
+          <Text style={s.estlistText}>{'차종 : ' + model} </Text>
+          <Text style={s.estlistText}>{'희망가격 : ' + price}</Text>
         </View>
-        <Text> 돈은 없는데 가오는 살리고 싶어요 많은 견적 바람</Text>
-      </TouchableOpacity>
-    )
-  }
+        <Text>{kind}</Text>
+    </TouchableOpacity>
+  );
+
+  const renderItem = ({ item }) => (
+    <Item 
+    title={item.title} 
+    model={item.model}
+    price={item.price}
+    kind={item.kind}
+    />
+  );
 
     return (
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
-          <View style={{alignItems:'center'}}>
+          <View style={{
+            alignItems:'center',
+            backgroundColor:'white',
+            borderWidth:5,
+            borderColor:'navy',
+            }}>
             <Text style={s.title}>
-                견적 요청 내역{'\n'}
+                견적 요청 내역
             </Text>
           </View>
           <View style={{display:empty ? 'none' : 'flex'}}>
             <Image source={estlist_empty}/>
           </View>
-          <Estlist/>
+          
+          <FlatList
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+          />
           
           <View style={{alignItems:'center'}}>
           </View>

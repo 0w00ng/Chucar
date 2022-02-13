@@ -62,12 +62,12 @@ module.exports = StyleSheet.create({
         borderWidth:3,
         borderRadius: 10,
         margin:10,
-        width:300,
+        width:'90%',
         height:50,
         borderColor:'navy',
         backgroundColor:'white',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
     },
     buttontxt3: {
         textAlign: 'center',
@@ -116,6 +116,12 @@ module.exports = StyleSheet.create({
         fontWeight: 'bold',
         color:'navy'
     },
+    titleS: {
+        margin: 20,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color:'navy'
+    },
     title2: {
         margin: 20,
         fontSize: 30,
@@ -145,11 +151,19 @@ module.exports = StyleSheet.create({
         justifyContent:'space-around'
     },
     estlistContainer: {
-        backgroundColor:'#f0f0f0',
+        backgroundColor:'#F8F8FF',
         borderColor:'navy',
-        borderWidth:3,
+        borderWidth:1,
         borderRadius:10,
-        height:106,
+        margin: 10,
+        padding: 10,
+        alignItems:'stretch',
+        flexDirection:'column'
+    },
+    estlistVContainer: {
+        borderColor:'navy',
+        borderWidth:1,
+        borderRadius:10,
         margin: 10,
         padding: 10,
         alignItems:'stretch',
@@ -158,7 +172,6 @@ module.exports = StyleSheet.create({
     estlistTextV:{
         flexDirection:'row',
         justifyContent:'space-between',
-        margin:5,
         fontWeight:'bold'
     },
     estlistText:{

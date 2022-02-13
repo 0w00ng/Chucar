@@ -4,7 +4,6 @@ import EstimatePage1 from './estimatepage1';
 import EstimatePage2 from './estimatepage2';
 import EstimatePage3 from './estimatepage3';
 import EstimatePage4 from './estimatepage4';
-import EstimatePage5 from './estimatepage5';
 // lib
 import * as React from 'react';
 import { Button, View, Text,Image } from 'react-native';
@@ -29,7 +28,6 @@ export default function EstimatePageScreen({navigation}) {
         <Stack.Screen name="EstimatePage2" component={EstimatePage2} />
         <Stack.Screen name="EstimatePage3" component={EstimatePage3} />
         <Stack.Screen name="EstimatePage4" component={EstimatePage4} />
-        <Stack.Screen name="EstimatePage5" component={EstimatePage5} />
       </Stack.Navigator>
     );
   }
