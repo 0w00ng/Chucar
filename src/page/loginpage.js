@@ -62,16 +62,13 @@ export default function KakaoLogin ({ navigation }){
             refresh_token:token.data.refresh_token,
             expires_in:token.data.expires_in
           }
-            await storage.storeData(storeToken); //token storing into local storage
-            const chutoken =  await storage.getData(); //token getting from local storage
-            //...
-            console.log('access_token : ' + chutoken.access_token); // access token 만 출력해보기
-            console.log('refresh_token : ' + chutoken.refresh_token);
-            console.log('expires_in : ' + chutoken.expires_in); // 만료까지 남은 시간(초)임 나중에 백엔드로 토큰 보내는 함수마다 항상 뽑아서 확인하기
+            await storage.storeData('access_token',storeToken.access_token);
+            await storage.storeData('refresh_token',storeToken.refresh_token);
+            await storage.storeData('expires_in',storeToken.expires_in);
 
             axios.get(`http://34.64.207.117:3000/showInfo`, {
                 headers:{
-                    Authorization: `${chutoken.access_token}`,
+                    Authorization: `${storeToken.access_token}`,
                     'content-type':'application/x-www-form-urlencoded;charset=utf-8'
                 }
             })
@@ -81,6 +78,7 @@ export default function KakaoLogin ({ navigation }){
                     screen:'Main',
                     user:res.data
                 });
+                alert('로그인이 완료되었습니다.')
             })
             .catch(function (err) { //실패
                 console.log(err.data);

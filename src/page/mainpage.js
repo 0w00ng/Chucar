@@ -12,7 +12,7 @@ export default function MainPageScreen ({ route, navigation }) {
     console.log('user : ' + user);
     
     async function checkLogin() {
-      const check = await storage.getData();
+      const check = await storage.getData('refresh_token');
       if(!check) navigation.navigate('Intro')
 
       const newToken = await axios({
@@ -20,10 +20,23 @@ export default function MainPageScreen ({ route, navigation }) {
         url:'http://34.64.207.117:3000/refresh',
         headers:{
             'content-type':'application/x-www-form-urlencoded;charset=utf-8',
-            refresh_token:check.refresh_token,
+            refresh_token:check
         }
-        })
-        console.log(newToken.data)
+      })
+      console.log(newToken.data)
+      await storage.storeData('access_token',newToken.data.access_token); //token storing into local storage
+      const refresh_token = newToken.data.refresh_token
+      if(refresh_token) await storage.storeData('refresh_token',refresh_token);
+
+      const users = await axios({
+        method: 'GET',
+        url:'http://34.64.207.117:3000/showInfo',
+        headers:{
+            'content-type':'application/x-www-form-urlencoded;charset=utf-8',
+            Authorization: `${newToken.data.access_token}`,
+        }
+      })
+      console.log(users.data.nickname)
     }
     checkLogin()
 

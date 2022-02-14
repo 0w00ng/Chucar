@@ -33,7 +33,6 @@ const Drawer = createDrawerNavigator();
         }}
       >
         <Drawer.Screen name="Intro" component={IntroScreen} options={{
-          headerShown: true,
           drawerLabel: () => null,
           title: undefined,
           drawerIcon: () => null,
@@ -42,7 +41,11 @@ const Drawer = createDrawerNavigator();
         <Drawer.Screen name="EstimatePage" component={EstimatePage} options={{title:"견적신청"}}/>
         <Drawer.Screen name="EstlistPage" component={EstlistPage} options={{title:"견적내역"}}/>
         <Drawer.Screen name="MyPage" component={MyPage} options={{title:"마이페이지"}}/>
-        <Drawer.Screen name="LoginPage" component={LoginPage} options={{title:"로그인"}}/>
+        <Drawer.Screen name="LoginPage" component={LoginPage} options={{
+          drawerLabel: () => null,
+          title: undefined,
+          drawerIcon: () => null,
+          }} />
         <Drawer.Screen name="RegisterPage" component={RegisterPage} options={{title:"회원가입"}}/>
       </Drawer.Navigator>
     </NavigationContainer>
