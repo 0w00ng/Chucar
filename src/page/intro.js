@@ -7,20 +7,20 @@ import React, {useState} from 'react';
 // img
 import Menubar from '../../img/menubar.png';
 import Titlelogo from '../../img/chucar_logo.png';
+import kakaoLogin from '../../img/kakao_login.png';
 //
 import MyPage from './mypage';
 import LoginPage from './loginpage';
 import SignupPage from './signuppage';
 import MyDrawer from '../drawer';
 import IntroPScreen from './intro';
+import storage from '../storage'
 // lib
-import { SafeAreaView,StyleSheet,View,Text,Image,Button } from 'react-native';
+import { SafeAreaView,StyleSheet,View,Text,Image,Button,TouchableOpacity } from 'react-native';
 
 
 //import AppIntroSlider to use it
 import AppIntroSlider from 'react-native-app-intro-slider';
-
- 
 
 const IntroScreen = ({ navigation }) => {
   const [showRealApp, setShowRealApp] = useState(false);
@@ -32,7 +32,10 @@ const IntroScreen = ({ navigation }) => {
     setShowRealApp(true);
   };
 
-  navigation.setOptions({headerShown: false})
+  navigation.setOptions({
+    headerShown: false,
+    swipeEnabled:false
+  });
 
   const RenderItem = ({item}) => {
     return (
@@ -53,6 +56,11 @@ const IntroScreen = ({ navigation }) => {
         <Text style={styles.introTextStyle}>
           {item.text}
         </Text>
+        <TouchableOpacity
+        onPress={()=>navigation.navigate('LoginPage')}
+          >
+          <Image source={kakaoLogin}/>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -124,55 +132,5 @@ const slides = [
         'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_mobile_recharge.png',
     },
     backgroundColor: '#20d2bb',
-  },
-  {
-    key: 's2',
-    title: 'Flight Booking',
-    text: 'Upto 25% off on Domestic Flights',
-    image: {
-      uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_flight_ticket_booking.png',
-    },
-    backgroundColor: '#febe29',
-  },
-  {
-    key: 's3',
-    title: 'Great Offers',
-    text: 'Enjoy Great offers on our all services',
-    image: {
-      uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_discount.png',
-    },
-    backgroundColor: '#22bcb5',
-  },
-  {
-    key: 's4',
-    title: 'Best Deals',
-    text: ' Best Deals on all our services',
-    image: {
-      uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_best_deals.png',
-    },
-    backgroundColor: '#3395ff',
-  },
-  {
-    key: 's5',
-    title: 'Bus Booking',
-    text: 'Enjoy Travelling on Bus with flat 100% off',
-    image: {
-      uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_bus_ticket_booking.png',
-    },
-    backgroundColor: '#f6437b',
-  },
-  {
-    key: 's6',
-    title: 'Train Booking',
-    text: ' 10% off on first Train booking',
-    image: {
-      uri:
-        'https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_train_ticket_booking.png',
-    },
-    backgroundColor: '#febe29',
   },
 ];

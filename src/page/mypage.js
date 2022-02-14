@@ -1,10 +1,6 @@
 // img
-import Menubar from '../../img/menubar.png';
-import UserIcon from '../../img/user_icon.png';
-import Titlelogo from '../../img/chucar_logo.png';
 import rightA from '../../img/right.png'
 //
-import * as HeaderBars from '../headbar';
 import s from '../style'
 //
 import * as React from 'react';

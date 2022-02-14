@@ -1,36 +1,19 @@
 import React from 'react';
 import s from '../style'
-
 import { View,TouchableOpacity,Text } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import storage from '../storage';
 import { WebView } from 'react-native-webview';
 import axios from 'axios';
 import qs from 'qs'
 
 const runFirst = `window.ReactNativeWebView.postMessage("this is message from web");`;
 
-const KakaoLogin = ({ navigation }) => {
+export default function KakaoLogin ({ navigation }){
 
-    const storeData = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(value);
-          await AsyncStorage.setItem('token_chucar', jsonValue);
-          console.log('saving complete');
-        } catch (e) {
-            console.log('saving error');
-          // saving error
-        }
-    }
-
-    const getData = async () => {
-        try {
-        const jsonValue = await AsyncStorage.getItem('token_chucar');
-        return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch(e) {
-            console.log('err reading value');
-        // error reading value
-        }
-    }
+  navigation.setOptions({
+    headerShown: false,
+    swipeEnabled:false
+  })
 
   self.onmessage = (event) => {
     console.log(`${event.url}`);
@@ -74,27 +57,26 @@ const KakaoLogin = ({ navigation }) => {
             client_secret:'9F00S9wCb8X6cggmdqesUVTYoQeD41P4'
           })//객체를 string 으로 변환
         })
-          console.log(token.data.access_token);  //토큰 두개 필수로 저장할것
-          console.log(token.data.refresh_token);
           const storeToken = {
             access_token:token.data.access_token,
             refresh_token:token.data.refresh_token,
             expires_in:token.data.expires_in
           }
-            await storeData(storeToken); //token storing into local storage
-            const chutoken =  await getData(); //token getting from local storage
-            console.log(chutoken.access_token); // access token 만 출력해보기
-            console.log(chutoken.refresh_token);
-            console.log(chutoken.expires_in); // 만료까지 남은 시간(초)임 나중에 백엔드로 토큰 보내는 함수마다 항상 뽑아서 확인하기
+            await storage.storeData(storeToken); //token storing into local storage
+            const chutoken =  await storage.getData(); //token getting from local storage
+            //...
+            console.log('access_token : ' + chutoken.access_token); // access token 만 출력해보기
+            console.log('refresh_token : ' + chutoken.refresh_token);
+            console.log('expires_in : ' + chutoken.expires_in); // 만료까지 남은 시간(초)임 나중에 백엔드로 토큰 보내는 함수마다 항상 뽑아서 확인하기
 
-            axios.get(`http://34.64.207.117:3000/token`, {
+            axios.get(`http://34.64.207.117:3000/showInfo`, {
                 headers:{
                     Authorization: `${chutoken.access_token}`,
                     'content-type':'application/x-www-form-urlencoded;charset=utf-8'
                 }
             })
             .then(function (res) { //성공
-                console.log(res.data);
+                console.log('res.data:' + res.data);
                 navigation.navigate('Root',{
                     screen:'Main',
                     user:res.data
@@ -105,8 +87,7 @@ const KakaoLogin = ({ navigation }) => {
             })
             
     }catch(err){
-      console.log('로그인에 실패했습니다.');
-      console.log(err.data);
+      console.log('로그인에 실패했습니다.' + err);
       //res.json(err.data);
     }
   };
@@ -127,5 +108,3 @@ const KakaoLogin = ({ navigation }) => {
     </View>
   );
 };
-
-export default KakaoLogin;

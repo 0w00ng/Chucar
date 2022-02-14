@@ -20,6 +20,7 @@
     "axios": "^0.25.0",
     "qs": "^6.10.3",
     "react": "17.0.2",
+    "react-devtools": "^4.23.0",
     "react-native": "0.67.1",
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-elements": "^3.4.2",

@@ -2,14 +2,30 @@ import * as React from 'react';
 import { Button, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import banner_black from '../../img/banner_black.jpg'
-import IntroScreen from './intro';
+import storage from '../storage';
+import axios from 'axios';
 import s from '../style'
 
-export default function MainPageScreen({ route,navigation }) {
+export default function MainPageScreen ({ route, navigation }) {
 
     const user  = route.params;
-    console.log(user);
-    navigation.setOptions({ headerShown: false });      // 헤더바 숨기기
+    console.log('user : ' + user);
+    
+    async function checkLogin() {
+      const check = await storage.getData();
+      if(!check) navigation.navigate('Intro')
+
+      const newToken = await axios({
+        method: 'GET',
+        url:'http://34.64.207.117:3000/refresh',
+        headers:{
+            'content-type':'application/x-www-form-urlencoded;charset=utf-8',
+            refresh_token:check.refresh_token,
+        }
+        })
+        console.log(newToken.data)
+    }
+    checkLogin()
 
     return (
       <View style={{flex:1,flexDirection:'column',alignItems:'stretch',backgroundColor:'white'}}>
@@ -22,7 +38,7 @@ export default function MainPageScreen({ route,navigation }) {
         </View>
         <View style={{flexDirection:'row',justifyContent:'center'}}>
             <TouchableOpacity style={s.buttonbg1} 
-            onPress={() => {
+            onPress={async () => {
                 navigation.navigate('EstimatePage')   //견적신청 화면전환
             }}>
                 <Text style={s.buttontxt1}>견적신청하기</Text>

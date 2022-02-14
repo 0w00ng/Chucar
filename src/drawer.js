@@ -27,12 +27,17 @@ const Drawer = createDrawerNavigator();
     return (
     <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="Intro"
+        initialRouteName="Root"
         screenOptions={{
           drawerType: 'front',    
         }}
       >
-        <Drawer.Screen name="Intro" component={IntroScreen} options={{headerShown: true}} />
+        <Drawer.Screen name="Intro" component={IntroScreen} options={{
+          headerShown: true,
+          drawerLabel: () => null,
+          title: undefined,
+          drawerIcon: () => null,
+          }} />
         <Drawer.Screen name="Root" component={Root} options={{title:"홈"}}/>
         <Drawer.Screen name="EstimatePage" component={EstimatePage} options={{title:"견적신청"}}/>
         <Drawer.Screen name="EstlistPage" component={EstlistPage} options={{title:"견적내역"}}/>
