@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { View, Text,TouchableOpacity,Image,StyleSheet,StatusBar,FlatList } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import s from '../style'
@@ -10,34 +10,32 @@ import axios from "axios";
 
 export default function EstlistPageScreen({ navigation }) {
   navigation.setOptions({ headerShown: true });      // 헤더바 숨기기
+  const [DATA,setDATA] = useState();
+  const [listData,setListData] = useState();
 
-  
-  // const DATA = async() => {
-  //   axios.get(`http://34.64.207.117:3000/contracts`)
-  //   .then(function (res) { //성공
-  //     return res.data;
-  //   })
-  //   .catch(function (err) { //실패
-  //       console.log(err.data);
-  //   })
-  // }
-  const DATA = async() => {
-    return axios({
-        method: 'GET',
-        url: 'http://34.64.207.117:3000/contracts'
-    })
-    //console.log(getData.data);
-}
-  console.log(DATA());
+  async function checkLogin() {
+    setListData(await axios({
+      method: 'GET',
+      url:'http://34.64.207.117:3000/contracts',
+      headers:{
+          'content-type':'application/x-www-form-urlencoded;charset=utf-8',
+      }
+    }))
+    //console.log(listData.data)
+    setDATA(listData.data);
+    console.log(DATA)
+  }  
+  if(!DATA) checkLogin()
+
   const empty = true;
   const Item = ({ title,model,price,kind }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
       onPress={()=>navigation.navigate('EstlistVPage',{
-        title:title,
+        CT_TITLE:CT_TITLE,
         model:model,
-        price:price,
-        kind:kind
+        CT_PRICE:CT_PRICE,
+        CT_KIND:kiCT_KINDnd
       })}
     >
         <Text style={s.estlistTitle}>{title}</Text>
