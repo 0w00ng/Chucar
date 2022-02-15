@@ -5,10 +5,12 @@ import banner_black from '../../img/banner_black.jpg'
 import storage from '../storage';
 import axios from 'axios';
 import s from '../style'
+import { useState } from 'react';
 
 export default function MainPageScreen ({ route, navigation }) {
 
     const user  = route.params;
+    const [DATA,setDATA] = useState();
     console.log('user : ' + user);
     
     async function checkLogin() {

@@ -13,7 +13,7 @@ export default function EstlistPageScreen({ navigation }) {
   const [DATA,setDATA] = useState();
   const [listData,setListData] = useState();
 
-  async function checkLogin() {
+  async function CheckLogin() {
     setListData(await axios({
       method: 'GET',
       url:'http://34.64.207.117:3000/contracts',
@@ -25,34 +25,47 @@ export default function EstlistPageScreen({ navigation }) {
     setDATA(listData.data);
     console.log(DATA)
   }  
-  if(!DATA) checkLogin()
+  if(!DATA) CheckLogin()
+  console.log(DATA)
+
+  function CheckKind(kind) {
+    switch(kind)
+    {
+      case 1: return "신차";
+      case 2: return "중고";
+      case 3: return "렌트";
+      case 4: return "리스";
+    }
+  }
 
   const empty = true;
-  const Item = ({ title,model,price,kind }) => (
+  const Item = ({ CT_TITLE,CT_MODEL,CT_PRICE,CT_KIND,CT_CONTENT }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
       onPress={()=>navigation.navigate('EstlistVPage',{
         CT_TITLE:CT_TITLE,
-        model:model,
+        CT_MODEL:CT_MODEL,
         CT_PRICE:CT_PRICE,
-        CT_KIND:kiCT_KINDnd
+        CT_KIND:CT_KIND,
+        CT_CONTENT:CT_CONTENT,
       })}
     >
-        <Text style={s.estlistTitle}>{title}</Text>
+        <Text style={s.estlistTitle}>{CT_TITLE}</Text>
         <View style={s.estlistTextV}>
-          <Text style={s.estlistText}>{'차종 : ' + model} </Text>
-          <Text style={s.estlistText}>{'희망가격 : ' + price}</Text>
+          <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
+          <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE}</Text>
         </View>
-        <Text>{kind}</Text>
+        <Text>{CheckKind(CT_KIND)}</Text>
     </TouchableOpacity>
   );
 
   const renderItem = ({ item }) => (
     <Item 
     CT_TITLE={item.CT_TITLE} 
-    //model={item.model}
+    CT_MODEL={item.CT_MODEL}
     CT_PRICE = {item.CT_PRICE}
     CT_KIND ={item.CT_KIND}
+    CT_CONTENT ={item.CT_CONTENT}
     />
   );
     return (

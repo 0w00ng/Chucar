@@ -8,7 +8,7 @@ import DefaultUser from '../../img/Default_Profile.png'
 
 export default function EstlistViewPageScreen({ route, navigation }) {
   navigation.setOptions({ headerShown: true });      // 헤더바 숨기기
-  const {title,model,price,comment,deadline} = route.params;
+  const {CT_TITLE,CT_MODEL,CT_PRICE,CT_CONTENT,CT_KIND} = route.params;
   const DATA = [
     {
       id: '1',
@@ -19,7 +19,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
       phone:'010-8443-8434'
     },
   ];
-  const Item = ({ name,model,price,comment,phone }) => (
+  const Item = ({ name,CT_MODEL,CT_PRICE,CT_CONTENT,phone }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
       onPress={()=>alert('ㅋㅋ')}
@@ -29,13 +29,13 @@ export default function EstlistViewPageScreen({ route, navigation }) {
             color:'navy',
             fontWeight:'bold',
             marginRight:20,
-          }}>{'차종 : ' + model} </Text>
+          }}>{'차종 : ' + CT_MODEL} </Text>
           <Text style={{
             color:'red',
             fontWeight:'bold'
-            }}>{'가격 : ' + price}</Text>
+            }}>{'가격 : ' + CT_PRICE}</Text>
         </View>
-        <Text>{comment}</Text>
+        <Text>{CT_CONTENT}</Text>
       <View style={{flexDirection:'row'}}>
         <Image source={require('../../img/Default_Profile.png')}/>  
         <View style={{flexDirection:'column',justifyContent:'space-evenly',margin:10}}>
@@ -51,11 +51,11 @@ export default function EstlistViewPageScreen({ route, navigation }) {
 
   const renderItem = ({ item }) => (
     <Item 
-    name={item.name}
-    model={item.model}
-    price={item.price}
-    comment={item.comment}
-    phone={item.phone}
+    CT_TITLE={item.CT_TITLE} 
+    CT_MODEL={item.CT_MODEL}
+    CT_PRICE = {item.CT_PRICE}
+    CT_KIND ={item.CT_KIND}
+    CT_CONTENT ={item.CT_CONTENT}
     />
   );
 
@@ -64,15 +64,15 @@ export default function EstlistViewPageScreen({ route, navigation }) {
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
           <View style={{alignItems:'center'}}>
             <Text style={s.titleS}>
-                {title}
+                {CT_TITLE}
             </Text>
           </View>
           <View style={s.estlistVContainer}>
             <View style={s.estlistTextV}>
-              <Text style={s.estlistText}>{'차종 : ' + model} </Text>
-              <Text style={s.estlistText}>{'희망가격 : ' + price}</Text>
+              <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
+              <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE}</Text>
             </View>
-           <Text>{comment}</Text>
+           <Text>{'' + CT_CONTENT}</Text>
            <View style={{alignItems:'center'}}>
             <TouchableOpacity 
             style={s.buttonbg3}

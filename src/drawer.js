@@ -39,7 +39,6 @@ const Drawer = createDrawerNavigator();
           }} />
         <Drawer.Screen name="Root" component={Root} options={{title:"홈"}}/>
         <Drawer.Screen name="EstimatePage" component={EstimatePage} options={{title:"견적신청"}}/>
-        <Drawer.Screen name="EstlistPage" component={EstlistPage} options={{title:"견적내역"}}/>
         <Drawer.Screen name="MyPage" component={MyPage} options={{title:"마이페이지"}}/>
         <Drawer.Screen name="LoginPage" component={LoginPage} options={{
           drawerLabel: () => null,
