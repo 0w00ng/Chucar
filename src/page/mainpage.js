@@ -36,7 +36,8 @@ export default function MainPageScreen ({ route, navigation }) {
             Authorization: `${newToken.data.access_token}`,
         }
       })
-      console.log(users.data.nickname)
+      await storage.storeData('id',users.data.id);
+      await storage.storeData('nickname',users.data.nickname);
     }
     checkLogin()
 

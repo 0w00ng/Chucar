@@ -5,29 +5,31 @@ import s from '../style'
 import estlist_empty from '../../img/estlist.jpg'
 import DefaultUser from '../../img/Default_Profile.png'
 import EstlistViewPageScreen from "./estlistVpage";
+import axios from "axios";
+
 
 export default function EstlistPageScreen({ navigation }) {
   navigation.setOptions({ headerShown: true });      // 헤더바 숨기기
 
+  
+  // const DATA = async() => {
+  //   axios.get(`http://34.64.207.117:3000/contracts`)
+  //   .then(function (res) { //성공
+  //     return res.data;
+  //   })
+  //   .catch(function (err) { //실패
+  //       console.log(err.data);
+  //   })
+  // }
+  const DATA = async() => {
+    return axios({
+        method: 'GET',
+        url: 'http://34.64.207.117:3000/contracts'
+    })
+    //console.log(getData.data);
+}
+  console.log(DATA());
   const empty = true;
-  const DATA = [
-    {
-      id: '1',
-      title: 'BMW 320d 1000만원대 원합니다.',
-      model:'BMW 320d',
-      price:'1000~2000만원',
-      kind:1,
-      deadline:false,
-    },
-    {
-      id: '2',
-      title: '영웅이가 타던 K5 삽니다',
-      model:'K5',
-      price:'880만원',
-      kind:1,
-      deadline:true,
-    },
-  ];
   const Item = ({ title,model,price,kind }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
@@ -49,13 +51,12 @@ export default function EstlistPageScreen({ navigation }) {
 
   const renderItem = ({ item }) => (
     <Item 
-    title={item.title} 
-    model={item.model}
-    price={item.price}
-    kind={item.kind}
+    CT_TITLE={item.CT_TITLE} 
+    //model={item.model}
+    CT_PRICE = {item.CT_PRICE}
+    CT_KIND ={item.CT_KIND}
     />
   );
-
     return (
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
           <View style={{
