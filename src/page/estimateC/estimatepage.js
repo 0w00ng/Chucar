@@ -1,9 +1,9 @@
 // img
 // src
-import EstimatePage1 from './estimatepage1';
-import EstimatePage2 from './estimatepage2';
-import EstimatePage3 from './estimatepage3';
-import EstimatePage4 from './estimatepage4';
+import EstimatePage1 from './estimatePage1';
+import EstimatePage2 from './estimatePage2';
+import EstimatePage3 from './estimatePage3';
+import EstimatePage4 from './estimatePage4';
 // lib
 import * as React from 'react';
 import { Button, View, Text,Image } from 'react-native';

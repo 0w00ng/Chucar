@@ -62,9 +62,9 @@ export default function KakaoLogin ({ navigation }){
             refresh_token:token.data.refresh_token,
             expires_in:token.data.expires_in
           }
-            await storage.storeData('access_token',storeToken.access_token);
-            await storage.storeData('refresh_token',storeToken.refresh_token);
-            await storage.storeData('expires_in',storeToken.expires_in);
+            await storage.setData('access_token',storeToken.access_token);
+            await storage.setData('refresh_token',storeToken.refresh_token);
+            await storage.setData('expires_in',storeToken.expires_in);
 
             axios.get(`http://34.64.207.117:3000/showInfo`, {
                 headers:{
@@ -75,7 +75,7 @@ export default function KakaoLogin ({ navigation }){
             .then(function (res) { //성공
                 console.log('res.data:' + res.data);
                 navigation.navigate('Root',{
-                    screen:'Main',
+                    screen:'MainPage',
                     user:res.data
                 });
                 alert('로그인이 완료되었습니다.')

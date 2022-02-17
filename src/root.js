@@ -1,10 +1,17 @@
 // img
+import Menubar from '../img/menubar.png';
 import UserIcon from '../img/user_icon.png';
+import ChucarLogo from '../img/chucar-logoN1.png';
+
 // src
-import MainPage from './page/mainpage';
-import EstimatePage from './page/estimateC/estimatepage';
+import MainPage from './page/mainPage';
+import IntroPage from './page/introPage';
+import MyPage from './page/myPage';
+import LoginPage from './page/loginPage';
+import LogoutPage from './page/logoutPage';
+import EstimatePage from './page/estimateC/estimatePage';
 import EstimateDPage from './page/estimateD/estimateDpage';
-import EstlistPage from './page/estlistpage';
+import EstlistPage from './page/estlistPage';
 import EstlistVPage from './page/estlistVpage';
 import s from './style';
 
@@ -17,31 +24,71 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 
 export default function Root({navigation}) {
-
-  navigation.setOptions({
-    headerRight: () => (
-      <TouchableOpacity 
-      onPress={() => navigation.navigate('MyPage')}>
-          <Image source={UserIcon} style={s.headericon}/>
-      </TouchableOpacity>
-    ),
-    headerTitle:"CHUCAR"
-});  
   
+  return (
+    <Stack.Navigator
+    screenOptions={{
+      gestureEnabled:false,
+      headerTintColor:'navy',
+      headerStyle:{backgroundColor:"white"},
+      headerShadowVisible:false,
+      title:<Image source={ChucarLogo} style={s.headericon}/>,
+      headerRight: () => (
+        <TouchableOpacity 
+        onPress={() => navigation.navigate('Root',{screen:'MyPage'})}>
+            <Image source={UserIcon} style={s.headericon}/>
+        </TouchableOpacity>
+      ),
+    }}>
+      <Stack.Group
+        screenOptions={{
+          headerShown: true,
+        }}
+      >
+        <Stack.Screen 
+          name="MainPage" 
+          component={MainPage}
+          options={{}}/>
+        <Stack.Screen 
+          name="IntroPage" 
+          component={IntroPage} />
+        <Stack.Screen 
+          name="MyPage" 
+            component={MyPage} 
+            options={{headerTitle:"마이페이지"}}/>
+        <Stack.Screen 
+          name="LoginPage" 
+          component={LoginPage}
+          options={{headerTitle:"로그인"}}/>
+        <Stack.Screen 
+          name="LogoutPage" 
+          component={LogoutPage} 
+          options={{headerTitle:"로그아웃"}}/>
+        <Stack.Screen 
+          name="EstlistPage" 
+          component={EstlistPage} 
+          options={{headerTitle:"견적요청서 리스트"}}/>
+        <Stack.Screen 
+          name="EstlistVPage" 
+          component={EstlistVPage}
+          options={{headerTitle:""}}/>
+      </Stack.Group>
 
-    return (
-      <Stack.Navigator
-      screenOptions={{
-        headerShown: false, 
-        headerTintColor:'navy',
-        headerStyle:{backgroundColor:"white"},
-        headerTitle:""
-      }}>
-        <Stack.Screen name="Main" component={MainPage} />
-        <Stack.Screen name="EstimatePage" component={EstimatePage} />
-        <Stack.Screen name="EstimateDPage" component={EstimateDPage} />
-        <Stack.Screen name="EstlistPage" component={EstlistPage} />
-        <Stack.Screen name="EstlistVPage" component={EstlistVPage} />
-      </Stack.Navigator>
-    );
-  }
+      <Stack.Group
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen 
+          name="EstimatePage" 
+          component={EstimatePage} 
+          options={{headerTitle:"견적요청서 작성"}}/>
+        <Stack.Screen 
+          name="EstimateDPage" 
+          component={EstimateDPage} 
+          options={{headerTitle:"견적서 작성"}}/>
+      </Stack.Group>
+
+    </Stack.Navigator>
+  );
+}

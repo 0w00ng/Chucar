@@ -57,7 +57,7 @@ export default function EstimatePageScreen2({ route, navigation }) {
               distance:distance,
               option:option
             })}>
-                <Text style={s.buttontxt3}>계속하기(2/4)</Text>
+                <Text style={s.buttontxt3}>계속하기(2/3)</Text>
             </TouchableOpacity>
           </View>
       </View>

@@ -1,10 +1,9 @@
 // src
 import MyDrawer from './src/drawer';
+import Root from './src/root';
 // lib
 import * as React from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 //import FlareLane from '@flarelane/react-native-sdk';
-const Drawer = createDrawerNavigator();
 
 export default function App() {
   // React.useEffect(() => {

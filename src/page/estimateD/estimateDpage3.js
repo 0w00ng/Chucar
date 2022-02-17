@@ -45,7 +45,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={s.buttonbg3}
             onPress={() => {
-              navigation.navigate('Root',{screen:'Main'})
+              navigation.navigate('Root',{screen:'MainPage'})
               navigation.popToTop();              
               }}>
                 <Text style={s.buttontxt3}>돌아가기(3/3)</Text>

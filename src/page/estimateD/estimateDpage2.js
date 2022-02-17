@@ -40,7 +40,8 @@ export default function EstimatePageScreen4({ route, navigation }) {
             />
           </View>
           <View style={{alignItems:'center'}}>
-            <TouchableOpacity style={s.buttonbg3}
+            <TouchableOpacity 
+            style={s.buttonbg3}
             onPress={() => navigation.navigate('EstimatePage3',{
               model:model,
               price:price,
@@ -48,7 +49,7 @@ export default function EstimatePageScreen4({ route, navigation }) {
               option:option,
               comment:comment,
             })}>
-                <Text style={s.buttontxt3}>계속하기(2/3)</Text>
+              <Text style={s.buttontxt3}>계속하기(2/3)</Text>
             </TouchableOpacity>
           </View>
       </View>

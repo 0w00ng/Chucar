@@ -7,7 +7,6 @@ import DefaultUser from '../../img/Default_Profile.png'
 
 
 export default function EstlistViewPageScreen({ route, navigation }) {
-  navigation.setOptions({ headerShown: true });      // 헤더바 숨기기
   const {CT_TITLE,CT_MODEL,CT_PRICE,CT_CONTENT,CT_KIND} = route.params;
   const DATA = [
     {

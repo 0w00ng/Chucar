@@ -8,23 +8,27 @@ module.exports = StyleSheet.create({
     },
     buttonbg1: {
         borderWidth:3,
-        borderRadius: 15,
+        borderRadius: 20,
         margin:10,
-        width:150,
-        height:50,
+        width:170,
+        height:70,
         borderColor:'white',
         backgroundColor:'navy',
-        justifyContent:'center'
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'row'
     },
     buttonbg2: {
         borderWidth:3,
-        borderRadius: 15,
+        borderRadius: 20,
         margin:10,
-        width:150,
-        height:50,
+        width:170,
+        height:70,
         borderColor:'navy',
         backgroundColor:'white',
-        justifyContent:'center'
+        justifyContent:'center',
+        alignItems:'center',
+        flexDirection:'row'
     },
     buttontxt1: {
         textAlign: 'center',
