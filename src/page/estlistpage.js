@@ -14,35 +14,37 @@ export default function EstlistPageScreen({ navigation }) {
 
   const [checkState, setCheckState] = useState(false);
   const [DATA,setDATA] = useState();
-  const [listData,setListData] = useState();
-  const [empty,setEmpty] = useState();
-  const IsDealer = false;
+  const [temp,setTemp] = useState('');
+  const isDealer = checkDealer();
+  let id = 0;
+
+  async function checkDealer() {
+    id = await storage.getData('id');
+    const temp = await axios({
+      method: 'GET',
+      url:`http://34.64.207.117:3000/isdealer/${id}`,
+    })
+    const isDealer = temp.data;
+    return isDealer;
+  }
 
   async function CheckLogin() {
-    const id = await storage.getData('id');
-    const url = 
-    checkState ? (
-      IsDealer ?
-      `http://34.64.207.117:3000/contracts/pro/${id}`
-      :
-      `http://34.64.207.117:3000/contracts/${id}`
-    )
-    :
-    'http://34.64.207.117:3000/contracts'
+    const url =
+      checkState
+        ? isDealer
+          ? `http://34.64.207.117:3000/contracts/pro/${id}`
+          : `http://34.64.207.117:3000/contracts/${id}`
+        : 'http://34.64.207.117:3000/contracts'
 
-    setListData(await axios({
+      const temp = await axios({
       method: 'GET',
       url:url,
       headers:{
           'content-type':'application/x-www-form-urlencoded;charset=utf-8',
       }
-    }))
-    
-    //console.log(listData.data)
-    setDATA(await listData.data);
-    console.log(DATA);
-  }  
-  if(!DATA) CheckLogin();
+    })
+    setDATA(temp.data);
+  };CheckLogin();
 
   function CheckKind(kind) {
     switch(kind)
@@ -52,9 +54,9 @@ export default function EstlistPageScreen({ navigation }) {
       case 3: return "렌트";
       case 4: return "리스";
     }
-  }
+  };
 
-  const Item = ({ CT_TITLE,CT_MODEL,CT_PRICE,CT_KIND,CT_CONTENT }) => (
+  const Item = ({ CT_TITLE,CT_MODEL,CT_PRICE,CT_KIND,CT_CONTENT,CT_KEY }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
       onPress={()=>navigation.navigate('EstlistVPage',{
@@ -63,12 +65,13 @@ export default function EstlistPageScreen({ navigation }) {
         CT_PRICE:CT_PRICE,
         CT_KIND:CT_KIND,
         CT_CONTENT:CT_CONTENT,
+        CT_KEY:CT_KEY,
       })}
     >
         <Text style={s.estlistTitle}>{CT_TITLE}</Text>
         <View style={s.estlistTextV}>
           <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
-          <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + '만원'}</Text>
+          <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
         </View>
         <Text>{CheckKind(CT_KIND)}</Text>
     </TouchableOpacity>
@@ -81,6 +84,7 @@ export default function EstlistPageScreen({ navigation }) {
     CT_PRICE = {item.CT_PRICE}
     CT_KIND ={item.CT_KIND}
     CT_CONTENT ={item.CT_CONTENT}
+    CT_KEY ={item.CT_KEY}
     />
   );
     return (
@@ -94,7 +98,7 @@ export default function EstlistPageScreen({ navigation }) {
           }}
           onPress={()=>{
             setCheckState(checkState ? 0:1)
-            CheckLogin()
+            CheckLogin();
           }}
         >
           <CheckBox
@@ -104,7 +108,7 @@ export default function EstlistPageScreen({ navigation }) {
           <Text style={{
             fontSize: 15,
             margin: 10,
-          }}>내가 보낸 견적{IsDealer ? "" : "요청"}서</Text>
+          }}>내가 보낸 견적{isDealer ? "" : "신청"}서</Text>
         </TouchableOpacity>
 
         {/* <View style={{display:empty ? 'flex' : 'none'}}>    
@@ -114,7 +118,6 @@ export default function EstlistPageScreen({ navigation }) {
         <FlatList
           data={DATA}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
         />
       </View>
     );

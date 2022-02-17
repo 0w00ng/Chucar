@@ -3,22 +3,16 @@
 // Simple Intro Slider
 
 // import React in our code
-import React, {useState} from 'react';
+import React from 'react';
+import { StyleSheet,View,Text,Image,TouchableOpacity } from 'react-native';
 // img
-import Menubar from '../../img/menubar.png';
 import Titlelogo from '../../img/chucar-logoN1.png';
 import kakaoTalk from '../../img/kakao-talk.png';
-// lib
-import { SafeAreaView,StyleSheet,View,Text,Image,Button,TouchableOpacity } from 'react-native';
-import { exp } from 'react-native-reanimated';
+
+import storage from '../storage'
+import axios from 'axios';
 
 export default function IntroScreenPage({ navigation }) {
-
-  navigation.setOptions({
-    headerShown: false,
-    swipeEnabled:false,
-    gestureEnabled:false
-  })
 
   return (
     <View
@@ -41,7 +35,7 @@ export default function IntroScreenPage({ navigation }) {
         justifyContent:'center',
       }}
       onPress={()=>navigation.navigate('LoginPage')}
-        >
+      >
         <Image 
           source={kakaoTalk}
           style={styles.introKImageStyle}

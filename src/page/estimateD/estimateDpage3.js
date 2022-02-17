@@ -4,30 +4,59 @@ import CheckBox from '@react-native-community/checkbox'
 import { TextInput } from 'react-native-paper';
 import success from '../../../img/Success.png'
 import s from '../../style'
+import storage from '../../storage';
 import axios from 'axios';
 
 export default function EstimatePageScreen5({ route,navigation }) {
-  const {model,price,distance,option,comment} = route.params;
+  const {cr_key,kind,title,model,price,distance,option,comment} = route.params;
 
-  axios.post(`http://34.64.207.117:3000/contract/send`, {
-    model:model, //모델
-    price:price, //가격
-    distance:distance, //최대주행거리 희망
-    option:option, //희망옵션 ex)선루프,,
-    protosay:comment, //딜러에게할말
-    procode:'', //추천인코드
-    usrid:'' //고객의 아이디 -> 추후에 로그인 개발하면 해당 사용자 id 추출 후 넣을 것
-  })
-  .then(function (res) { //성공
-      console.log(res.data);
-  })
-  .catch(function (err) { //실패
-      console.log(err.data);
-  })
-  .then(function () { //항상
-      console.log('영웅소프트 견적서');
-  });
+  async function SendCT() {
+    const userid = await storage.getData('id');
+    const nickname = await storage.getData('nickname');
+    const access_token = await storage.getData('access_token');
 
+      await axios({
+        method: 'POST',
+        url:'http://34.64.207.117:3000/reply',
+        headers:{
+          Authorization: `${access_token}`,
+        },
+        data:{
+          //kind:kind,
+          cr_model:model, //모델
+          //title:title,
+          cr_nickname:nickname,
+          cr_key:cr_key,
+          cr_reply:comment, //딜러에게할말
+          cr_price:price, //가격
+          cr_distance:distance, //최대주행거리 희망
+          //option:option, //희망옵션 ex)선루프,,
+          img1:'',
+          img2:'',
+          img3:'',
+          img4:'',
+          img5:'',
+          img6:'',
+          img7:'',
+          img8:'',
+          img9:'',
+          img10:'',
+          img11:'',
+          img12:'',
+          img13:'',
+          img14:'',
+          img15:'',
+          img16:'',
+          proid:userid,
+        }
+      })
+      .then(function (res) { //성공
+        console.log(`res : ${res.data}`);
+      })
+      .catch(function (err) { //실패
+        console.log(`err : ${err}`);
+      })
+  }SendCT();
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
         <View style={{alignItems:'center'}}>
@@ -48,7 +77,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
               navigation.navigate('Root',{screen:'MainPage'})
               navigation.popToTop();              
               }}>
-                <Text style={s.buttontxt3}>돌아가기(3/3)</Text>
+                <Text style={s.buttontxt3}>완료</Text>
             </TouchableOpacity>
           </View>
       </View>

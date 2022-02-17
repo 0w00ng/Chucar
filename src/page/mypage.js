@@ -32,12 +32,12 @@ export default function MyPageScreen({navigation }) {
         <View style={{
           width:'100%',height:70,justifyContent:'center',
           borderColor:'#a0a0a0',
-          borderWidth:3
+          borderWidth:3,
         }}>
           <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
-          onPress={() => navigation.navigate('EstlistPage')}
+          onPress={() => navigation.navigate('RegisterPage')}
           >
-            <Text style={s.label}>내 견적내역</Text>
+            <Text style={s.label}>딜러 회원가입</Text>
           </TouchableOpacity>
         </View>
         <View style={{

@@ -6,10 +6,10 @@ import EstimatePage3 from './estimateDpage3';
 // lib
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-
 const Stack = createStackNavigator();
 
-export default function EstimatePageScreen({navigation}) {
+export default function EstimatePageScreen({route}) {
+  const {cr_key} = route.params;
 
     return (
       <Stack.Navigator
@@ -21,7 +21,8 @@ export default function EstimatePageScreen({navigation}) {
       }}>
         <Stack.Screen name="EstimatePage1" component={EstimatePage1} />
         <Stack.Screen name="EstimatePage2" component={EstimatePage2} />
-        <Stack.Screen name="EstimatePage3" component={EstimatePage3} />
+        <Stack.Screen name="EstimatePage3" component={EstimatePage3} 
+        initialParams={{ cr_key:cr_key}} />
       </Stack.Navigator>
     );
   }

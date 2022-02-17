@@ -1,6 +1,7 @@
 // src
 import Root from './root';
-import MyPage from './page/myPage';
+import IntroPage from './page/introPage';
+import LoginPage from './page/loginPage';
 
 // lib
 import * as React from 'react';
@@ -20,8 +21,8 @@ const Drawer = createDrawerNavigator();
           swipeEnabled:false,   
         }}
       >
-        <Drawer.Screen name="Root" component={Root} options={{title:"홈"}}/>
-        <Drawer.Screen name="MyPage" component={MyPage} options={{title:"마이페이지"}}/>
+        <Drawer.Screen name="Root" component={Root}/>
+
       </Drawer.Navigator>
     </NavigationContainer>
     );

@@ -16,7 +16,6 @@ exports.getData = async (Item) => {
         const jsonValue = await AsyncStorage.getItem(Item);
         console.log('get : ' + JSON.parse(jsonValue));
         if(jsonValue)  return JSON.parse(jsonValue)
-        else return null;
     } catch(e) {
         console.log('getting error');
     // error reading value

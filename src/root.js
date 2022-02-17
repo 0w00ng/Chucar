@@ -9,6 +9,7 @@ import IntroPage from './page/introPage';
 import MyPage from './page/myPage';
 import LoginPage from './page/loginPage';
 import LogoutPage from './page/logoutPage';
+import RegisterPage from './page/register/registerPage';
 import EstimatePage from './page/estimateC/estimatePage';
 import EstimateDPage from './page/estimateD/estimateDpage';
 import EstlistPage from './page/estlistPage';
@@ -17,17 +18,17 @@ import s from './style';
 
 // lib
 import * as React from 'react';
-import { Button, View, Text,Image } from 'react-native';
+import { Button, View, Text,Image, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Stack = createStackNavigator();
 
 export default function Root({navigation}) {
-  
+
   return (
     <Stack.Navigator
     screenOptions={{
+      initialProps:'MainPage',
       gestureEnabled:false,
       headerTintColor:'navy',
       headerStyle:{backgroundColor:"white"},
@@ -45,6 +46,7 @@ export default function Root({navigation}) {
           headerShown: true,
         }}
       >
+
         <Stack.Screen 
           name="MainPage" 
           component={MainPage}
@@ -52,10 +54,6 @@ export default function Root({navigation}) {
         <Stack.Screen 
           name="IntroPage" 
           component={IntroPage} />
-        <Stack.Screen 
-          name="MyPage" 
-            component={MyPage} 
-            options={{headerTitle:"마이페이지"}}/>
         <Stack.Screen 
           name="LoginPage" 
           component={LoginPage}
@@ -65,9 +63,13 @@ export default function Root({navigation}) {
           component={LogoutPage} 
           options={{headerTitle:"로그아웃"}}/>
         <Stack.Screen 
+          name="MyPage" 
+          component={MyPage} 
+          options={{headerTitle:"마이페이지"}}/>
+        <Stack.Screen 
           name="EstlistPage" 
           component={EstlistPage} 
-          options={{headerTitle:"견적요청서 리스트"}}/>
+          options={{headerTitle:"견적내역"}}/>
         <Stack.Screen 
           name="EstlistVPage" 
           component={EstlistVPage}
@@ -82,10 +84,14 @@ export default function Root({navigation}) {
         <Stack.Screen 
           name="EstimatePage" 
           component={EstimatePage} 
-          options={{headerTitle:"견적요청서 작성"}}/>
+          options={{headerTitle:"견적신청"}}/>
         <Stack.Screen 
           name="EstimateDPage" 
           component={EstimateDPage} 
+          options={{headerTitle:"견적서 작성"}}/>
+        <Stack.Screen 
+          name="RegisterPage" 
+          component={RegisterPage} 
           options={{headerTitle:"견적서 작성"}}/>
       </Stack.Group>
 

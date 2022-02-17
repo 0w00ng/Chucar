@@ -3,10 +3,10 @@ import { View, Text,TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
-export default function RegisterPageScreen1({ navigation }) {
-  const [id, setId] = React.useState("");                   //Page2로 보낼 변수 선언
-  const [password, setPassword] = React.useState("");
-  const [password2, setPassword2] = React.useState("");
+export default function RegisterPageScreen2({route,navigation }) {
+  const [nickname, setNickname] = React.useState("");     // Page2로 보낼 변수 선언
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
 
     return (
       <View style={{flex:1,backgroundColor:'white'}}>
@@ -16,37 +16,37 @@ export default function RegisterPageScreen1({ navigation }) {
         </Text>
       </View>
       <View style={s.rowcontainer}>
-        <Text style={s.label}>아이디</Text>
+        <Text style={s.label}>상사명</Text>
         <TextInput style={s.inputS}
-          value={id}
-          onChangeText={id => setId(id)}
+          value={nickname}
+          onChangeText={nickname => setNickname(nickname)}
         />
       </View>
       <View style={s.rowcontainer}>
-        <Text style={s.label}>비밀번호</Text>
+        <Text style={s.label}>이메일</Text>
         <TextInput style={s.inputS}
-          secureTextEntry={true}        // 비밀번호 마스킹
-          value={password}
-          onChangeText={password => setPassword(password)}
+          value={email}
+          onChangeText={email => setEmail(email)}
         />
       </View>
       <View style={s.rowcontainer}>
-        <Text style={s.label}>비밀번호 확인</Text>
+        <Text style={s.label}>핸드폰 번호</Text>
         <TextInput style={s.inputS}
-          secureTextEntry={true}
-          value={password2}
-          onChangeText={password2 => setPassword2(password2)}
+          value={phone}
+          onChangeText={phone => setPhone(phone)}
         />
       </View>
       <View style={{alignItems:'center',margin:20}}>
         <TouchableOpacity style={s.buttonbg3}
-        onPress={() => {
-          if(password===password2) {navigation.navigate('RegisterPage2',{   // Page2로 화면전환
-          id:id,                                                            // Page2로 정보송신
-          password:password
-        })} else alert('비밀번호가 다릅니다.')
+        onPress={() => {navigation.navigate('RegisterPage3',{       // Page3로 화면전환 및 정보송신
+          id:id,
+          password:password,
+          nickname:nickname,
+          email:email,
+          phone:phone
+        })
         }}>
-            <Text style={s.buttontxt3}> 다음으로 (1/2)</Text>
+            <Text style={s.buttontxt3}>계정만들기 (2/2)</Text>
         </TouchableOpacity>
       </View>
   </View>

@@ -56,34 +56,38 @@ export default function KakaoLogin ({ navigation }){
             code:request_code,
             client_secret:'9F00S9wCb8X6cggmdqesUVTYoQeD41P4'
           })//객체를 string 으로 변환
-        })
-          const storeToken = {
-            access_token:token.data.access_token,
-            refresh_token:token.data.refresh_token,
-            expires_in:token.data.expires_in
-          }
-            await storage.setData('access_token',storeToken.access_token);
-            await storage.setData('refresh_token',storeToken.refresh_token);
-            await storage.setData('expires_in',storeToken.expires_in);
+      })
+      const users = await axios({
+        method: 'GET',
+        url:'http://34.64.207.117:3000/showInfo',
+        headers:{
+            'content-type':'application/x-www-form-urlencoded;charset=utf-8',
+            Authorization: `${token.data.access_token}`,
+        }
+      })
+      .catch(function (err) { //실패
+          console.log(err.data);
+      })
+      await storage.setData('id',users.data.id);
+      await storage.setData('nickname',users.data.nickname);
+      await storage.setData('access_token',token.data.access_token);
+      await storage.setData('refresh_token',token.data.refresh_token);
+      await storage.setData('expires_in',token.data.expires_in);
 
-            axios.get(`http://34.64.207.117:3000/showInfo`, {
-                headers:{
-                    Authorization: `${storeToken.access_token}`,
-                    'content-type':'application/x-www-form-urlencoded;charset=utf-8'
-                }
-            })
-            .then(function (res) { //성공
-                console.log('res.data:' + res.data);
-                navigation.navigate('Root',{
-                    screen:'MainPage',
-                    user:res.data
-                });
-                alert('로그인이 완료되었습니다.')
-            })
-            .catch(function (err) { //실패
-                console.log(err.data);
-            })
-            
+      axios.get(`http://34.64.207.117:3000/showInfo`, {
+          headers:{
+              Authorization: `${token.data.access_token}`,
+              'content-type':'application/x-www-form-urlencoded;charset=utf-8'
+          }
+      })
+      .then(function (res) { //성공
+          navigation.popToTop();
+          alert('로그인이 완료되었습니다.')
+      })
+      .catch(function (err) { //실패
+        console.log('로그인에 실패했습니다.' + err);
+      })
+          
     }catch(err){
       console.log('로그인에 실패했습니다.' + err);
       //res.json(err.data);
