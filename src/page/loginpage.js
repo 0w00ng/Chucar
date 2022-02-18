@@ -25,7 +25,7 @@ export default function KakaoLogin ({ navigation }){
       console.log('lgp')
       console.log(data)
       // access code는 url에 붙어 장황하게 날아온다.
-      // substringd으로 url에서 code=뒤를 substring하면 된다.
+      // substring으로 url에서 code=뒤를 substring하면 된다.
       const exp = "code=";
       var condition = data.indexOf(exp);
       if (condition != -1) {

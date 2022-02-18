@@ -2,8 +2,8 @@ import React, { useState,useEffect } from "react";
 import { View, Text,TouchableOpacity,Image,FlatList } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import axios from "axios";
-import storage from '../storage';
-import s from '../style'
+import storage from '../../storage';
+import s from '../../style'
 //img
 
 export default function EstlistPageScreen({ navigation }) {
@@ -14,14 +14,22 @@ export default function EstlistPageScreen({ navigation }) {
   const [isDealer,setIsDealer] = useState();
 
   useEffect(()=>{
-    let temp;
     (async ()=>{
       try{
-        temp = await storage.getData('id');
+        const temp = await storage.getData('id');
         setId(temp);
         console.log('id : ' + id);
+      } 
+      catch(err) {
+        console.log(err);
+      }
+    })();
+  },[]);
 
-        temp = await axios({
+  useEffect(()=>{
+    (async ()=>{
+      try{
+        const temp = await axios({
           method: 'GET',
           url:`http://34.64.207.117:3000/isdealer/${id}`,
         })
@@ -32,7 +40,7 @@ export default function EstlistPageScreen({ navigation }) {
         console.log(err);
       }
     })();
-  },[]);
+  },[id]);
 
   useEffect(()=>{
     (async ()=>{
@@ -67,7 +75,7 @@ export default function EstlistPageScreen({ navigation }) {
     }
   };
 
-  const Item = ({ CT_TITLE,CT_MODEL,CT_PRICE,CT_KIND,CT_CONTENT,CT_KEY }) => (
+  const Item = ({ CT_TITLE,CT_MODEL,CT_PRICE,CT_KIND,CT_COMMENT,CT_NUM,CT_STAT,CT_USRID,isDealer,id }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
       onPress={()=>navigation.navigate('EstlistVPage',{
@@ -75,8 +83,12 @@ export default function EstlistPageScreen({ navigation }) {
         CT_MODEL:CT_MODEL,
         CT_PRICE:CT_PRICE,
         CT_KIND:CT_KIND,
-        CT_CONTENT:CT_CONTENT,
-        CT_KEY:CT_KEY,
+        CT_COMMENT:CT_COMMENT,
+        CT_NUM:CT_NUM,
+        CT_STAT:CT_STAT,
+        CT_USRID:CT_USRID,
+        isDealer:isDealer,
+        id:id,
       })}
     >
         <Text style={s.estlistTitle}>{CT_TITLE}</Text>
@@ -94,8 +106,12 @@ export default function EstlistPageScreen({ navigation }) {
     CT_MODEL={item.CT_MODEL}
     CT_PRICE = {item.CT_PRICE}
     CT_KIND ={item.CT_KIND}
-    CT_CONTENT ={item.CT_CONTENT}
-    CT_KEY ={item.CT_KEY}
+    CT_COMMENT ={item.CT_COMMENT}
+    CT_NUM ={item.CT_NUM}
+    CT_STAT ={item.CT_STAT}
+    CT_USRID ={item.CT_USRID}
+    isDealer ={item.isDealer}
+    id ={item.id}
     />
   );
     return (

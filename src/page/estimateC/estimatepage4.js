@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text,TouchableOpacity,Image } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import { TextInput } from 'react-native-paper';
@@ -11,40 +11,38 @@ import axios from 'axios';
 
 export default function EstimatePageScreen5({ route,navigation }) {
   const {kind,title,model,price,distance,option,comment} = route.params;
-  async function SendCT() {
-    const  userid = await storage.getData('id');
-    const  access_token = await storage.getData('access_token');
-      await axios({
-        method: 'POST',
-        url:'http://34.64.207.117:3000/contract/send',
-        headers:{
-          Authorization: `${access_token}`,
-        },
-        data:{
-          catg:1,
-          gubn:1,
-          kind:kind,
-          model:model, //모델
-          title:title,
-          content:comment, //딜러에게할말
-          price:price, //가격
-          distance:distance, //최대주행거리 희망
-          option:option, //희망옵션 ex)선루프,,
-          img1:'',
-          img2:'',
-          img3:'',
-          img4:'',
-          code:'', //추천인코드
-          usrid:userid
-        }
-      })
-      .then(function (res) { //성공
-        console.log(res.data);
-      })
-      .catch(function (err) { //실패
-          console.log(err.data);
-      })
-  }SendCT();
+  useEffect(()=>{
+    (async () => {
+      const  userid = await storage.getData('id');
+      const  access_token = await storage.getData('access_token');
+        await axios({
+          method: 'POST',
+          url:'http://34.64.207.117:3000/contract/send',
+          headers:{
+            Authorization: `${access_token}`,
+          },
+          data:{
+            catg:1,
+            gubn:1,
+            ct_kind:kind,
+            ct_model:model, //모델
+            ct_title:title,
+            ct_content:comment, //딜러에게할말
+            ct_price:price, //가격
+            ct_distance:distance, //최대주행거리 희망
+            ct_option:option, //희망옵션 ex)선루프,,
+            ct_usrid:userid
+          }
+        })
+        .then(function (res) { //성공
+          console.log(res.data);
+        })
+        .catch(function (err) { //실패
+            console.log(err.data);
+        })
+      })()
+  },[])
+
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
         <View style={{alignItems:'center'}}>

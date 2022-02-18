@@ -12,8 +12,8 @@ import LogoutPage from './page/logoutPage';
 import RegisterPage from './page/register/registerPage';
 import EstimatePage from './page/estimateC/estimatePage';
 import EstimateDPage from './page/estimateD/estimateDpage';
-import EstlistPage from './page/estlistPage';
-import EstlistVPage from './page/estlistVpage';
+import EstlistPage from './page/estimateList/estlistPage';
+import EstlistVPage from './page/estimateList/estlistVpage';
 import s from './style';
 
 // lib

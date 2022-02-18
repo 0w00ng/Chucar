@@ -8,7 +8,7 @@ import storage from '../../storage';
 import axios from 'axios';
 
 export default function EstimatePageScreen5({ route,navigation }) {
-  const {cr_key,kind,title,model,price,distance,option,comment} = route.params;
+  const {cr_num,kind,title,model,price,distance,option,comment} = route.params;
 
   async function SendCT() {
     const userid = await storage.getData('id');
@@ -26,8 +26,8 @@ export default function EstimatePageScreen5({ route,navigation }) {
           cr_model:model, //모델
           //title:title,
           cr_nickname:nickname,
-          cr_key:cr_key,
-          cr_reply:comment, //딜러에게할말
+          cr_num:cr_num,
+          cr_comment:comment, //딜러에게할말
           cr_price:price, //가격
           cr_distance:distance, //최대주행거리 희망
           //option:option, //희망옵션 ex)선루프,,
@@ -39,14 +39,6 @@ export default function EstimatePageScreen5({ route,navigation }) {
           img6:'',
           img7:'',
           img8:'',
-          img9:'',
-          img10:'',
-          img11:'',
-          img12:'',
-          img13:'',
-          img14:'',
-          img15:'',
-          img16:'',
           proid:userid,
         }
       })
