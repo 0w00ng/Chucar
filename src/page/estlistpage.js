@@ -1,50 +1,61 @@
 import React, { useState,useEffect } from "react";
-import { View, Text,TouchableOpacity,Image,StyleSheet,StatusBar,FlatList } from 'react-native';
-import { TextInput } from 'react-native-paper';
-import s from '../style'
-import estlist_empty from '../../img/estlist.jpg'
-import DefaultUser from '../../img/Default_Profile.png'
-import EstlistViewPageScreen from "./estlistVpage";
-import axios from "axios";
+import { View, Text,TouchableOpacity,Image,FlatList } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
+import axios from "axios";
 import storage from '../storage';
-
+import s from '../style'
+//img
 
 export default function EstlistPageScreen({ navigation }) {
 
   const [checkState, setCheckState] = useState(false);
   const [DATA,setDATA] = useState();
-  const [temp,setTemp] = useState('');
-  const isDealer = checkDealer();
-  let id = 0;
+  const [id,setId] = useState();
+  const [isDealer,setIsDealer] = useState();
 
-  async function checkDealer() {
-    id = await storage.getData('id');
-    const temp = await axios({
-      method: 'GET',
-      url:`http://34.64.207.117:3000/isdealer/${id}`,
-    })
-    const isDealer = temp.data;
-    return isDealer;
-  }
+  useEffect(()=>{
+    let temp;
+    (async ()=>{
+      try{
+        temp = await storage.getData('id');
+        setId(temp);
+        console.log('id : ' + id);
 
-  async function CheckLogin() {
-    const url =
-      checkState
-        ? isDealer
-          ? `http://34.64.207.117:3000/contracts/pro/${id}`
-          : `http://34.64.207.117:3000/contracts/${id}`
-        : 'http://34.64.207.117:3000/contracts'
-
-      const temp = await axios({
-      method: 'GET',
-      url:url,
-      headers:{
-          'content-type':'application/x-www-form-urlencoded;charset=utf-8',
+        temp = await axios({
+          method: 'GET',
+          url:`http://34.64.207.117:3000/isdealer/${id}`,
+        })
+        setIsDealer(temp.data);
+        console.log('isDealer : ' + isDealer);
+      } 
+      catch(err) {
+        console.log(err);
       }
-    })
-    setDATA(temp.data);
-  };CheckLogin();
+    })();
+  },[]);
+
+  useEffect(()=>{
+    (async ()=>{
+      const url = 
+        checkState
+          ? isDealer
+            ? `http://34.64.207.117:3000/contracts/pro/${id}`
+            : `http://34.64.207.117:3000/contracts/${id}`
+          : 'http://34.64.207.117:3000/contracts'
+
+      try {
+        const temp = await axios({
+          method: 'GET',
+          url:url,
+          headers:{
+              'content-type':'application/x-www-form-urlencoded;charset=utf-8',
+          }
+        })
+        setDATA(temp.data);
+      } catch(err) {console.log(err)}
+    })();
+  },[checkState]);
+
 
   function CheckKind(kind) {
     switch(kind)
@@ -98,7 +109,6 @@ export default function EstlistPageScreen({ navigation }) {
           }}
           onPress={()=>{
             setCheckState(checkState ? 0:1)
-            CheckLogin();
           }}
         >
           <CheckBox
@@ -110,10 +120,6 @@ export default function EstlistPageScreen({ navigation }) {
             margin: 10,
           }}>내가 보낸 견적{isDealer ? "" : "신청"}서</Text>
         </TouchableOpacity>
-
-        {/* <View style={{display:empty ? 'flex' : 'none'}}>    
-          <Image source={estlist_empty}/>                   
-        </View> */}
         
         <FlatList
           data={DATA}

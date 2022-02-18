@@ -39,8 +39,6 @@ export default function RegisterPageScreen2({route,navigation }) {
       <View style={{alignItems:'center',margin:20}}>
         <TouchableOpacity style={s.buttonbg3}
         onPress={() => {navigation.navigate('RegisterPage3',{       // Page3로 화면전환 및 정보송신
-          id:id,
-          password:password,
           nickname:nickname,
           email:email,
           phone:phone

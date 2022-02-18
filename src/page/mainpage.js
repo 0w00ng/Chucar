@@ -7,26 +7,28 @@ import axios from 'axios';
 import s from '../style'
 
 export default function MainPageScreen ({ navigation }) {
-
   (async() => {
     const check = await storage.getData('refresh_token');
     if(!check) navigation.navigate('Root',{screen:'IntroPage'});
     else {
-      const newToken = await axios({
-        method: 'GET',
-        url:'http://34.64.207.117:3000/refresh',
-        headers:{
-          'content-type':'application/x-www-form-urlencoded;charset=utf-8',
-          refresh_token:check
+      try {
+        const newToken = await axios({
+          method: 'GET',
+          url:'http://34.64.207.117:3000/refresh',
+          headers:{
+            'content-type':'application/x-www-form-urlencoded;charset=utf-8',
+            refresh_token:check
+          }
+        }) 
+        const access_token = newToken.data.access_token
+        const refresh_token = newToken.data.refresh_token
+        await storage.setData('access_token',access_token);
+        if(refresh_token) {
+          await storage.setData('refresh_token',refresh_token);
         }
-      })
-      .catch(function (err) { //실패
-        console.log(err.data);
-      })
-      const access_token = newToken.data.access_token
-      const refresh_token = newToken.data.refresh_token
-      await storage.setData('access_token',access_token); //token storing into local storage
-      if(refresh_token) await storage.setData('refresh_token',refresh_token);
+      } catch(err) { //실패
+        console.log(err);
+      }
     }
   })();
 
