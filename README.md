@@ -1,27 +1,28 @@
 # Chucar
-중고차 견적 어플리케이션
+  신차/중고차 견적 어플리케이션
 
 # 주요기능
 
-로그인/회원가입
-견적서 요청 / 견적서 송신
+  로그인 / 회원가입 / 결제
+  견적서 요청 / 견적서 송신
+  보낸 견적서 리스트 확인
 
 # 적용기술
 
-Navigation : Nesting Drawer & Stack Navigator
-RestAPI
-Kakao API
+[COMMON]
+  Axios,
+  RestAPI(Kakao,IamPort)
 
-# 기술스택
+[F/E]
+  ReactNative
 
-ReactNative,
-Axios,
-NodeJS,
-MySQL
+[B/E]
+  NodeJS,
+  MySQL
 
 # 실행방법
 
-npm install
+  npm install
 
-1st Terminal : npm start
-2nd Terminal : react-native run-ios
+  1st Terminal : npm start
+  2nd Terminal : react-native run-ios
