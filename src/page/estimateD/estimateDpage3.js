@@ -1,75 +1,69 @@
 import React, { useState } from "react";
-import { View, Text,TouchableOpacity,Image } from 'react-native';
+import { View, Text,TouchableOpacity } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
 import { TextInput } from 'react-native-paper';
-import success from '../../../img/Success.png'
 import s from '../../style'
-import storage from '../../storage';
-import axios from 'axios';
 
-export default function EstimatePageScreen5({ route,navigation }) {
-  const {cr_num,kind,title,model,price,distance,option,comment} = route.params;
+export default function EstimatePageScreen4({ route, navigation }) {
+  const {model,price,distance,option,img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
+  const [title, setTitle] = React.useState("");
+  const [comment, setComment] = React.useState("");
 
-  async function SendCT() {
-    const userid = await storage.getData('id');
-    const nickname = await storage.getData('nickname');
-    const access_token = await storage.getData('access_token');
-
-      await axios({
-        method: 'POST',
-        url:'http://34.64.207.117:3000/reply',
-        headers:{
-          Authorization: `${access_token}`,
-        },
-        data:{
-          //kind:kind,
-          cr_model:model, //모델
-          //title:title,
-          cr_nickname:nickname,
-          cr_num:cr_num,
-          cr_comment:comment, //딜러에게할말
-          cr_price:price, //가격
-          cr_distance:distance, //최대주행거리 희망
-          //option:option, //희망옵션 ex)선루프,,
-          img1:'',
-          img2:'',
-          img3:'',
-          img4:'',
-          img5:'',
-          img6:'',
-          img7:'',
-          img8:'',
-          proid:userid,
-        }
-      })
-      .then(function (res) { //성공
-        console.log(`res : ${res.data}`);
-      })
-      .catch(function (err) { //실패
-        console.log(`err : ${err}`);
-      })
-  }SendCT();
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
-        <View style={{alignItems:'center'}}>
-            <Image 
-              source={success} style={{width:'40%'}}
-              resizeMode='contain'
+          <View>
+            <Text style={s.title}>
+                견적 추가사항을{'\n'}
+                입력 해주세요
+            </Text>
+          </View>
+          <View style={s.rowcontainer}>
+          <TextInput style={s.inputL}
+                label="요청서 제목"
+                value={title}
+                onChangeText={title => setTitle(title)}
+              />
+          </View>
+          <View style={{
+            flexDirection:'row',
+            justifyContent:'center',
+          }}>
+            <TextInput 
+              style={{
+                borderColor:'navy',
+                borderWidth:2,
+                backgroundColor: 'white',
+                fontSize: 20,
+                width:'90%',
+                height:400
+              }}
+              multiline
+              maxLength={500}
+              label="요청서 내용"
+              value={comment}
+              onChangeText={comment => setComment(comment)}
             />
           </View>
           <View style={{alignItems:'center'}}>
-            <Text style={s.title}>
-                견적서 작성이 완료되었습니다 !{'\n'}
-            </Text>
-          </View>
-          
-          <View style={{alignItems:'center'}}>
-            <TouchableOpacity style={s.buttonbg3}
-            onPress={() => {
-              navigation.navigate('Root',{screen:'MainPage'})
-              navigation.popToTop();              
-              }}>
-                <Text style={s.buttontxt3}>완료</Text>
+            <TouchableOpacity 
+            style={s.buttonbg3}
+            onPress={() => navigation.navigate('EstimatePage4',{
+              model:model,
+              price:price,
+              distance:distance,
+              option:option,
+              comment:comment,
+              title:title,
+              img1:img1,
+              img2:img2,
+              img3:img3,
+              img4:img4,
+              img5:img5,
+              img6:img6,
+              img7:img7,
+              img8:img8,
+            })}>
+              <Text style={s.buttontxt3}>완료(3/3)</Text>
             </TouchableOpacity>
           </View>
       </View>

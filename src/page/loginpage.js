@@ -59,7 +59,7 @@ export default function KakaoLogin ({ navigation }){
       })
       const users = await axios({
         method: 'GET',
-        url:'http://34.64.207.117:3000/showInfo',
+        url:`${storage.chucar_url}/showInfo`,
         headers:{
             'content-type':'application/x-www-form-urlencoded;charset=utf-8',
             Authorization: `${token.data.access_token}`,
@@ -74,7 +74,7 @@ export default function KakaoLogin ({ navigation }){
       await storage.setData('refresh_token',token.data.refresh_token);
       await storage.setData('expires_in',token.data.expires_in);
 
-      axios.get(`http://34.64.207.117:3000/showInfo`, {
+      axios.get(`${storage.chucar_url}/showInfo`, {
           headers:{
               Authorization: `${token.data.access_token}`,
               'content-type':'application/x-www-form-urlencoded;charset=utf-8'

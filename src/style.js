@@ -157,7 +157,17 @@ module.exports = StyleSheet.create({
     estlistContainer: {
         backgroundColor:'#F8F8FF',
         borderColor:'navy',
-        borderWidth:1,
+        borderWidth:0.2,
+        borderRadius:10,
+        margin: 10,
+        padding: 10,
+        alignItems:'stretch',
+        flexDirection:'column'
+    },
+    estlistContainer_Dead: {
+        backgroundColor:'#e0e0e0',
+        borderColor:'black',
+        borderWidth:0,
         borderRadius:10,
         margin: 10,
         padding: 10,
@@ -186,5 +196,16 @@ module.exports = StyleSheet.create({
         fontSize:20,
         fontWeight: 'bold',
         textAlign:'center',
-    }
+    },
+    imageBox: {
+        margin:2,
+        width:90,
+        height:90,
+        borderWidth:0.2,
+        borderColor:'navy',
+    },
+    imageStyle: {
+        width:'100%',
+        height:'100%',
+    },
 });

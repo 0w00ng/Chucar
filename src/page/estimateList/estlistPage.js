@@ -31,7 +31,7 @@ export default function EstlistPageScreen({ navigation }) {
       try{
         const temp = await axios({
           method: 'GET',
-          url:`http://34.64.207.117:3000/isdealer/${id}`,
+          url:`${storage.chucar_url}/isdealer/${id}`,
         })
         setIsDealer(temp.data);
         console.log('isDealer : ' + isDealer);
@@ -47,9 +47,9 @@ export default function EstlistPageScreen({ navigation }) {
       const url = 
         checkState
           ? isDealer
-            ? `http://34.64.207.117:3000/contracts/pro/${id}`
-            : `http://34.64.207.117:3000/contracts/${id}`
-          : 'http://34.64.207.117:3000/contracts'
+            ? `${storage.chucar_url}/contracts/pro/${id}`
+            : `${storage.chucar_url}/contracts/${id}`
+          : `${storage.chucar_url}/contracts`
 
       try {
         const temp = await axios({
@@ -75,9 +75,13 @@ export default function EstlistPageScreen({ navigation }) {
     }
   };
 
-  const Item = ({ CT_TITLE,CT_MODEL,CT_PRICE,CT_KIND,CT_COMMENT,CT_NUM,CT_STAT,CT_USRID,isDealer,id }) => (
+  const Item = ({ CT_TITLE,CT_MODEL,CT_PRICE,CT_KIND,CT_COMMENT,CT_NUM,CT_STAT,CT_USRID }) => (
     <TouchableOpacity 
-      style={s.estlistContainer}
+      style={
+        CT_STAT
+          ? s.estlistContainer
+          : s.estlistContainer_Dead
+      }
       onPress={()=>navigation.navigate('EstlistVPage',{
         CT_TITLE:CT_TITLE,
         CT_MODEL:CT_MODEL,
@@ -110,8 +114,6 @@ export default function EstlistPageScreen({ navigation }) {
     CT_NUM ={item.CT_NUM}
     CT_STAT ={item.CT_STAT}
     CT_USRID ={item.CT_USRID}
-    isDealer ={item.isDealer}
-    id ={item.id}
     />
   );
     return (

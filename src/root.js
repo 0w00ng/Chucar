@@ -13,7 +13,8 @@ import RegisterPage from './page/register/registerPage';
 import EstimatePage from './page/estimateC/estimatePage';
 import EstimateDPage from './page/estimateD/estimateDpage';
 import EstlistPage from './page/estimateList/estlistPage';
-import EstlistVPage from './page/estimateList/estlistVpage';
+import EstlistVPage from './page/estimateList/estlistRpage';
+import EstlistRVPage from './page/estimateList/estlistRVpage';
 import s from './style';
 
 // lib
@@ -73,6 +74,10 @@ export default function Root({navigation}) {
         <Stack.Screen 
           name="EstlistVPage" 
           component={EstlistVPage}
+          options={{headerTitle:""}}/>
+        <Stack.Screen 
+          name="EstlistRVPage" 
+          component={EstlistRVPage}
           options={{headerTitle:""}}/>
       </Stack.Group>
 

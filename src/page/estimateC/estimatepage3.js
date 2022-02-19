@@ -55,7 +55,7 @@ export default function EstimatePageScreen4({ route, navigation }) {
               title:title,
               comment:comment,
             })}>
-                <Text style={s.buttontxt3}>계속하기(3/3)</Text>
+                <Text style={s.buttontxt3}>완료(3/3)</Text>
             </TouchableOpacity>
           </View>
       </View>

@@ -20,7 +20,7 @@ export default function IntroScreenPage({ navigation }) {
         flex: 1,
         backgroundColor: 'white',
         alignItems: 'center',
-        justifyContent:'center',
+        justifyContent:'space-evenly',
       }}>
       <Image
         source={Titlelogo} />

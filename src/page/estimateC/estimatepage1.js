@@ -42,7 +42,7 @@ export default function EstimatePageScreen1({ navigation }) {
                 value={checkstate1}
                 style={s.checkbox}
                 />
-                <Text style={s.label}>할부로 진행할게요</Text>
+                <Text style={s.label}>신차로 진행할게요</Text>
             </TouchableOpacity>
           </View>
           <View >
@@ -56,7 +56,7 @@ export default function EstimatePageScreen1({ navigation }) {
                 value={checkstate2}
                 style={s.checkbox}
                 />
-                <Text style={s.label}>렌트로 진행할게요</Text>
+                <Text style={s.label}>중고차로 진행할게요</Text>
             </TouchableOpacity>
           </View>
           <View >
@@ -70,7 +70,7 @@ export default function EstimatePageScreen1({ navigation }) {
                 value={checkstate3}
                 style={s.checkbox}
                 />
-                <Text style={s.label}>리스로 진행할게요</Text>
+                <Text style={s.label}>렌트로 진행할게요</Text>
             </TouchableOpacity>
           </View>
           <View >
@@ -84,7 +84,7 @@ export default function EstimatePageScreen1({ navigation }) {
                 value={checkstate4}
                 style={s.checkbox}
                 />
-                <Text style={s.label}>현금으로 진행할게요</Text>
+                <Text style={s.label}>리스로 진행할게요</Text>
             </TouchableOpacity>
           </View>
           <View style={{alignItems:'center'}}>

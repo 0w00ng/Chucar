@@ -53,7 +53,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
           </View>
           <View style={{alignItems:'center'}}>
             <Text style={s.title}>
-                견적 신청이 완료되었습니다 !{'\n'}
+                신청이 완료되었습니다 !{'\n'}
             </Text>
           </View>
           
@@ -63,7 +63,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
               navigation.navigate('Root',{screen:'MainPage'})
               navigation.popToTop();              
               }}>
-                <Text style={s.buttontxt3}>완료</Text>
+                <Text style={s.buttontxt3}>돌아가기</Text>
             </TouchableOpacity>
           </View>
       </View>

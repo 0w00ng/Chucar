@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text,TouchableOpacity,Image,StyleSheet,StatusBar,FlatList } from 'react-native';
+import { View, Text,TouchableOpacity,Image,SafeAreaView,StyleSheet,StatusBar,FlatList,Alert } from 'react-native';
 import storage from '../../storage';
 import axios from "axios";
 import s from '../../style';
@@ -9,10 +9,12 @@ import Default_icon from '../../../img/Default_Profile.png'
 
 export default function EstlistViewPageScreen({ route, navigation }) {
   const {CT_TITLE,CT_MODEL,CT_PRICE,CT_COMMENT,CT_KIND,CT_STAT,CT_NUM,CT_USRID,isDealer,id} = route.params;
- 
   const [checkState, setCheckState] = useState(false);
   const [DATA,setDATA] = useState();
   const [empty,setEmpty] = useState();
+
+  console.log('D : ' + isDealer)
+
 
   useEffect(()=>{
     (async() => {
@@ -25,7 +27,6 @@ export default function EstlistViewPageScreen({ route, navigation }) {
       });
       setDATA(await listData.data);
       console.log(DATA);
-      console.log(id + ct_us);
     })();
   },[]);
 
@@ -46,13 +47,25 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     } catch(err) {
         console.log(err);
     }
+    navigation.popToTop();
+    navigation.navigate('EstlistPage');
   }
 
-  const Item = ({ CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME }) => (
+  const Item = ({ CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME,CR_TITLE,CR_OPTION }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
-      onPress={()=>alert('ㅋㅋ')}
+      onPress={()=>navigation.navigate('EstlistRVPage',{
+        CR_MODEL:CR_MODEL,
+        CR_PRICE:CR_PRICE,
+        CR_COMMENT:CR_COMMENT,
+        CR_DISTANCE:CR_DISTANCE,
+        phone:phone,
+        CR_NICKNAME:CR_NICKNAME,
+        CR_TITLE:CR_TITLE,
+        CR_OPTION:CR_OPTION,
+      })}
     >
+        <Text style={s.estlistTitle}>{CR_TITLE}</Text>
         <View style={s.estlistTextV}>
           <Text style={{
             color:'navy',
@@ -85,6 +98,8 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     CR_COMMENT ={item.CR_COMMENT}
     CR_DISTANCE ={item.CR_DISTANCE}
     CR_NICKNAME ={item.CR_NICKNAME}
+    CR_TITLE ={item.CR_TITLE}
+    CR_OPTION ={item.CR_OPTION}
     />
   );
 
@@ -92,9 +107,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     return (
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
           <View style={{alignItems:'center'}}>
-            <Text style={s.titleS}>
-                {CT_TITLE}
-            </Text>
+            <Text style={s.titleS}>{CT_TITLE}</Text>
           </View>
           <View style={s.estlistVContainer}>
             <View style={s.estlistTextV}>
@@ -102,35 +115,36 @@ export default function EstlistViewPageScreen({ route, navigation }) {
               <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
             </View>
            <Text>{'' + CT_COMMENT}</Text>
-           <View style={{alignItems:'center'}}>
+           <View style={{
+             alignItems:'center',
+             display: CT_STAT&&(CT_USRID==id||isDealer) // 딜러 or 작성자면 표시 / 둘다 아니면 미표시 // 마감이면 무조건 미표시
+                        ? 'flex'
+                        : 'none'
+             }}>
             <TouchableOpacity 
             style={s.buttonbg3}
             onPress={()=>
-              CT_STAT 
-                ? CT_USRID==id
+                CT_USRID==id
                   ? deadLine() //'마감 하기'
                   : navigation.navigate('EstimateDPage',{
                       cr_num:CT_NUM
                     })          //'견적서 보내기' 
-                : alert('마감 되었습니다.')//'마감 되었습니다.'
             }
             >
               <Text style={s.buttontxt2}>{
-                CT_STAT 
-                ? CT_USRID==id
+                CT_USRID==id
                   ? '마감 하기'
-                  : '견적서 보내기' 
-                : '마감 되었습니다.'
+                  : '견적서 보내기'
               }</Text>
             </TouchableOpacity>
            </View>
           </View>
-          <View style={{alignItems:'center'}}>
+          <SafeAreaView style={{alignItems:'center',flex:1}}>
             <FlatList
               data={DATA}
               renderItem={renderItem}
             />
-          </View>
+          </SafeAreaView>
       </View>
     );
 }

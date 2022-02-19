@@ -10,7 +10,7 @@ export default function KakaoLogOut ({ navigation }){
     const access_token = await storage.getData('access_token');
     const res =  await axios({
       method: 'get',
-      url: 'http://34.64.207.117:3000/logout',
+      url: `${storage.chucar_url}/logout`,
       headers:{
           Authorization: `${access_token}`, //액세스토큰
           'Content-type':'application/x-www-form-urlencoded;utf-8'

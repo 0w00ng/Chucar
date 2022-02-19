@@ -31,6 +31,7 @@ export default function MyPageScreen({navigation }) {
         </View>
         <View style={{
           width:'100%',height:70,justifyContent:'center',
+          backgroundColor:'white',
           borderColor:'#a0a0a0',
           borderWidth:3,
         }}>

@@ -14,7 +14,7 @@ export default function MainPageScreen ({ navigation }) {
       try {
         const newToken = await axios({
           method: 'GET',
-          url:'http://34.64.207.117:3000/refresh',
+          url:`${storage.chucar_url}/refresh`,
           headers:{
             'content-type':'application/x-www-form-urlencoded;charset=utf-8',
             refresh_token:check
