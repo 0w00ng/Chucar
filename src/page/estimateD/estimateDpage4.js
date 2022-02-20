@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text,TouchableOpacity,Image } from 'react-native';
+import fs from 'react-native-fs'
+import decode from 'base64-arraybuffer'
 import CheckBox from '@react-native-community/checkbox'
 import { TextInput } from 'react-native-paper';
 import success from '../../../img/Success.png'
 import s from '../../style'
 import storage from '../../storage';
 import axios from 'axios';
+import AWS from "aws-sdk"
+
+import default_Image from '../../../img/addImage.png'
+
 
 // import Amplify, { Auth, Storage } from 'aws-amplify';
 // Amplify.configure({
@@ -36,70 +42,90 @@ import axios from 'axios';
 //   console.log(err)
 // }
 
-// Amazon Cognito 인증 공급자를 초기화합니다
-// CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
-//   getApplicationContext(),
-//   "ap-northeast-2:28135c36-61d3-4095-928b-c5d71e13ffe1", // 자격 증명 풀 ID
-//   Regions.AP_NORTHEAST_2 // 리전
-// );
-
 export default function EstimatePageScreen5({ route,navigation }) {
   const {cr_num,title,model,price,distance,option,comment,img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
+  let img=[img1,img2,img3,img4,img5,img6,img7,img8];
 
-  AWS.config.update({
-    region: 'ap-northeast-2',
-    credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'ap-northeast-2:28135c36-61d3-4095-928b-c5d71e13ffe1',
+  useEffect(() => {
+    
+    AWS.config.update({
+      region: "ap-northeast-2", 
+      credentials: new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: "ap-northeast-2:28135c36-61d3-4095-928b-c5d71e13ffe1",
+      }),
     })
-  });
-  var s3 = new AWS.S3({
-    apiVersion: '2006-03-01',
-  });
 
-  s3.upload(params, function(err, data) {
-    if (err) {
-      return alert('There was an error uploading your photo: ', err.message);
-    }
-    alert('Successfully uploaded photo.');
-  });
-
-  (async () => {
-    const userid = await storage.getData('id');
-    const nickname = await storage.getData('nickname');
-    const access_token = await storage.getData('access_token');
-      await axios({
-        method: 'POST',
-        url:`${storage.chucar_url}/reply`,
-        headers:{
-          Authorization: `${access_token}`,
+    const uploadImg = (file,idx,id) => {
+      const fileName = `${cr_num}_${id}_${idx}.jpg`
+      
+      const upload = new AWS.S3.ManagedUpload({
+        params: {
+          Bucket: 'chucarimg/contractCar',
+          Key: fileName,
+          Body: file,
+          ContentType: `image/jpg`,
         },
-        data:{
-          cr_model:model, //모델
-          cr_title:title,
-          cr_nickname:nickname,
-          cr_num:cr_num,
-          cr_comment:comment, //딜러에게할말
-          cr_price:price, //가격
-          cr_distance:distance, //최대주행거리 희망
-          cr_option:option, //희망옵션 ex)선루프,,
-          img1:'',
-          img2:'',
-          img3:'',
-          img4:'',
-          img5:'',
-          img6:'',
-          img7:'',
-          img8:'',
-          proid:userid,
+      })
+      const promise = upload.promise();
+
+      promise.then(
+        function (data) {
+          alert("이미지 업로드에 성공했습니다.")
+        },
+        function (err) {
+          return alert("오류가 발생했습니다: ", err.message)
         }
-      })
-      .then(function (res) { //성공
-        console.log(`res : ${res.data}`);
-      })
-      .catch(function (err) { //실패
-        console.log(`err : ${err}`);
-      })
-  })();
+      )
+      return fileName;
+    }
+      
+    (async () => {
+      const userid = await storage.getData('id');
+      for(i=0;i<8;i++){
+        if(img[i]){
+          const response1 = await fetch(img[i])
+          const file = await response1.blob()
+          const fileName = uploadImg(file,i,userid);
+          img[i]=`https://chucarimg.s3.ap-northeast-2.amazonaws.com/contractCar/${fileName}`;
+        }
+      }
+      const nickname = await storage.getData('nickname');
+      const access_token = await storage.getData('access_token');
+        await axios({
+          method: 'POST',
+          url:`${storage.chucar_url}/reply`,
+          headers:{
+            Authorization: `${access_token}`,
+          },
+          data:{
+            cr_model:model, //모델
+            cr_title:title,
+            cr_nickname:nickname,
+            cr_num:cr_num,
+            cr_comment:comment, //딜러에게할말
+            cr_price:price, //가격
+            cr_distance:distance, //최대주행거리 희망
+            cr_option:option, //희망옵션 ex)선루프,,
+            img0:img[0],
+            img1:img[1],
+            img2:img[2],
+            img3:img[3],
+            img4:img[4],
+            img5:img[5],
+            img6:img[6],
+            img7:img[7],
+            proid:userid,
+          }
+        })
+        .then(function (res) { //성공
+          console.log(`res : ${res.data}`);
+        })
+        .catch(function (err) { //실패
+          console.log(`err : ${err}`);
+        })
+    })();
+  },[]);
+
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
         <View style={{alignItems:'center'}}>
@@ -117,7 +143,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={s.buttonbg3}
             onPress={() => {
-              navigation.navigate('Root',{screen:'MainPage'})
+              navigation.navigate('Root',{screen:'EstlistPage'})
               navigation.popToTop();              
               }}>
                 <Text style={s.buttontxt3}>돌아가기</Text>

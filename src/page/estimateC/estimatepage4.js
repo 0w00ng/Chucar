@@ -17,7 +17,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
       const  access_token = await storage.getData('access_token');
         await axios({
           method: 'POST',
-          url:'http://34.64.207.117:3000/contract/send',
+          url:`${storage.chucar_url}/contract/send`,
           headers:{
             Authorization: `${access_token}`,
           },

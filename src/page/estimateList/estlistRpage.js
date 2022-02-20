@@ -13,14 +13,14 @@ export default function EstlistViewPageScreen({ route, navigation }) {
   const [DATA,setDATA] = useState();
   const [empty,setEmpty] = useState();
 
-  console.log('D : ' + isDealer)
+  console.log('isDealer : ' + isDealer)
 
 
   useEffect(()=>{
     (async() => {
       const listData = await axios({
         method: 'GET',
-        url:`http://34.64.207.117:3000/reply/${CT_NUM}`,
+        url:`${storage.chucar_url}/reply/${CT_NUM}`,
         headers:{
             'content-type':'application/x-www-form-urlencoded;charset=utf-8',
         }
@@ -34,10 +34,10 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     try {
       access_token = await storage.getData('access_token');
       console.log(access_token);
-      console.log(CT_STAT);
+      console.log('stat :' + CT_STAT);
       const getData = await axios({
         method: 'patch',
-        url: `http://34.64.207.117:3000/contracts/finish/${CT_NUM}`, // finish/ 뒤에 견적번호 임
+        url: `${storage.chucar_url}/contracts/finish/${CT_NUM}`, // finish/ 뒤에 견적번호 임
         headers:{
           Authorization: `${access_token}`,
           'Content-type':'application/x-www-form-urlencoded;utf-8'
@@ -51,7 +51,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     navigation.navigate('EstlistPage');
   }
 
-  const Item = ({ CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME,CR_TITLE,CR_OPTION }) => (
+  const Item = ({ CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME,CR_TITLE,CR_OPTION,CR_CARIMG0 }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
       onPress={()=>navigation.navigate('EstlistRVPage',{
@@ -63,6 +63,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
         CR_NICKNAME:CR_NICKNAME,
         CR_TITLE:CR_TITLE,
         CR_OPTION:CR_OPTION,
+        CR_CARIMG0:CR_CARIMG0
       })}
     >
         <Text style={s.estlistTitle}>{CR_TITLE}</Text>
@@ -100,6 +101,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     CR_NICKNAME ={item.CR_NICKNAME}
     CR_TITLE ={item.CR_TITLE}
     CR_OPTION ={item.CR_OPTION}
+    CR_CARIMG0 ={item.CR_CARIMG0}
     />
   );
 

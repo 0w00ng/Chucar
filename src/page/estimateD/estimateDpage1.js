@@ -7,14 +7,14 @@ import default_Image from '../../../img/addImage.png'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 export default function EstimatePageScreen4({ route, navigation }) {
-  const [img1, setImg1] = useState();
-  const [img2, setImg2] = useState();
-  const [img3, setImg3] = useState();
-  const [img4, setImg4] = useState();
-  const [img5, setImg5] = useState();
-  const [img6, setImg6] = useState();
-  const [img7, setImg7] = useState();
-  const [img8, setImg8] = useState();
+  const [img1, setImg1] = useState('');
+  const [img2, setImg2] = useState('');
+  const [img3, setImg3] = useState('');
+  const [img4, setImg4] = useState('');
+  const [img5, setImg5] = useState('');
+  const [img6, setImg6] = useState('');
+  const [img7, setImg7] = useState('');
+  const [img8, setImg8] = useState('');
 
 
   const showImage = (num) => {

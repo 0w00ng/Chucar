@@ -43,6 +43,6 @@ exports.clearData = async () => {
     }
 }
 
-exports.chucar_url = 'http://34.64.207.117:3000';
+exports.chucar_url = 'http://15.165.26.162:3000';
 //http://34.64.207.117:3000
 //http://15.165.26.162:3000
