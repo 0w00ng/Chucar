@@ -114,7 +114,7 @@ module.exports = StyleSheet.create({
         fontSize: 20,
         marginRight: 20,
       },
-      title: {
+    title: {
         margin: 20,
         fontSize: 30,
         fontWeight: 'bold',

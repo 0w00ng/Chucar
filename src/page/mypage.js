@@ -1,5 +1,6 @@
 // img
 import rightA from '../../img/right.png'
+import logout from '../../img/logout.png'
 //
 import storage from '../storage';
 import s from '../style'
@@ -47,7 +48,12 @@ export default function MyPageScreen({navigation }) {
           <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
           onPress={() => navigation.navigate('LogoutPage')}
           >
-            <Text style={{margin:10, color:'#a0a0a0', fontSize:15}}>로그아웃</Text>
+            <Text style={{margin:15, color:'#a0a0a0', fontSize:15}}>로그아웃</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
+          onPress={() => navigation.navigate('UnPaymentPage')}
+          >
+            <Text style={{margin:15, color:'#a0a0a0', fontSize:13}}>이용권 취소</Text>
           </TouchableOpacity>
         </View>
       </View>

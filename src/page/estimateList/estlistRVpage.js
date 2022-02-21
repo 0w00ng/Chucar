@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text,TouchableOpacity,Image,StyleSheet,StatusBar,FlatList } from 'react-native';
+import { SliderBox } from "react-native-image-slider-box";
 import storage from '../../storage';
 import axios from "axios";
 import s from '../../style';
@@ -7,9 +8,25 @@ import s from '../../style';
 import Default_icon from '../../../img/Default_Profile.png'
 
 export default function EstlistReplyViewPageScreen({ route, navigation }) {
-  const { CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME,CR_TITLE,CR_CARIMG0 } = route.params;
+  const { CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME,CR_TITLE } = route.params;
+  const { CR_CARIMG0,CR_CARIMG1,CR_CARIMG2,CR_CARIMG3,CR_CARIMG4,CR_CARIMG5,CR_CARIMG6,CR_CARIMG7 } = route.params;
 
-  console.log(CR_CARIMG0)
+  // function constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     images: [
+  //       CR_CARIMG0,
+  //       CR_CARIMG1,
+  //       CR_CARIMG2,
+  //       CR_CARIMG3,
+  //       CR_CARIMG4,
+  //       CR_CARIMG5,
+  //       CR_CARIMG6,
+  //       CR_CARIMG7,
+  //     ]
+  //   };
+  // }
+
   return (
     <View 
     style={{flex:1,backgroundColor:'white'}}

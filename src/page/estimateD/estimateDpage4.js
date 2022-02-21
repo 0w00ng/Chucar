@@ -70,7 +70,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
 
       promise.then(
         function (data) {
-          alert("이미지 업로드에 성공했습니다.")
+          //alert("이미지 업로드에 성공했습니다.")
         },
         function (err) {
           return alert("오류가 발생했습니다: ", err.message)
@@ -81,48 +81,51 @@ export default function EstimatePageScreen5({ route,navigation }) {
       
     (async () => {
       const userid = await storage.getData('id');
+      const nickname = await storage.getData('nickname');
+      const access_token = await storage.getData('access_token');
+
       for(i=0;i<8;i++){
         if(img[i]){
           const response1 = await fetch(img[i])
           const file = await response1.blob()
           const fileName = uploadImg(file,i,userid);
           img[i]=`https://chucarimg.s3.ap-northeast-2.amazonaws.com/contractCar/${fileName}`;
+          console.log(img[i])
         }
       }
-      const nickname = await storage.getData('nickname');
-      const access_token = await storage.getData('access_token');
-        await axios({
-          method: 'POST',
-          url:`${storage.chucar_url}/reply`,
-          headers:{
-            Authorization: `${access_token}`,
-          },
-          data:{
-            cr_model:model, //모델
-            cr_title:title,
-            cr_nickname:nickname,
-            cr_num:cr_num,
-            cr_comment:comment, //딜러에게할말
-            cr_price:price, //가격
-            cr_distance:distance, //최대주행거리 희망
-            cr_option:option, //희망옵션 ex)선루프,,
-            img0:img[0],
-            img1:img[1],
-            img2:img[2],
-            img3:img[3],
-            img4:img[4],
-            img5:img[5],
-            img6:img[6],
-            img7:img[7],
-            proid:userid,
-          }
-        })
-        .then(function (res) { //성공
-          console.log(`res : ${res.data}`);
-        })
-        .catch(function (err) { //실패
-          console.log(`err : ${err}`);
-        })
+
+      await axios({
+        method: 'POST',
+        url:`${storage.chucar_url}/reply`,
+        headers:{
+          Authorization: `${access_token}`,
+        },
+        data:{
+          cr_model:model, //모델
+          cr_title:title,
+          cr_nickname:nickname,
+          cr_num:cr_num,
+          cr_comment:comment, //딜러에게할말
+          cr_price:price, //가격
+          cr_distance:distance, //최대주행거리 희망
+          cr_option:option, //희망옵션 ex)선루프,,
+          img0:img[0],
+          img1:img[1],
+          img2:img[2],
+          img3:img[3],
+          img4:img[4],
+          img5:img[5],
+          img6:img[6],
+          img7:img[7],
+          proid:userid,
+        }
+      })
+      .then(function (res) { //성공
+        console.log(`res : ${res.data}`);
+      })
+      .catch(function (err) { //실패
+        console.log(`err : ${err}`);
+      })
     })();
   },[]);
 

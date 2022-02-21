@@ -15,6 +15,9 @@ import EstimateDPage from './page/estimateD/estimateDpage';
 import EstlistPage from './page/estimateList/estlistPage';
 import EstlistVPage from './page/estimateList/estlistRpage';
 import EstlistRVPage from './page/estimateList/estlistRVpage';
+import PaymentPage from './page/payment/paymentPage';
+import PaymentPage2 from './page/payment/paymentPage2';
+import UnPaymentPage from './page/payment/unpaymentPage';
 import s from './style';
 
 // lib
@@ -53,17 +56,6 @@ export default function Root({navigation}) {
           component={MainPage}
           options={{}}/>
         <Stack.Screen 
-          name="IntroPage" 
-          component={IntroPage} />
-        <Stack.Screen 
-          name="LoginPage" 
-          component={LoginPage}
-          options={{headerTitle:"로그인"}}/>
-        <Stack.Screen 
-          name="LogoutPage" 
-          component={LogoutPage} 
-          options={{headerTitle:"로그아웃"}}/>
-        <Stack.Screen 
           name="MyPage" 
           component={MyPage} 
           options={{headerTitle:"마이페이지"}}/>
@@ -78,6 +70,18 @@ export default function Root({navigation}) {
         <Stack.Screen 
           name="EstlistRVPage" 
           component={EstlistRVPage}
+          options={{headerTitle:""}}/>
+        <Stack.Screen 
+          name="PaymentPage" 
+          component={PaymentPage}
+          options={{headerTitle:""}}/>
+        <Stack.Screen 
+          name="PaymentPage2" 
+          component={PaymentPage2}
+          options={{headerTitle:""}}/>
+        <Stack.Screen 
+          name="UnPaymentPage" 
+          component={UnPaymentPage}
           options={{headerTitle:""}}/>
       </Stack.Group>
 
@@ -98,6 +102,17 @@ export default function Root({navigation}) {
           name="RegisterPage" 
           component={RegisterPage} 
           options={{headerTitle:"견적서 작성"}}/>
+        <Stack.Screen 
+          name="IntroPage" 
+          component={IntroPage} />
+        <Stack.Screen 
+          name="LoginPage" 
+          component={LoginPage}
+          options={{headerTitle:"로그인"}}/>
+        <Stack.Screen 
+          name="LogoutPage" 
+          component={LogoutPage} 
+          options={{headerTitle:"로그아웃"}}/>
       </Stack.Group>
 
     </Stack.Navigator>

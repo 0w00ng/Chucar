@@ -52,7 +52,7 @@ export default function KakaoLogin ({ navigation }){
           data:qs.stringify({
             grant_type: 'authorization_code',//특정 스트링
             client_id:'9e7627ff0adc857af4fd5e69de0222e6',
-            redirectUri:'http://34.64.207.117:3000/oauth',
+            redirectUri:`${storage.chucar_url}/oauth`,
             code:request_code,
             client_secret:'9F00S9wCb8X6cggmdqesUVTYoQeD41P4'
           })//객체를 string 으로 변환
@@ -81,8 +81,8 @@ export default function KakaoLogin ({ navigation }){
           }
       })
       .then(function (res) { //성공
-          navigation.popToTop();
-          alert('로그인이 완료되었습니다.')
+        navigation.navigate('Root',{screen:'MainPage'});
+        alert('로그인이 완료되었습니다.')
       })
       .catch(function (err) { //실패
         console.log('로그인에 실패했습니다.' + err);
@@ -99,7 +99,7 @@ export default function KakaoLogin ({ navigation }){
       <WebView
         originWhitelist={['*']}
         scalesPageToFit={false}
-        source={{ uri: 'https://kauth.kakao.com/oauth/authorize?client_id=9e7627ff0adc857af4fd5e69de0222e6&redirect_uri=http://34.64.207.117:3000/oauth&response_type=code&prompt=login'}}            
+        source={{ uri: `https://kauth.kakao.com/oauth/authorize?client_id=9e7627ff0adc857af4fd5e69de0222e6&redirect_uri=${storage.chucar_url}/oauth&response_type=code&prompt=login`}}            
         injectedJavaScript={runFirst}
           javaScriptEnabled={true}
           onMessage={(event) => {LogInProgress(event.nativeEvent.url); }}

@@ -38,13 +38,13 @@ export default function RegisterPageScreen2({route,navigation }) {
       </View>
       <View style={{alignItems:'center',margin:20}}>
         <TouchableOpacity style={s.buttonbg3}
-        onPress={() => {navigation.navigate('RegisterPage3',{       // Page3로 화면전환 및 정보송신
+        onPress={() => {navigation.navigate('RegisterPage2',{       // Page3로 화면전환 및 정보송신
           nickname:nickname,
           email:email,
           phone:phone
         })
         }}>
-            <Text style={s.buttontxt3}>계정만들기 (2/2)</Text>
+            <Text style={s.buttontxt3}>다음으로(1/2)</Text>
         </TouchableOpacity>
       </View>
   </View>
