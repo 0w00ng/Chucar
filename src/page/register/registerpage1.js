@@ -4,7 +4,8 @@ import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
 export default function RegisterPageScreen2({route,navigation }) {
-  const [nickname, setNickname] = React.useState("");     // Page2로 보낼 변수 선언
+  const [company, setCompany] = React.useState("");     // Page2로 보낼 변수 선언
+  const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
 
@@ -18,8 +19,15 @@ export default function RegisterPageScreen2({route,navigation }) {
       <View style={s.rowcontainer}>
         <Text style={s.label}>상사명</Text>
         <TextInput style={s.inputS}
-          value={nickname}
-          onChangeText={nickname => setNickname(nickname)}
+          value={company}
+          onChangeText={company => setCompany(company)}
+        />
+      </View>
+      <View style={s.rowcontainer}>
+        <Text style={s.label}>이름</Text>
+        <TextInput style={s.inputS}
+          value={name}
+          onChangeText={name => setName(name)}
         />
       </View>
       <View style={s.rowcontainer}>
@@ -39,7 +47,8 @@ export default function RegisterPageScreen2({route,navigation }) {
       <View style={{alignItems:'center',margin:20}}>
         <TouchableOpacity style={s.buttonbg3}
         onPress={() => {navigation.navigate('RegisterPage2',{       // Page3로 화면전환 및 정보송신
-          nickname:nickname,
+          company:company,
+          name:name,
           email:email,
           phone:phone
         })

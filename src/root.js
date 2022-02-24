@@ -7,6 +7,8 @@ import ChucarLogo from '../img/chucar-logoN1.png';
 import MainPage from './page/mainPage';
 import IntroPage from './page/introPage';
 import MyPage from './page/myPage';
+import DealerProfilePage from './page/ProfilePage';
+import DealerInfoPage from './page/dealerInfoPage';
 import LoginPage from './page/loginPage';
 import LogoutPage from './page/logoutPage';
 import RegisterPage from './page/register/registerPage';
@@ -59,6 +61,14 @@ export default function Root({navigation}) {
           name="MyPage" 
           component={MyPage} 
           options={{headerTitle:"마이페이지"}}/>
+        <Stack.Screen 
+          name="DealerInfoPage" 
+          component={DealerInfoPage} 
+          options={{headerTitle:"딜러정보"}}/>
+        <Stack.Screen 
+          name="DealerProfilePage" 
+          component={DealerProfilePage} 
+          options={{headerTitle:"딜러프로필"}}/>
         <Stack.Screen 
           name="EstlistPage" 
           component={EstlistPage} 

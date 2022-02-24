@@ -6,7 +6,7 @@ import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
 export default function RegisterPageScreen2({route,navigation }) {
-  const {nickname,email,phone} = route.params;  // Page1에서 보낸 데이터저장
+  const {company,name,email,phone} = route.params;  // Page1에서 보낸 데이터저장
   const [face, setFace] = useState('');
 
   const showImage = () => {
@@ -42,7 +42,8 @@ export default function RegisterPageScreen2({route,navigation }) {
       <View style={{alignItems:'center',margin:20}}>
         <TouchableOpacity style={s.buttonbg3}
         onPress={() => {navigation.navigate('RegisterPage3',{       // Page3로 화면전환 및 정보송신
-          nickname:nickname,
+          company:company,
+          name:name,
           email:email,
           phone:phone,
           face:face,

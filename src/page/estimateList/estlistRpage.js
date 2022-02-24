@@ -28,8 +28,9 @@ export default function EstlistViewPageScreen({ route, navigation }) {
       });
       setDATA(await listData.data);
       console.log(DATA);
-})();
+    })();
   },[]);
+
   const deadLine = async() => { //마감치기
     try {
       access_token = await storage.getData('access_token');
@@ -48,25 +49,49 @@ export default function EstlistViewPageScreen({ route, navigation }) {
         console.log(err);
     }
     navigation.popToTop();
-    navigation.navigate('EstlistPage');
+    navigation.navigate('EstlistPage',{
+      isDealer:isDealer,
+      id:id
+    });
   }
 
-  const Item = ({ CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME,CR_TITLE,CR_OPTION,CR_CARIMG0 }) => (
+  const deleteEst = async() => { //삭제하기
+    try {
+      access_token = await storage.getData('access_token');
+      const getData = await axios({
+        method: 'delete',
+        url: `${storage.chucar_url}/contracts/${CT_NUM}`,
+        headers:{
+          Authorization: `${access_token}`,
+          'Content-type':'application/x-www-form-urlencoded;utf-8'
+        }
+      })
+      console.log(getData.data);
+    } catch(err) {
+        console.log(err);
+    }
+    navigation.popToTop();
+    navigation.navigate('EstlistPage',{
+      isDealer:isDealer,
+      id:id
+    });
+  }
+
+  const Item = ({ CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,PRO_PHONE,CR_NICKNAME,PRO_PROFILE,CR_TITLE,CR_OPTION,CR_CARIMG0 }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
-      onPress={()=>{navigation.navigate('EstlistRVPage',{
+      onPress={()=>navigation.navigate('EstlistRVPage',{
         CR_MODEL:CR_MODEL,
         CR_PRICE:CR_PRICE,
         CR_COMMENT:CR_COMMENT,
         CR_DISTANCE:CR_DISTANCE,
-        phone:phone,
+        PRO_PHONE:PRO_PHONE,
         CR_NICKNAME:CR_NICKNAME,
+        PRO_PROFILE:PRO_PROFILE,
         CR_TITLE:CR_TITLE,
         CR_OPTION:CR_OPTION,
         CR_CARIMG0:CR_CARIMG0,
-      })
-      console.log('length : ' + DATA.length);
-      }}
+      })}
     >
         <Text style={s.estlistTitle}>{CR_TITLE}</Text>
         <View style={s.estlistTextV}>
@@ -82,13 +107,13 @@ export default function EstlistViewPageScreen({ route, navigation }) {
         </View>
         <Text>{CR_COMMENT}</Text>
       <View style={{flexDirection:'row'}}>
-        <Image source={Default_icon}/>  
+        <Image style={{width:100,height:100,borderWidth:0.2}} source={{url:`${PRO_PROFILE}`}}/> 
         <View style={{flexDirection:'column',justifyContent:'space-evenly',margin:10}}>
           <Text style={s.estlistText}>{CR_NICKNAME + ' 딜러'}</Text>
           <Text style={{
             color:'orange',
             fontWeight:'bold'
-          }}>{'연락처 : '+ phone}</Text>
+          }}>{'연락처 : '+ PRO_PHONE}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -101,57 +126,68 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     CR_COMMENT ={item.CR_COMMENT}
     CR_DISTANCE ={item.CR_DISTANCE}
     CR_NICKNAME ={item.CR_NICKNAME}
+    PRO_PHONE ={item.PRO_PHONE}
+    PRO_PROFILE ={item.PRO_PROFILE}
     CR_TITLE ={item.CR_TITLE}
     CR_OPTION ={item.CR_OPTION}
     CR_CARIMG0 ={item.CR_CARIMG0}
     />
   );
 
+console.log(CT_USRID)
+console.log('id : '+ id)
 
     return (
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
-          <View style={{alignItems:'center',flexDirection:'row',justifyContent:'center'}}>
+          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
             <Text style={s.titleS}>{CT_TITLE}</Text>
-            <TouchableOpacity>
-              <Image style={s.headericon} source={delete_icon}/>  
-            </TouchableOpacity>
-          </View>
-          <View style={s.estlistVContainer}>
-            <View style={s.estlistTextV}>
-              <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
-              <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
-            </View>
-           <Text>{'' + CT_COMMENT}</Text>
-           <View style={{
-             alignItems:'center',
-             display: CT_STAT&&(CT_USRID==id||isDealer) // 딜러 or 작성자면 표시 / 둘다 아니면 미표시 // 마감이면 무조건 미표시
-                        ? 'flex'
-                        : 'none'
-             }}>
-            <TouchableOpacity 
-            style={s.buttonbg3}
-            onPress={()=>
-                CT_USRID==id
-                  ? deadLine() //'마감 하기'
-                  : navigation.navigate('EstimateDPage',{
-                      cr_num:CT_NUM
-                    })          //'견적서 보내기' 
+            {CT_USRID==id
+            ? (<TouchableOpacity onPress={()=>{deleteEst()}}>
+                <Image style={s.headericon} source={delete_icon}/>  
+              </TouchableOpacity>)
+            : (<View></View>)
             }
-            >
-              <Text style={s.buttontxt2}>{
-                CT_USRID==id
-                  ? '마감 하기'
-                  : '견적서 보내기'
-              }</Text>
-            </TouchableOpacity>
-           </View>
           </View>
-          <SafeAreaView style={{alignItems:'center',flex:1}}>
-            <FlatList
-              data={DATA}
-              renderItem={renderItem}
-            />
-          </SafeAreaView>
+
+        <View style={s.estlistVContainer}>
+          <View style={s.estlistTextV}>
+            <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
+            <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
+          </View>
+          <Text>{'' + CT_COMMENT}</Text>
+          <View style={{
+            alignItems:'center',
+            display: CT_STAT&&(CT_USRID==id||isDealer) // 딜러 or 작성자면 표시 / 둘다 아니면 미표시 // 마감이면 무조건 미표시
+                      ? 'flex'
+                      : 'none'
+            }}>
+          <TouchableOpacity 
+          style={s.buttonbg3}
+          onPress={()=>{
+              CT_USRID==id
+                ? deadLine() //'마감 하기'
+                : isDealer==2
+                  ? navigation.navigate('EstimateDPage',{
+                    cr_num:CT_NUM,
+                    cr_key:DATA.length
+                  })          //'견적서 보내기' 
+                  : alert('이용권이 없습니다.')
+          }}>
+            <Text style={s.buttontxt2}>
+              {CT_USRID==id
+                ? '마감 하기'
+                : '견적서 보내기'
+              }
+            </Text>
+          </TouchableOpacity>
+          </View>
+        </View>
+        <SafeAreaView style={{alignItems:'center',flex:1}}>
+          <FlatList
+            data={DATA}
+            renderItem={renderItem}
+          />
+        </SafeAreaView>
       </View>
     );
 }

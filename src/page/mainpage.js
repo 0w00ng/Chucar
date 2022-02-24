@@ -24,13 +24,13 @@ export default function MainPageScreen ({ navigation }) {
 
   const [Img,setImg] = useState();
   const [isDealer,setIsDealer] = useState();
-
+  const [id,setId] = useState();
   useEffect(()=>{
     (async() => {
       const check = await storage.getData('refresh_token');
       if(!check) navigation.replace('IntroPage');
       else {
-      const id = await storage.getData('id');
+      setId(await storage.getData('id'));
 
         try {
           const newToken = await axios({
@@ -57,6 +57,7 @@ export default function MainPageScreen ({ navigation }) {
             url:`${storage.chucar_url}/isdealer/${id}`,
           })
           setIsDealer(temp.data);
+          console.log(temp.data);
           console.log('isDealer : ' + isDealer);
         } 
         catch(err) {
@@ -64,7 +65,9 @@ export default function MainPageScreen ({ navigation }) {
         }
       }
     })();
-  },[]);
+  },[id]);
+
+  
 
   return (
     <View style={{flex:1,flexDirection:'column',backgroundColor:'white'}}>
@@ -141,7 +144,9 @@ export default function MainPageScreen ({ navigation }) {
         <View style={{flex:1,justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
           <TouchableOpacity style={s.buttonbg2} 
           onPress={async () => {
-            navigation.navigate('EstimatePage')   //견적신청 화면전환
+            isDealer
+            ? alert('딜러는 견적신청이 불가합니다.')
+            : navigation.navigate('EstimatePage')   //견적신청 화면전환
           }}>
             <Image style={s.headericon} source={edit}/>
             <Text style={s.buttontxt2}>견적 신청하기</Text>
@@ -150,7 +155,8 @@ export default function MainPageScreen ({ navigation }) {
           <TouchableOpacity style={s.buttonbg2}
           onPress={() => {
             navigation.navigate('EstlistPage',{  //견적내역 화면전환
-              isDealer:isDealer
+              isDealer:isDealer,
+              id:id
             })    
           }}>
             <Image style={s.headericon} source={list}/>
@@ -158,24 +164,24 @@ export default function MainPageScreen ({ navigation }) {
           </TouchableOpacity>
 
           {
-          isDealer==undefined
-          ? <View style={s.buttonbg2}></View>
-          : isDealer
-            ? (<TouchableOpacity style={s.buttonbg2}
-              onPress={() => {
-                navigation.navigate("Root",{screen:'PaymentPage'})    //결제하기
-              }}>
-              <Image style={s.headericon} source={card}/>
-              <Text style={s.buttontxt2}>딜러 이용권 결제</Text>
-              </TouchableOpacity>)
+            isDealer==undefined
+            ? <View style={s.buttonbg2}></View>
+            : isDealer
+              ? (<TouchableOpacity style={s.buttonbg2}
+                onPress={() => {
+                  navigation.navigate("Root",{screen:'PaymentPage'})    //결제하기
+                }}>
+                <Image style={s.headericon} source={card}/>
+                <Text style={s.buttontxt2}>딜러 이용권 결제</Text>
+                </TouchableOpacity>)
 
-            : (<TouchableOpacity style={s.buttonbg2} 
-              onPress={async () => {
-                navigation.navigate('RegisterPage')   //딜러가입
-              }}>
-              <Image style={s.headericon} source={signin}/>
-              <Text style={s.buttontxt2}>딜러 회원가입</Text>
-              </TouchableOpacity>)
+              : (<TouchableOpacity style={s.buttonbg2} 
+                onPress={async () => {
+                  navigation.navigate('RegisterPage')   //딜러가입
+                }}>
+                <Image style={s.headericon} source={signin}/>
+                <Text style={s.buttontxt2}>딜러 회원가입</Text>
+                </TouchableOpacity>)
           }
         </View>
     </View>

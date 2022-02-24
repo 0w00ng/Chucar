@@ -43,11 +43,10 @@ import default_Image from '../../../img/addImage.png'
 // }
 
 export default function EstimatePageScreen5({ route,navigation }) {
-  const {cr_num,title,model,price,distance,option,comment,img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
+  const {cr_num,cr_key,title,model,price,distance,option,comment,img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
   let img=[img1,img2,img3,img4,img5,img6,img7,img8];
 
   useEffect(() => {
-    
     AWS.config.update({
       region: "ap-northeast-2", 
       credentials: new AWS.CognitoIdentityCredentials({
@@ -56,7 +55,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
     })
 
     const uploadImg = (file,idx,id) => {
-      const fileName = `${cr_num}_${id}_${idx}.jpg`
+      const fileName = `${cr_num}_${cr_key}_${id}_${idx}.jpg`
       
       const upload = new AWS.S3.ManagedUpload({
         params: {
@@ -146,8 +145,8 @@ export default function EstimatePageScreen5({ route,navigation }) {
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={s.buttonbg3}
             onPress={() => {
-              navigation.navigate('Root',{screen:'EstlistPage'})
-              navigation.popToTop();              
+              navigation.popToTop();
+              navigation.popToTop();
               }}>
                 <Text style={s.buttontxt3}>돌아가기</Text>
             </TouchableOpacity>

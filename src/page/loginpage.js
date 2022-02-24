@@ -69,7 +69,7 @@ export default function KakaoLogin ({ navigation }){
           console.log(err.data);
       })
       await storage.setData('id',users.data.id);
-      await storage.setData('nickname',users.data.nickname);
+      await storage.setData('name',users.data.nickname);
       await storage.setData('access_token',token.data.access_token);
       await storage.setData('refresh_token',token.data.refresh_token);
       await storage.setData('expires_in',token.data.expires_in);

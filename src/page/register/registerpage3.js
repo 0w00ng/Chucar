@@ -9,18 +9,56 @@ import axios from 'axios';
 
 export default function RegistePageScreen3({ route,navigation }) {
 
-  const {nickname,email,phone,face} = route.params;  // Page2에서 보낸 데이터저장
+  const {company,name,email,phone,face} = route.params;  // Page2에서 보낸 데이터저장
 
     useEffect(()=>{
       (async()=>{
         const id = await storage.getData('id');
+
+        AWS.config.update({
+          region: "ap-northeast-2", 
+          credentials: new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: "ap-northeast-2:28135c36-61d3-4095-928b-c5d71e13ffe1",
+          }),
+        })
+    
+        const uploadImg = (file,id) => {
+          const fileName = `${id}.jpg`
+          
+          const upload = new AWS.S3.ManagedUpload({
+            params: {
+              Bucket: 'chucarimg/idcard',
+              Key: fileName,
+              Body: file,
+              ContentType: `image/jpg`,
+            },
+          })
+          const promise = upload.promise();
+    
+          promise.then(
+            function (data) {
+              //alert("이미지 업로드에 성공했습니다.")
+            },
+            function (err) {
+              return alert("오류가 발생했습니다: ", err.message)
+            }
+          )
+          return fileName;
+        }
+
+        const response1 = await fetch(face)
+        const file = await response1.blob()
+        const fileName = uploadImg(file,id);
+        faceUrl=`https://chucarimg.s3.ap-northeast-2.amazonaws.com/idcard/${fileName}`;
+        console.log(faceUrl)
+
         axios.put(`${storage.chucar_url}/setpro`, {    //DB 전송
-          id:id,
-          name:'',
+          id:'456',//id,
+          name:`${name}`,
           phone:phone,
           email:email,
-          face:face,
-          company:nickname,
+          idcard:faceUrl,
+          company:company,
           card:0,
           prv1:0,
           prv2:0,

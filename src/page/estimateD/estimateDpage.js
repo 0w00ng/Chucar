@@ -11,8 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 export default function EstimatePageScreen({route}) {
-  const {cr_num} = route.params;
-
+  const {cr_num,cr_key} = route.params;
     return (
       <Stack.Navigator
       screenOptions={{
@@ -25,7 +24,10 @@ export default function EstimatePageScreen({route}) {
         <Stack.Screen name="EstimatePage2" component={EstimatePage2} />
         <Stack.Screen name="EstimatePage3" component={EstimatePage3} />
         <Stack.Screen name="EstimatePage4" component={EstimatePage4} 
-        initialParams={{ cr_num:cr_num}} />
+        initialParams={{
+          cr_num:cr_num,
+          cr_key:cr_key,
+          }} />
       </Stack.Navigator>
     );
   }
