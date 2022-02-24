@@ -5,6 +5,7 @@ import axios from "axios";
 import s from '../../style';
 
 import Default_icon from '../../../img/Default_Profile.png'
+import delete_icon from '../../../img/delete.png'
 
 
 export default function EstlistViewPageScreen({ route, navigation }) {
@@ -27,9 +28,8 @@ export default function EstlistViewPageScreen({ route, navigation }) {
       });
       setDATA(await listData.data);
       console.log(DATA);
-    })();
+})();
   },[]);
-
   const deadLine = async() => { //마감치기
     try {
       access_token = await storage.getData('access_token');
@@ -54,7 +54,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
   const Item = ({ CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME,CR_TITLE,CR_OPTION,CR_CARIMG0 }) => (
     <TouchableOpacity 
       style={s.estlistContainer}
-      onPress={()=>navigation.navigate('EstlistRVPage',{
+      onPress={()=>{navigation.navigate('EstlistRVPage',{
         CR_MODEL:CR_MODEL,
         CR_PRICE:CR_PRICE,
         CR_COMMENT:CR_COMMENT,
@@ -63,8 +63,10 @@ export default function EstlistViewPageScreen({ route, navigation }) {
         CR_NICKNAME:CR_NICKNAME,
         CR_TITLE:CR_TITLE,
         CR_OPTION:CR_OPTION,
-        CR_CARIMG0:CR_CARIMG0
-      })}
+        CR_CARIMG0:CR_CARIMG0,
+      })
+      console.log('length : ' + DATA.length);
+      }}
     >
         <Text style={s.estlistTitle}>{CR_TITLE}</Text>
         <View style={s.estlistTextV}>
@@ -108,8 +110,11 @@ export default function EstlistViewPageScreen({ route, navigation }) {
 
     return (
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
-          <View style={{alignItems:'center'}}>
+          <View style={{alignItems:'center',flexDirection:'row',justifyContent:'center'}}>
             <Text style={s.titleS}>{CT_TITLE}</Text>
+            <TouchableOpacity>
+              <Image style={s.headericon} source={delete_icon}/>  
+            </TouchableOpacity>
           </View>
           <View style={s.estlistVContainer}>
             <View style={s.estlistTextV}>

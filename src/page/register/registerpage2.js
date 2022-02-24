@@ -7,21 +7,19 @@ import s from '../../style'
 
 export default function RegisterPageScreen2({route,navigation }) {
   const {nickname,email,phone} = route.params;  // Page1에서 보낸 데이터저장
-  const [img1, setImg1] = useState('');
+  const [face, setFace] = useState('');
 
-  const showImage = (num) => {
+  const showImage = () => {
     launchImageLibrary({}, (response)=>{
       const uri = response.assets[0].uri
       console.log(uri);
-      switch(num){
-        case 1: setImg1(uri);break;
-      }
+      setFace(uri);
     })
   }
 
-  const ImageBox = ({img, num}) => {
+  const ImageBox = ({img}) => {
     return(
-      <TouchableOpacity style={{width:300,height:300}} onPress={()=>showImage(num)}>
+      <TouchableOpacity style={{width:300,height:300}} onPress={()=>showImage()}>
       {img
         ? <Image source={{uri:img}} style={s.imageStyle} resizeMode='contain'/>
         : <Image source={default_Image} style={s.imageStyle} resizeMode='contain'/>}
@@ -38,7 +36,7 @@ export default function RegisterPageScreen2({route,navigation }) {
       </View>
 
       <View style={{alignItems:'center'}}>
-        <ImageBox img={img1} num={1}/>
+        <ImageBox img={face}/>
       </View>
 
       <View style={{alignItems:'center',margin:20}}>
@@ -46,7 +44,8 @@ export default function RegisterPageScreen2({route,navigation }) {
         onPress={() => {navigation.navigate('RegisterPage3',{       // Page3로 화면전환 및 정보송신
           nickname:nickname,
           email:email,
-          phone:phone
+          phone:phone,
+          face:face,
         })
         }}>
             <Text style={s.buttontxt3}>완료(2/2)</Text>

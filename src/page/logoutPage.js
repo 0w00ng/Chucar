@@ -18,8 +18,8 @@ export default function KakaoLogOut ({ navigation }){
     })
     await storage.clearData();
     navigation.navigate('Root',{screen:'IntroPage'});
-    alert('로그아웃 되었습니다.')
-  }
+      alert('로그아웃 되었습니다.')
+    }
   LogOut();
   
 

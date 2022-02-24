@@ -30,7 +30,7 @@ export default function MyPageScreen({navigation }) {
             <Image style={{width:30,height:30}} source={rightA} />
           </TouchableOpacity>
         </View>
-        <View style={{
+        {/* <View style={{
           width:'100%',height:70,justifyContent:'center',
           backgroundColor:'white',
           borderColor:'#a0a0a0',
@@ -41,7 +41,7 @@ export default function MyPageScreen({navigation }) {
           >
             <Text style={s.label}>딜러 회원가입</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
         <View style={{
           width:'100%',height:70,justifyContent:'center',
         }}>

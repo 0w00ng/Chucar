@@ -10,10 +10,10 @@ module.exports = StyleSheet.create({
         borderWidth:3,
         borderRadius: 20,
         margin:10,
-        width:170,
-        height:70,
+        width:'90%',
+        height:90,
         borderColor:'white',
-        backgroundColor:'navy',
+        backgroundColor:'#F8F8FF',
         justifyContent:'center',
         alignItems:'center',
         flexDirection:'row'
@@ -22,13 +22,13 @@ module.exports = StyleSheet.create({
         borderWidth:3,
         borderRadius: 20,
         margin:10,
-        width:170,
-        height:70,
+        width:'90%',
+        height:90,
         borderColor:'navy',
-        backgroundColor:'white',
+        backgroundColor:'#F8F8FF',
         justifyContent:'center',
         alignItems:'center',
-        flexDirection:'row'
+
     },
     buttontxt1: {
         textAlign: 'center',

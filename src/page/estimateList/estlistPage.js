@@ -6,41 +6,10 @@ import storage from '../../storage';
 import s from '../../style'
 //img
 
-export default function EstlistPageScreen({ navigation }) {
-
+export default function EstlistPageScreen({ route,navigation }) {
+  const {isDealer,id} = route.params;
   const [checkState, setCheckState] = useState(false);
   const [DATA,setDATA] = useState();
-  const [id,setId] = useState();
-  const [isDealer,setIsDealer] = useState();
-
-  useEffect(()=>{
-    (async ()=>{
-      try{
-        const temp = await storage.getData('id');
-        setId(temp);
-        console.log('id : ' + id);
-      } 
-      catch(err) {
-        console.log(err);
-      }
-    })();
-  },[]);
-
-  useEffect(()=>{
-    (async ()=>{
-      try{
-        const temp = await axios({
-          method: 'GET',
-          url:`${storage.chucar_url}/isdealer/${id}`,
-        })
-        setIsDealer(temp.data);
-        console.log('isDealer : ' + isDealer);
-      } 
-      catch(err) {
-        console.log(err);
-      }
-    })();
-  },[id]);
 
   useEffect(()=>{
     (async ()=>{
@@ -116,6 +85,8 @@ export default function EstlistPageScreen({ navigation }) {
     CT_USRID ={item.CT_USRID}
     />
   );
+  console.log('id : ' + id)
+  console.log('isDealer : ' + isDealer)
     return (
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
         
@@ -136,7 +107,10 @@ export default function EstlistPageScreen({ navigation }) {
           <Text style={{
             fontSize: 15,
             margin: 10,
-          }}>내가 보낸 견적{isDealer ? "" : "신청"}서</Text>
+      }}>{isDealer==undefined
+          ? ``
+          : `내가 보낸 견적${isDealer ? "" : "신청"}서`
+          }</Text>
         </TouchableOpacity>
         
         <FlatList
