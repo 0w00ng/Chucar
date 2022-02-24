@@ -34,7 +34,7 @@ export default function PaymentPage({navigation}) {
         })();
     },[userid]);
 
-    if(merchant){
+    if(merchant!='undefined'&&merchant!=undefined){
         const data = {
             pg: 'danal_tpay',
             pay_method: 'card',
@@ -42,11 +42,11 @@ export default function PaymentPage({navigation}) {
             merchant_uid: merchant, //결제 id
             amount: paycnt=='0001'? 0 : 777, //금액 (첫번째만(주문번호== 0001) 0원으로 추후 설정)
             customer_uid: `${userid}`,
-        //   buyer_name: '홍길동',
+            // buyer_name: '홍길동',
             buyer_tel: '01012345678',
-        //   buyer_email: 'example@naver.com',
-        //   buyer_addr: '서울시 강남구 신사동 661-16',
-        //   buyer_postcode: '06018',
+            // buyer_email: 'example@naver.com',
+            // buyer_addr: '서울시 강남구 신사동 661-16',
+            // buyer_postcode: '06018',
             app_scheme: 'example',
             // [Deprecated v1.0.3]: m_redirect_url
         };

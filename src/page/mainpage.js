@@ -169,7 +169,9 @@ export default function MainPageScreen ({ navigation }) {
             : isDealer
               ? (<TouchableOpacity style={s.buttonbg2}
                 onPress={() => {
-                  navigation.navigate("Root",{screen:'PaymentPage'})    //결제하기
+                  isDealer == 1//2
+                  ? alert('이미 이용권을 보유중입니다.')
+                  : navigation.navigate("Root",{screen:'PaymentPage'})    //결제하기
                 }}>
                 <Image style={s.headericon} source={card}/>
                 <Text style={s.buttontxt2}>딜러 이용권 결제</Text>

@@ -9,7 +9,7 @@ export default function PaymentPage({route,navigation}) {
 
     const callback = (response) => { /* [필수입력] 결제 종료 후, 라우터를 변경하고 결과를 전달합니다. */
       console.log(response);
-      navigation.replace('MainPage',response);
+      navigation.popToTop();
       alert('결제가 완료되었습니다.')
     };
     return (
