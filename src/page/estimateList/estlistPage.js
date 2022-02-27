@@ -4,21 +4,39 @@ import CheckBox from '@react-native-community/checkbox'
 import axios from "axios";
 import storage from '../../storage';
 import s from '../../style'
-//img
+
+import { TextInput } from 'react-native-paper';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function EstlistPageScreen({ route,navigation }) {
   const {isDealer,id} = route.params;
   const [checkState, setCheckState] = useState(false);
   const [DATA,setDATA] = useState();
+  const [keyword,setKeyword] = useState('');
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const [items, setItems] = useState([
+    {label: '전체보기', value:''},
+    {label: '신차', value:1},
+    {label: '중고차', value:2},
+    {label: '렌트', value:3},
+    {label: '리스', value:4},
+  ]);
 
   useEffect(()=>{
     (async ()=>{
-      const url = 
-        checkState
-          ? isDealer
-            ? `${storage.chucar_url}/contracts/pro/${id}`
-            : `${storage.chucar_url}/contracts/${id}`
-          : `${storage.chucar_url}/contracts`
+      let usrid = '';
+      let proid = '';
+      let kind = `&kind=${value}`;
+      if(checkState){
+        isDealer 
+        ? proid=`&proid=${id}` 
+        : usrid=`&usrid=${id}`
+      }
+
+      const url = `${storage.chucar_url}/contracts?keyword=${keyword}${usrid}${proid}${kind}`
+      console.log(url)
 
       try {
         const temp = await axios({
@@ -29,9 +47,11 @@ export default function EstlistPageScreen({ route,navigation }) {
           }
         })
         setDATA(temp.data);
-      } catch(err) {console.log(err)}
+      } catch(err) {
+        console.log(err)
+      }
     })();
-  },[checkState]);
+  },[checkState,keyword,value]);
 
 
   function CheckKind(kind) {
@@ -44,7 +64,7 @@ export default function EstlistPageScreen({ route,navigation }) {
     }
   };
 
-  const Item = ({ CT_TITLE,CT_MODEL,CT_PRICE,CT_KIND,CT_COMMENT,CT_NUM,CT_STAT,CT_USRID }) => (
+  const Item = ({ CT_TITLE,CT_BTAND,CT_MODEL,CT_PRICE,CT_KIND,CT_COMMENT,CT_NUM,CT_STAT,CT_USRID }) => (
     <TouchableOpacity 
       style={
         CT_STAT
@@ -53,6 +73,7 @@ export default function EstlistPageScreen({ route,navigation }) {
       }
       onPress={()=>navigation.navigate('EstlistVPage',{
         CT_TITLE:CT_TITLE,
+        CT_BTAND:CT_BTAND,
         CT_MODEL:CT_MODEL,
         CT_PRICE:CT_PRICE,
         CT_KIND:CT_KIND,
@@ -77,6 +98,7 @@ export default function EstlistPageScreen({ route,navigation }) {
     <Item 
     CT_TITLE={item.CT_TITLE} 
     CT_MODEL={item.CT_MODEL}
+    CT_BTAND={item.CT_BTAND}
     CT_PRICE = {item.CT_PRICE}
     CT_KIND ={item.CT_KIND}
     CT_COMMENT ={item.CT_COMMENT}
@@ -87,9 +109,27 @@ export default function EstlistPageScreen({ route,navigation }) {
   );
   console.log('id : ' + id)
   console.log('isDealer : ' + isDealer)
+
+
+
+
     return (
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
-        
+        <View style={s.rowcontainer}>
+            <TextInput style={s.inputL}
+              label="검색..."
+              value={keyword}
+              onChangeText={keyword => setKeyword(keyword)}
+            />
+        </View>
+        <DropDownPicker
+          open={open}
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+        />
         <TouchableOpacity
           style={{
             flexDirection:'row',

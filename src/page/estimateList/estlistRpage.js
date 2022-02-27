@@ -103,7 +103,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
           <Text style={{
             color:'red',
             fontWeight:'bold'
-            }}>{`가격 : ${CR_PRICE} 만원`}</Text>
+            }}>{`가격 : ${CT_USRID==id ? CR_PRICE : '???'} 만원`}</Text>
         </View>
         <Text>{CR_COMMENT}</Text>
       <View style={{flexDirection:'row'}}>
@@ -113,7 +113,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
           <Text style={{
             color:'orange',
             fontWeight:'bold'
-          }}>{'연락처 : '+ PRO_PHONE}</Text>
+          }}>{'옵션 : ' + CR_OPTION}</Text>
         </View>
       </View>
     </TouchableOpacity>

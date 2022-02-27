@@ -20,7 +20,6 @@ export default function UnPaymentPage({navigation}) {
             })
             .then(function(res) {
                 console.log(res.data);
-                alert('정기결제 취소가 완료되었습니다.');
             })
             .catch(function(err) {
                 console.log(err)
@@ -28,7 +27,8 @@ export default function UnPaymentPage({navigation}) {
         })();
     },[userid]);
 
-    navigation.replace('MainPage')
+    navigation.navigate('Root',{screen:'MainPage'})
+    alert('정기결제 취소가 완료되었습니다.');
 
     return (
         <View>

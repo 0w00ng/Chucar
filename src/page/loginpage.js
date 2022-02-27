@@ -81,7 +81,8 @@ export default function KakaoLogin ({ navigation }){
           }
       })
       .then(function (res) { //성공
-        navigation.navigate('Root',{screen:'MainPage'});
+        navigation.popToTop();
+        navigation.replace('MainPage');
         alert('로그인이 완료되었습니다.')
       })
       .catch(function (err) { //실패

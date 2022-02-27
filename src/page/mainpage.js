@@ -4,7 +4,9 @@ import storage from '../storage';
 import axios from 'axios';
 import s from '../style'
 import Carousel from 'react-native-snap-carousel';
-import Swiper from 'react-native-swiper'
+import Swiper from 'react-native-swiper';
+import DropDownPicker from 'react-native-dropdown-picker';
+
 const { width } = Dimensions.get('window')
 
 
@@ -25,10 +27,20 @@ export default function MainPageScreen ({ navigation }) {
   const [Img,setImg] = useState();
   const [isDealer,setIsDealer] = useState();
   const [id,setId] = useState();
+
+  DropDownPicker.addTranslation("KR", {
+    PLACEHOLDER: "항목을 선택해주세요",
+    SEARCH_PLACEHOLDER: "검색할 항목을 입력해주세요...",
+    SELECTED_ITEMS_COUNT_TEXT: "{count} éléments ont été sélectionnés",
+    NOTHING_TO_SHOW: "아무 것도 없습니다 !"
+  });
+  
+  // Set as default
+  DropDownPicker.setLanguage("KR");
   useEffect(()=>{
     (async() => {
       const check = await storage.getData('refresh_token');
-      if(!check) navigation.replace('IntroPage');
+      if(!check) navigation.navigate('Root',{screen:'IntroPage'});
       else {
       setId(await storage.getData('id'));
 
@@ -56,7 +68,8 @@ export default function MainPageScreen ({ navigation }) {
             method: 'GET',
             url:`${storage.chucar_url}/isdealer/${id}`,
           })
-          setIsDealer(temp.data);
+          setIsDealer(0);
+          //setIsDealer(temp.data);
           console.log(temp.data);
           console.log('isDealer : ' + isDealer);
         } 

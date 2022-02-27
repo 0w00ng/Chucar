@@ -5,7 +5,7 @@ import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
 export default function EstimatePageScreen4({ route, navigation }) {
-  const {kind,model,price,distance,option} = route.params;
+  const {kind,brand,model,price,distance,option} = route.params;
   const [title, setTitle] = React.useState("");
   const [comment, setComment] = React.useState("");
 
@@ -48,6 +48,7 @@ export default function EstimatePageScreen4({ route, navigation }) {
             <TouchableOpacity style={s.buttonbg3}
             onPress={() => navigation.navigate('EstimatePage4',{
               kind:kind,
+              brand:brand,
               model:model,
               price:price,
               distance:distance,
