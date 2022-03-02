@@ -43,7 +43,7 @@ import default_Image from '../../../img/addImage.png'
 // }
 
 export default function EstimatePageScreen5({ route,navigation }) {
-  const {cr_num,cr_key,title,model,price,distance,option,comment,img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
+  const {cr_num,cr_key,title,price,distance,option,comment,img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
   let img=[img1,img2,img3,img4,img5,img6,img7,img8];
 
   useEffect(() => {
@@ -100,7 +100,6 @@ export default function EstimatePageScreen5({ route,navigation }) {
           Authorization: `${access_token}`,
         },
         data:{
-          cr_model:model, //모델
           cr_title:title,
           cr_nickname:nickname,
           cr_num:cr_num,

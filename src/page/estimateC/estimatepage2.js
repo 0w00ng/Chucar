@@ -19,7 +19,23 @@ export default function EstimatePageScreen2({ route, navigation }) {
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
   const [itemsBrand, setItemsBrand] = useState([])
-  const [itemsModel, setItemsModel] = useState([])
+  const [itemsModel, setItemsModel] = useState([
+    {label: '전체보기', value:''},
+    {label: '신차', value:1},
+    {label: '중고차', value:2},
+    {label: '렌트', value:3},
+    {label: '리스', value:4},
+  ]);
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const [items, setItems] = useState([
+    {label: '전체보기', value:''},
+    {label: '신차', value:1},
+    {label: '중고차', value:2},
+    {label: '렌트', value:3},
+    {label: '리스', value:4},
+  ]);
 
   useEffect(()=>{
     (async ()=>{
@@ -59,24 +75,24 @@ export default function EstimatePageScreen2({ route, navigation }) {
 
 
   return (
-    <View style={{ flex: 1, backgroundColor:'white'}}>
+    <View style={{ flex: 1, backgroundColor:'white'}}>                                                                                                                                                   
       <View>
         <Text style={s.title}>
             견적차량 정보를{'\n'}
             입력 해주세요
         </Text>
       </View>
-      <View style={{ zIndex: 3,
-          elevation: 3,}}>
         <DropDownPicker
+        style={{ zIndex: 2,
+          elevation: 2,}}
         open={openBrand}
         value={brand}
         items={itemsBrand}
         setOpen={setOpenBrand}
         setValue={setBrand}
         setItems={setItemsBrand}
-        searchable={true}
         categorySelectable={false}
+        listMode="SCROLLVIEW"
         translation={{
           PLACEHOLDER: "제조사를 선택해주세요."
         }}
@@ -86,26 +102,23 @@ export default function EstimatePageScreen2({ route, navigation }) {
           parent: 'CF_REGION',
         }}
         />
-      </View>
-      <View style={{ zIndex: 2,
-          elevation: 2,}}>
-        <DropDownPicker
-          open={openModel}
-          value={model}
-          items={itemsModel}
-          setOpen={setOpenModel}
-          setValue={setModel}
-          setItems={setItemsModel}
-          searchable={true}ㅓ
-          translation={{
-            PLACEHOLDER: "차종을 선택해주세요."
-          }}
-          schema={{
-            label: 'CF_MODEL',
-            value: 'CF_MODEL',
-          }}
-        />
-      </View>
+      <DropDownPicker
+      style={{ zIndex: 1,
+        elevation: 1,}}
+        open={openModel}
+        value={model}
+        items={itemsModel}
+        setOpen={setOpenModel}
+        setValue={setModel}
+        setItems={setItemsModel}
+        translation={{
+          PLACEHOLDER: "차종을 선택해주세요."
+        }}
+        schema={{
+          label: 'CF_MODEL',
+          value: 'CF_MODEL',
+        }}
+      />
     
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
         <Text style={s.label}>희망 가격</Text>

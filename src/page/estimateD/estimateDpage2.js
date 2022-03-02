@@ -5,7 +5,6 @@ import s from '../../style'
 
 export default function EstimatePageScreen2({ route, navigation }) {
   const {img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
-  const [model, setModel] = React.useState("");
   const [price, setPrice] = React.useState("");
   const [distance, setDistance] = React.useState("");
   const [option, setOption] = React.useState("");
@@ -17,13 +16,6 @@ export default function EstimatePageScreen2({ route, navigation }) {
                 차량 정보를{'\n'}
                 입력 해주세요
             </Text>
-          </View>
-          <View style={s.rowcontainer}>
-            <TextInput style={s.inputL}
-              label="차량 모델"
-              value={model}
-              onChangeText={model => setModel(model)}
-            />
           </View>
           <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
             <Text style={s.label}>차량 가격</Text>
@@ -51,7 +43,6 @@ export default function EstimatePageScreen2({ route, navigation }) {
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={s.buttonbg3}
             onPress={() => navigation.navigate('EstimatePage3',{
-              model:model,
               price:price,
               distance:distance,
               option:option,

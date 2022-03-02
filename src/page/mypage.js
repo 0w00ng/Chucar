@@ -7,11 +7,12 @@ import storage from '../storage';
 import s from '../style'
 //
 import * as React from 'react';
-import { Button, View, Text,TouchableOpacity,Image } from 'react-native';
+import { Button, View, Text,TouchableOpacity,Image, Alert } from 'react-native';
 import { useState,useEffect } from 'react';
 
-export default function MyPageScreen({navigation}) {
-    const [id,setId] = useState('null');
+export default function MyPageScreen({route,navigation}) {
+    const [id,setId] = useState();
+    const [isDealer,setIsDealer] = useState();
     const [userName,setUserName] = useState('null');
     const [profile,setProfile] = useState('null');
 
@@ -30,8 +31,9 @@ export default function MyPageScreen({navigation}) {
             }
           })
           .then(function(res) {
-            console.log(res.data[0])
+            console.log(res.data[0].PRO_PROFILE)
             setProfile(res.data[0].PRO_PROFILE)
+            console.log({profile})
           })
           .catch(function(err) {
             console.log(err)
@@ -39,28 +41,42 @@ export default function MyPageScreen({navigation}) {
         } catch(err) {
             console.log(err);
         }
+
+        try{
+          const temp = await axios({
+            method: 'GET',
+            url:`${storage.chucar_url}/isdealer/${id}`,
+          })
+          setIsDealer(temp.data);
+          console.log('isDealer : ' + temp.data);
+        } 
+        catch(err) {
+          console.log(err);
+        }
+
       })();    
-    },[id])
+    },[id,profile])
 
     return (
       <View>
         <View style={{
           backgroundColor:'white',width:'100%',height:150,justifyContent:'center',
-          borderColor:'white',
-          borderWidth:3
           }}>
           <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',margin:50}}>
-            <TouchableOpacity
-            onPress={()=>{
-              navigation.navigate('DealerProfilePage')
-            }}>
-              <Image style={{width:100,height:100,borderWidth:0.2}} source={{url:`${profile}`}}/>
-            </TouchableOpacity>
+            {isDealer && profile
+            ? <TouchableOpacity
+              style={{width:100,height:100,borderWidth:0.2}}
+              onPress={()=>{
+                navigation.navigate('DealerProfilePage')
+              }}>
+                <Image style={{width:100,height:100}} resizeMode='stretch' resizeMethod='resize' source={{uri:`${profile}`}}/>
+              </TouchableOpacity>
+            : <View></View>}
             <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
             onPress={()=>{
               navigation.navigate('DealerInfoPage')
             }}>
-              <Text style={s.label}>{userName} 고객님</Text>
+              <Text style={s.label}>{userName} {isDealer ? '딜러':'고객'}님</Text>
               <Image style={{width:30,height:30}} source={rightA} />
             </TouchableOpacity>
           </View>
@@ -87,9 +103,9 @@ export default function MyPageScreen({navigation}) {
             <Text style={{color:'#a0a0a0', fontSize:15}}>로그아웃</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{marginTop:15}}
-          onPress={() => navigation.navigate('UnPaymentPage')}
+          onPress={() => isDealer==2 ? navigation.navigate('UnPaymentPage') : Alert.alert('알림','이용권이 없습니다.')}
           >
-            <Text style={{color:'#a0a0a0', fontSize:15}}>이용권 취소</Text>
+            <Text style={{color:'#a0a0a0', fontSize:15}}>이용권 해지</Text>
           </TouchableOpacity>
         </View>
       </View>

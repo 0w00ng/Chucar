@@ -30,7 +30,7 @@ export default function EstlistPageScreen({ route,navigation }) {
       let proid = '';
       let kind = `&kind=${value}`;
       if(checkState){
-        isDealer 
+        isDealer
         ? proid=`&proid=${id}` 
         : usrid=`&usrid=${id}`
       }
@@ -87,10 +87,12 @@ export default function EstlistPageScreen({ route,navigation }) {
     >
         <Text style={s.estlistTitle}>{CT_TITLE}</Text>
         <View style={s.estlistTextV}>
-          <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
-          <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
+          <View style={{...s.estlistTextV,flexDirection:'column'}}>
+            <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
+            <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
+          </View>
+          <Text style={s.estlistText}>{CheckKind(CT_KIND)}</Text>
         </View>
-        <Text>{CheckKind(CT_KIND)}</Text>
     </TouchableOpacity>
   );
 
@@ -109,9 +111,6 @@ export default function EstlistPageScreen({ route,navigation }) {
   );
   console.log('id : ' + id)
   console.log('isDealer : ' + isDealer)
-
-
-
 
     return (
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
@@ -137,7 +136,7 @@ export default function EstlistPageScreen({ route,navigation }) {
             margin:10
           }}
           onPress={()=>{
-            setCheckState(checkState ? 0:1)
+            setCheckState(checkState ? false:true)
           }}
         >
           <CheckBox
@@ -147,10 +146,7 @@ export default function EstlistPageScreen({ route,navigation }) {
           <Text style={{
             fontSize: 15,
             margin: 10,
-      }}>{isDealer==undefined
-          ? ``
-          : `내가 보낸 견적${isDealer ? "" : "신청"}서`
-          }</Text>
+      }}>내가 보낸 견적{isDealer ? "" : "신청"}서</Text>
         </TouchableOpacity>
         
         <FlatList

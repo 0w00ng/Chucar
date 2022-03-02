@@ -3,13 +3,9 @@ import { View, Text, Image, TouchableOpacity,Dimensions } from 'react-native';
 import storage from '../storage';
 import axios from 'axios';
 import s from '../style'
-import Carousel from 'react-native-snap-carousel';
 import Swiper from 'react-native-swiper';
 import DropDownPicker from 'react-native-dropdown-picker';
-
 const { width } = Dimensions.get('window')
-
-
 
 import edit from '../../img/edit.png';
 import list from '../../img/list.png';
@@ -21,23 +17,21 @@ import banner2 from '../../img/banner_2.jpg';
 import banner3 from '../../img/banner_3.jpg';
 
 
-
 export default function MainPageScreen ({ navigation }) {
 
   const [Img,setImg] = useState();
   const [isDealer,setIsDealer] = useState();
   const [id,setId] = useState();
 
-  DropDownPicker.addTranslation("KR", {
-    PLACEHOLDER: "항목을 선택해주세요",
-    SEARCH_PLACEHOLDER: "검색할 항목을 입력해주세요...",
-    SELECTED_ITEMS_COUNT_TEXT: "{count} éléments ont été sélectionnés",
-    NOTHING_TO_SHOW: "아무 것도 없습니다 !"
-  });
-  
-  // Set as default
-  DropDownPicker.setLanguage("KR");
   useEffect(()=>{
+    DropDownPicker.addTranslation("KR", {
+      PLACEHOLDER: "항목을 선택해주세요",
+      SEARCH_PLACEHOLDER: "검색할 항목을 입력해주세요...",
+      SELECTED_ITEMS_COUNT_TEXT: "{count} éléments ont été sélectionnés",
+      NOTHING_TO_SHOW: "아무 것도 없습니다 !"
+    });
+    DropDownPicker.setLanguage("KR");
+
     (async() => {
       const check = await storage.getData('refresh_token');
       if(!check) navigation.navigate('Root',{screen:'IntroPage'});
@@ -70,8 +64,8 @@ export default function MainPageScreen ({ navigation }) {
           })
           setIsDealer(0);
           //setIsDealer(temp.data);
-          console.log(temp.data);
-          console.log('isDealer : ' + isDealer);
+          console.log('isDealer : ' + temp.data);
+
         } 
         catch(err) {
           console.log(err);
@@ -182,7 +176,7 @@ export default function MainPageScreen ({ navigation }) {
             : isDealer
               ? (<TouchableOpacity style={s.buttonbg2}
                 onPress={() => {
-                  isDealer == 1//2
+                  isDealer == 2
                   ? alert('이미 이용권을 보유중입니다.')
                   : navigation.navigate("Root",{screen:'PaymentPage'})    //결제하기
                 }}>

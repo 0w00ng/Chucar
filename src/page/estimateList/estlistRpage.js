@@ -77,43 +77,51 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     });
   }
 
-  const Item = ({ CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,PRO_PHONE,CR_NICKNAME,PRO_PROFILE,CR_TITLE,CR_OPTION,CR_CARIMG0 }) => (
+  const Item = ({ CR_PRICE,CR_COMMENT,CR_DISTANCE,PRO_PHONE,CR_NICKNAME,PRO_PROFILE,PRO_COMPANY,CR_TITLE,CR_OPTION,
+    CR_CARIMG0,CR_CARIMG1,CR_CARIMG2,CR_CARIMG3,CR_CARIMG4,CR_CARIMG5,CR_CARIMG6,CR_CARIMG7 }) => (
     <TouchableOpacity 
-      style={s.estlistContainer}
+      style={{
+        backgroundColor:'#F8F8FF',
+        borderBottomWidth:1,
+        borderColor:'navy',
+        padding:10
+      }}
       onPress={()=>navigation.navigate('EstlistRVPage',{
-        CR_MODEL:CR_MODEL,
         CR_PRICE:CR_PRICE,
         CR_COMMENT:CR_COMMENT,
         CR_DISTANCE:CR_DISTANCE,
         PRO_PHONE:PRO_PHONE,
         CR_NICKNAME:CR_NICKNAME,
+        PRO_COMPANY:PRO_COMPANY,
         PRO_PROFILE:PRO_PROFILE,
         CR_TITLE:CR_TITLE,
         CR_OPTION:CR_OPTION,
         CR_CARIMG0:CR_CARIMG0,
+        CR_CARIMG1:CR_CARIMG1,
+        CR_CARIMG2:CR_CARIMG2,
+        CR_CARIMG3:CR_CARIMG3,
+        CR_CARIMG4:CR_CARIMG4,
+        CR_CARIMG5:CR_CARIMG5,
+        CR_CARIMG6:CR_CARIMG6,
+        CR_CARIMG7:CR_CARIMG7,
       })}
     >
-        <Text style={s.estlistTitle}>{CR_TITLE}</Text>
-        <View style={s.estlistTextV}>
-          <Text style={{
-            color:'navy',
-            fontWeight:'bold',
-            marginRight:20,
-          }}>{'차종 : ' + CR_MODEL} </Text>
-          <Text style={{
-            color:'red',
-            fontWeight:'bold'
-            }}>{`가격 : ${CT_USRID==id ? CR_PRICE : '???'} 만원`}</Text>
-        </View>
-        <Text>{CR_COMMENT}</Text>
+      <Text style={s.estlistTitle}>{CR_TITLE}</Text>
       <View style={{flexDirection:'row'}}>
-        <Image style={{width:100,height:100,borderWidth:0.2}} source={{url:`${PRO_PROFILE}`}}/> 
+        <Image style={{width:100,height:100,borderWidth:0.2,margin:10}} resizeMethod='resize' source={{url:`${PRO_PROFILE}`}}/> 
         <View style={{flexDirection:'column',justifyContent:'space-evenly',margin:10}}>
-          <Text style={s.estlistText}>{CR_NICKNAME + ' 딜러'}</Text>
           <Text style={{
             color:'orange',
             fontWeight:'bold'
-          }}>{'옵션 : ' + CR_OPTION}</Text>
+            }}>
+              {`가격 : ${CT_USRID==id ? CR_PRICE : '???'} 만원`}
+          </Text>
+          <Text style={{
+            color:'green',
+            fontWeight:'bold'
+          }}>{`주행거리 : ${CR_DISTANCE} km`}</Text>
+          <Text style={s.estlistText}>[{PRO_COMPANY}]</Text>
+          <Text style={s.estlistText}>{CR_NICKNAME + ' 딜러'}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -128,9 +136,17 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     CR_NICKNAME ={item.CR_NICKNAME}
     PRO_PHONE ={item.PRO_PHONE}
     PRO_PROFILE ={item.PRO_PROFILE}
+    PRO_COMPANY ={item.PRO_COMPANY}
     CR_TITLE ={item.CR_TITLE}
     CR_OPTION ={item.CR_OPTION}
     CR_CARIMG0 ={item.CR_CARIMG0}
+    CR_CARIMG1 ={item.CR_CARIMG1}
+    CR_CARIMG2 ={item.CR_CARIMG2}
+    CR_CARIMG3 ={item.CR_CARIMG3}
+    CR_CARIMG4 ={item.CR_CARIMG4}
+    CR_CARIMG5 ={item.CR_CARIMG5}
+    CR_CARIMG6 ={item.CR_CARIMG6}
+    CR_CARIMG7 ={item.CR_CARIMG7}
     />
   );
 
@@ -182,7 +198,11 @@ console.log('id : '+ id)
           </TouchableOpacity>
           </View>
         </View>
-        <SafeAreaView style={{alignItems:'center',flex:1}}>
+        <SafeAreaView 
+        style={{
+          alignItems:'stretch',
+          flex:1,
+        }}>
           <FlatList
             data={DATA}
             renderItem={renderItem}
