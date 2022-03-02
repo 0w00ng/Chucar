@@ -53,7 +53,7 @@ export default function RegistePageScreen3({ route,navigation }) {
         console.log(faceUrl)
 
         axios.put(`${storage.chucar_url}/setpro`, {    //DB 전송
-          id:'456',//id,
+          id:id,//id,
           name:`${name}`,
           phone:phone,
           email:email,
@@ -91,8 +91,8 @@ export default function RegistePageScreen3({ route,navigation }) {
           <View style={{alignItems:'center'}}>
             <TouchableOpacity style={s.buttonbg3}
             onPress={() => {
-              navigation.navigate('MainPage')
               navigation.popToTop();              
+              navigation.replace('MainPage')
               }}>
                 <Text style={s.buttontxt3}>돌아가기</Text>
             </TouchableOpacity>

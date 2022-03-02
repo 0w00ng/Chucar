@@ -48,11 +48,26 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     } catch(err) {
         console.log(err);
     }
-    navigation.popToTop();
-    navigation.navigate('EstlistPage',{
-      isDealer:isDealer,
-      id:id
-    });
+    Alert.alert(
+      "알림",
+      "신청서를 마감하시겠습니까?",
+      [
+          { text: "마감",
+          onPress: () => {
+            Alert.alert('알림','마감되었습니다.')
+            navigation.popToTop();
+            navigation.navigate('EstlistPage',{
+              isDealer:isDealer,
+              id:id
+            })}
+          },
+
+          {
+          text: "취소",
+          },
+      ]
+    );
+    
   }
 
   const deleteEst = async() => { //삭제하기
@@ -70,14 +85,28 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     } catch(err) {
         console.log(err);
     }
-    navigation.popToTop();
-    navigation.navigate('EstlistPage',{
-      isDealer:isDealer,
-      id:id
-    });
+    Alert.alert(
+      "알림",
+      "신청서를 삭제하시겠습니까?",
+      [
+          { text: "삭제",
+          onPress: () => {
+            Alert.alert('알림','삭제되었습니다.')
+            navigation.popToTop();
+            navigation.navigate('EstlistPage',{
+              isDealer:isDealer,
+              id:id
+            })}
+          },
+
+          {
+          text: "취소",
+          },
+      ]
+    );
   }
 
-  const Item = ({ CR_PRICE,CR_COMMENT,CR_DISTANCE,PRO_PHONE,CR_NICKNAME,PRO_PROFILE,PRO_COMPANY,CR_TITLE,CR_OPTION,
+  const Item = ({ CR_PRICE,CR_COMMENT,CR_DISTANCE,PRO_PHONE,PRO_NAME,PRO_PROFILE,PRO_COMPANY,CR_TITLE,CR_OPTION,
     CR_CARIMG0,CR_CARIMG1,CR_CARIMG2,CR_CARIMG3,CR_CARIMG4,CR_CARIMG5,CR_CARIMG6,CR_CARIMG7 }) => (
     <TouchableOpacity 
       style={{
@@ -91,7 +120,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
         CR_COMMENT:CR_COMMENT,
         CR_DISTANCE:CR_DISTANCE,
         PRO_PHONE:PRO_PHONE,
-        CR_NICKNAME:CR_NICKNAME,
+        PRO_NAME:PRO_NAME,
         PRO_COMPANY:PRO_COMPANY,
         PRO_PROFILE:PRO_PROFILE,
         CR_TITLE:CR_TITLE,
@@ -108,7 +137,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     >
       <Text style={s.estlistTitle}>{CR_TITLE}</Text>
       <View style={{flexDirection:'row'}}>
-        <Image style={{width:100,height:100,borderWidth:0.2,margin:10}} resizeMethod='resize' source={{url:`${PRO_PROFILE}`}}/> 
+        <Image style={{width:100,height:100,borderWidth:0.2,margin:10}} resizeMethod='resize' source={{uri:`${PRO_PROFILE}`}}/> 
         <View style={{flexDirection:'column',justifyContent:'space-evenly',margin:10}}>
           <Text style={{
             color:'orange',
@@ -121,7 +150,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
             fontWeight:'bold'
           }}>{`주행거리 : ${CR_DISTANCE} km`}</Text>
           <Text style={s.estlistText}>[{PRO_COMPANY}]</Text>
-          <Text style={s.estlistText}>{CR_NICKNAME + ' 딜러'}</Text>
+          <Text style={s.estlistText}>{PRO_NAME + ' 딜러'}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -133,7 +162,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     CR_PRICE = {item.CR_PRICE}
     CR_COMMENT ={item.CR_COMMENT}
     CR_DISTANCE ={item.CR_DISTANCE}
-    CR_NICKNAME ={item.CR_NICKNAME}
+    PRO_NAME ={item.PRO_NAME}
     PRO_PHONE ={item.PRO_PHONE}
     PRO_PROFILE ={item.PRO_PROFILE}
     PRO_COMPANY ={item.PRO_COMPANY}
@@ -166,11 +195,13 @@ console.log('id : '+ id)
           </View>
 
         <View style={s.estlistVContainer}>
-          <View style={s.estlistTextV}>
+          <View style={{...s.estlistTextV,flexDirection:'column'}}>
             <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
             <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
           </View>
-          <Text>{'' + CT_COMMENT}</Text>
+          <Text></Text>
+          <Text>{CT_COMMENT}</Text>
+          <Text></Text>
           <View style={{
             alignItems:'center',
             display: CT_STAT&&(CT_USRID==id||isDealer) // 딜러 or 작성자면 표시 / 둘다 아니면 미표시 // 마감이면 무조건 미표시

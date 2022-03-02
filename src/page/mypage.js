@@ -71,12 +71,12 @@ export default function MyPageScreen({route,navigation}) {
               }}>
                 <Image style={{width:100,height:100}} resizeMode='stretch' resizeMethod='resize' source={{uri:`${profile}`}}/>
               </TouchableOpacity>
-            : <View></View>}
+            : <></>}
             <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}}
             onPress={()=>{
-              navigation.navigate('DealerInfoPage')
+              isDealer ? navigation.navigate('DealerInfoPage') : <></>
             }}>
-              <Text style={s.label}>{userName} {isDealer ? '딜러':'고객'}님</Text>
+              <Text style={s.label}>{userName} 님</Text>
               <Image style={{width:30,height:30}} source={rightA} />
             </TouchableOpacity>
           </View>
