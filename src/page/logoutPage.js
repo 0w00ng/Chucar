@@ -1,6 +1,6 @@
 import React from 'react';
 import s from '../style'
-import { View,TouchableOpacity,Text } from "react-native";
+import { View,TouchableOpacity,Text,Alert } from "react-native";
 import storage from '../storage';
 import axios from 'axios';
 
@@ -18,7 +18,7 @@ export default function KakaoLogOut ({ navigation }){
     })
     await storage.clearData();
     navigation.navigate('Root',{screen:'IntroPage'});
-      alert('로그아웃 되었습니다.')
+    Alert.alert('알림','로그아웃 되었습니다.')
     }
   LogOut();
   

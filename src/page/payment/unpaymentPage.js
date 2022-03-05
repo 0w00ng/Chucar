@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import storage from '../../storage';
 import axios from 'axios';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 
 export default function UnPaymentPage({navigation}) {
 
@@ -28,7 +28,7 @@ export default function UnPaymentPage({navigation}) {
     },[userid]);
 
     navigation.navigate('Root',{screen:'MainPage'})
-    alert('정기결제 취소가 완료되었습니다.');
+    Alert.alert('알림','정기결제가 해지되었습니다.')
 
     return (
         <View>

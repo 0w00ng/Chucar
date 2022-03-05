@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { View, Text, Image, TouchableOpacity,Dimensions } from 'react-native';
+import { View, Text, Image, TouchableOpacity,Dimensions, Alert} from 'react-native';
 import storage from '../storage';
 import axios from 'axios';
 import s from '../style'
@@ -151,7 +151,7 @@ export default function MainPageScreen ({ navigation }) {
           <TouchableOpacity style={s.buttonbg2} 
           onPress={() => {
             // isDealer
-            // ? alert('딜러는 견적신청이 불가합니다.')
+            // ? Alert.alert('알림','딜러는 견적신청이 불가합니다.')
             // : navigation.navigate('EstimatePage')   //견적신청 화면전환
             navigation.navigate('EstimatePage')   //견적신청 화면전환
           }}>
@@ -177,7 +177,7 @@ export default function MainPageScreen ({ navigation }) {
               ? (<TouchableOpacity style={s.buttonbg2}
                 onPress={() => {
                   isDealer == 2
-                  ? alert('이미 이용권을 보유중입니다.')
+                  ? Alert.alert('알림','이미 이용권을 보유중입니다.')
                   : navigation.navigate("Root",{screen:'PaymentPage'})    //결제하기
                 }}>
                 <Image style={s.headericon} source={card}/>

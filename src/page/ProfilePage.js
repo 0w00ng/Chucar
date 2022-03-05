@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text,TouchableOpacity,Image } from 'react-native';
+import { View, Text,TouchableOpacity,Image,Alert } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import default_Image from '../../img/addImage.png'
 import { TextInput } from 'react-native-paper';
@@ -80,7 +80,7 @@ export default function RegisterPageScreen2({route,navigation }) {
     })
     .then(function (res) {
       navigation.popToTop();
-      alert('수정이 완료되었습니다.')
+      Alert.alert('알림','수정이 완료되었습니다.')
     })
     .catch(function (err) {
         console.log(err);

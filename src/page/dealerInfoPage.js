@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text,TouchableOpacity } from 'react-native';
+import { View, Text,TouchableOpacity,Alert } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import storage from '../storage';
 import axios from 'axios';
@@ -60,7 +60,7 @@ export default function RegisterPageScreen2({route,navigation }) {
     })
     .then(function (res) {
       navigation.popToTop();
-      alert('수정이 완료되었습니다.')
+      Alert.alert('알림','수정이 완료되었습니다.')
     })
     .catch(function (err) {
         console.log(err);

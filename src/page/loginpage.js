@@ -1,6 +1,6 @@
 import React from 'react';
 import s from '../style'
-import { View,TouchableOpacity,Text } from "react-native";
+import { View,TouchableOpacity,Text,Alert } from "react-native";
 import storage from '../storage';
 import { WebView } from 'react-native-webview';
 import axios from 'axios';
@@ -83,7 +83,7 @@ export default function KakaoLogin ({ navigation }){
       .then(function (res) { //성공
         navigation.popToTop();
         navigation.replace('MainPage');
-        alert('로그인이 완료되었습니다.')
+        Alert.alert('알림','로그인이 완료되었습니다.')
       })
       .catch(function (err) { //실패
         console.log('로그인에 실패했습니다.' + err);
