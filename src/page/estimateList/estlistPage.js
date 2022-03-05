@@ -64,7 +64,7 @@ export default function EstlistPageScreen({ route,navigation }) {
     }
   };
 
-  const Item = ({ CT_TITLE,CT_BTAND,CT_MODEL,CT_PRICE,CT_KIND,CT_COMMENT,CT_NUM,CT_STAT,CT_USRID }) => (
+  const Item = ({ CT_TITLE,CT_BRAND,CT_MODEL,CT_PRICE,CT_KIND,CT_YEAR,CT_COMMENT,CT_NUM,CT_STAT,CT_USRID,CT_DISTANCE,CT_OPTION }) => (
     <TouchableOpacity 
       style={
         CT_STAT
@@ -73,14 +73,17 @@ export default function EstlistPageScreen({ route,navigation }) {
       }
       onPress={()=>navigation.navigate('EstlistVPage',{
         CT_TITLE:CT_TITLE,
-        CT_BTAND:CT_BTAND,
+        CT_BRAND:CT_BRAND,
         CT_MODEL:CT_MODEL,
         CT_PRICE:CT_PRICE,
         CT_KIND:CT_KIND,
         CT_COMMENT:CT_COMMENT,
+        CT_YEAR:CT_YEAR,
         CT_NUM:CT_NUM,
         CT_STAT:CT_STAT,
         CT_USRID:CT_USRID,
+        CT_DISTANCE,CT_DISTANCE,
+        CT_OPTION:CT_OPTION,
         isDealer:isDealer,
         id:id,
       })}
@@ -88,7 +91,7 @@ export default function EstlistPageScreen({ route,navigation }) {
         <Text style={s.estlistTitle}>{CT_TITLE}</Text>
         <View style={s.estlistTextV}>
           <View style={{...s.estlistTextV,flexDirection:'column'}}>
-            <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
+            <Text style={s.estlistText}>{`차종 : ${CT_BRAND} ${CT_MODEL}`} </Text>
             <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
           </View>
           <Text style={s.estlistText}>{CheckKind(CT_KIND)}</Text>
@@ -100,10 +103,13 @@ export default function EstlistPageScreen({ route,navigation }) {
     <Item 
     CT_TITLE={item.CT_TITLE} 
     CT_MODEL={item.CT_MODEL}
-    CT_BTAND={item.CT_BTAND}
+    CT_BRAND={item.CT_BRAND}
     CT_PRICE = {item.CT_PRICE}
+    CT_OPTION = {item.CT_OPTION}
+    CT_DISTANCE = {item.CT_DISTANCE}
     CT_KIND ={item.CT_KIND}
     CT_COMMENT ={item.CT_COMMENT}
+    CT_YEAR ={item.CT_YEAR}
     CT_NUM ={item.CT_NUM}
     CT_STAT ={item.CT_STAT}
     CT_USRID ={item.CT_USRID}

@@ -9,7 +9,7 @@ import storage from '../../storage';
 import axios from 'axios';
 
 export default function EstimatePageScreen5({ route,navigation }) {
-  const {kind,title,brand,model,price,distance,option,comment} = route.params;
+  const {kind,year,title,brand,model,price,distance,option,comment} = route.params;
   useEffect(()=>{
     (async () => {
       const  userid = await storage.getData('id');
@@ -26,6 +26,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
             ct_kind:kind,
             ct_brand:brand,
             ct_model:model, //모델
+            ct_year:year,
             ct_title:title,
             ct_content:comment, //딜러에게할말
             ct_price:price, //가격

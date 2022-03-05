@@ -6,10 +6,12 @@ import s from '../../style';
 
 import Default_icon from '../../../img/Default_Profile.png'
 import delete_icon from '../../../img/delete.png'
+import { ScrollView } from "react-native-gesture-handler";
 
 
 export default function EstlistViewPageScreen({ route, navigation }) {
-  const {CT_TITLE,CT_MODEL,CT_PRICE,CT_COMMENT,CT_KIND,CT_STAT,CT_NUM,CT_USRID,isDealer,id} = route.params;
+  const {CT_TITLE,CT_MODEL,CT_PRICE,CT_COMMENT,CT_YEAR,CT_KIND,CT_OPTION,CT_DISTANCE,CR_YEAR,
+        CT_STAT,CT_NUM,CT_USRID,isDealer,id} = route.params;
   const [checkState, setCheckState] = useState(false);
   const [DATA,setDATA] = useState();
   const [empty,setEmpty] = useState();
@@ -106,7 +108,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     );
   }
 
-  const Item = ({ CR_PRICE,CR_COMMENT,CR_DISTANCE,PRO_PHONE,PRO_NAME,PRO_PROFILE,PRO_COMPANY,CR_TITLE,CR_OPTION,
+  const Item = ({ CR_PRICE,CR_COMMENT,CR_DISTANCE,PRO_PHONE,PRO_NAME,PRO_PROFILE,PRO_COMPANY,CR_TITLE,CR_OPTION,CR_YEAR,
     CR_CARIMG0,CR_CARIMG1,CR_CARIMG2,CR_CARIMG3,CR_CARIMG4,CR_CARIMG5,CR_CARIMG6,CR_CARIMG7 }) => (
     <TouchableOpacity 
       style={{
@@ -125,6 +127,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
         PRO_PROFILE:PRO_PROFILE,
         CR_TITLE:CR_TITLE,
         CR_OPTION:CR_OPTION,
+        CR_YEAR:CR_YEAR,
         CR_CARIMG0:CR_CARIMG0,
         CR_CARIMG1:CR_CARIMG1,
         CR_CARIMG2:CR_CARIMG2,
@@ -168,6 +171,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     PRO_COMPANY ={item.PRO_COMPANY}
     CR_TITLE ={item.CR_TITLE}
     CR_OPTION ={item.CR_OPTION}
+    CR_YEAR ={item.CR_YEAR}
     CR_CARIMG0 ={item.CR_CARIMG0}
     CR_CARIMG1 ={item.CR_CARIMG1}
     CR_CARIMG2 ={item.CR_CARIMG2}
@@ -183,7 +187,7 @@ console.log(CT_USRID)
 console.log('id : '+ id)
 
     return (
-      <View style={{ flex: 1 ,backgroundColor:'white'}}>
+      <ScrollView style={{ flex: 1 ,backgroundColor:'white'}}>
           <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
             <Text style={s.titleS}>{CT_TITLE}</Text>
             {CT_USRID==id
@@ -197,7 +201,10 @@ console.log('id : '+ id)
         <View style={s.estlistVContainer}>
           <View style={{...s.estlistTextV,flexDirection:'column'}}>
             <Text style={s.estlistText}>{'차종 : ' + CT_MODEL} </Text>
-            <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
+            <Text style={s.estlistText}>{'가격 : ' + CT_PRICE + ' 만원'}</Text>
+            <Text style={s.estlistText}>{'연식 : ' + CT_YEAR + ' 년도'}</Text>
+            <Text style={s.estlistText}>{'주행거리 : ' + CT_DISTANCE + ' km'}</Text>
+            <Text style={s.estlistText}>{'옵션 : ' + CT_OPTION}</Text>
           </View>
           <Text></Text>
           <Text>{CT_COMMENT}</Text>
@@ -239,6 +246,6 @@ console.log('id : '+ id)
             renderItem={renderItem}
           />
         </SafeAreaView>
-      </View>
+      </ScrollView>
     );
 }

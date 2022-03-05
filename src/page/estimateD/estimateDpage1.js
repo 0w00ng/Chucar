@@ -19,17 +19,19 @@ export default function EstimatePageScreen4({ route, navigation }) {
 
   const showImage = (num) => {
     launchImageLibrary({}, (response)=>{
-      const uri = response.assets[0].uri
-      console.log(uri);
-      switch(num){
-        case 1: setImg1(uri);break;
-        case 2: setImg2(uri);break;
-        case 3: setImg3(uri);break;
-        case 4: setImg4(uri);break;
-        case 5: setImg5(uri);break;
-        case 6: setImg6(uri);break;
-        case 7: setImg7(uri);break;
-        case 8: setImg8(uri);break;
+      if(!response.didCancel) {
+        const uri = response.assets[0].uri
+        console.log(uri);
+        switch(num){
+          case 1: setImg1(uri);break;
+          case 2: setImg2(uri);break;
+          case 3: setImg3(uri);break;
+          case 4: setImg4(uri);break;
+          case 5: setImg5(uri);break;
+          case 6: setImg6(uri);break;
+          case 7: setImg7(uri);break;
+          case 8: setImg8(uri);break;
+        }
       }
     })
   }

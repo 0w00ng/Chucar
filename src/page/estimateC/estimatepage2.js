@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { View, Text,TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-paper';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import s from '../../style'
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -10,22 +11,17 @@ import axios from 'axios';
 
 export default function EstimatePageScreen2({ route, navigation }) {
   const {kind} = route.params;
-  const [price, setPrice] = React.useState("");
-  const [distance, setDistance] = React.useState("");
-  const [option, setOption] = React.useState("");
+  const [price, setPrice] = useState("-");
+  const [year, setYear] = useState("-");
+  const [distance, setDistance] = useState("-");
+  const [option, setOption] = useState("무관");
 
   const [openBrand, setOpenBrand] = useState(false);
   const [openModel, setOpenModel] = useState(false);
   const [brand, setBrand] = useState("");
-  const [model, setModel] = useState("");
+  const [model, setModel] = useState("전차종");
   const [itemsBrand, setItemsBrand] = useState([])
-  const [itemsModel, setItemsModel] = useState([
-    {label: '전체보기', value:''},
-    {label: '신차', value:1},
-    {label: '중고차', value:2},
-    {label: '렌트', value:3},
-    {label: '리스', value:4},
-  ]);
+  const [itemsModel, setItemsModel] = useState([]);
 
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
@@ -82,19 +78,18 @@ export default function EstimatePageScreen2({ route, navigation }) {
             입력 해주세요
         </Text>
       </View>
+      <KeyboardAwareScrollView>
         <DropDownPicker
-        style={{ zIndex: 2,
-          elevation: 2,}}
+        style={{ zIndex: 10,
+          elevation: 10,}}
         open={openBrand}
         value={brand}
         items={itemsBrand}
         setOpen={setOpenBrand}
         setValue={setBrand}
         setItems={setItemsBrand}
-        categorySelectable={false}
-        listMode="SCROLLVIEW"
         translation={{
-          PLACEHOLDER: "제조사를 선택해주세요."
+          PLACEHOLDER: "제조사를 선택해주세요.",
         }}
         schema={{
           label: 'CF_BRAND',
@@ -102,52 +97,62 @@ export default function EstimatePageScreen2({ route, navigation }) {
           parent: 'CF_REGION',
         }}
         />
-      <DropDownPicker
-      style={{ zIndex: 1,
-        elevation: 1,}}
-        open={openModel}
-        value={model}
-        items={itemsModel}
-        setOpen={setOpenModel}
-        setValue={setModel}
-        setItems={setItemsModel}
-        translation={{
-          PLACEHOLDER: "차종을 선택해주세요."
+        <DropDownPicker
+          style={{ zIndex: 1,
+          elevation: 1,}}
+          open={openModel}
+          value={model}
+          items={itemsModel}
+          setOpen={setOpenModel}
+          setValue={setModel}
+          setItems={setItemsModel}
+          translation={{
+            PLACEHOLDER: "차종을 선택해주세요.",
+            NOTHING_TO_SHOW: "제조사를 먼저 선택해주세요"
         }}
-        schema={{
-          label: 'CF_MODEL',
-          value: 'CF_MODEL',
-        }}
-      />
-    
-      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-        <Text style={s.label}>희망 가격</Text>
-        <TextInput style={s.inputS}
-          value={price}
-          onChangeText={price => setPrice(price)}
+          schema={{
+            label: 'CF_MODEL',
+            value: 'CF_MODEL',
+          }}
         />
-        <Text style={s.label2}>만원</Text>
-      </View>
-      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-        <Text style={s.label}>주행거리</Text>
-        <TextInput style={s.inputS}
-          value={distance}
-          onChangeText={distance => setDistance(distance)}
-        />
-        <Text style={s.label2}>km</Text>
-      </View>
-      <View style={s.rowcontainer}>
-        <TextInput style={s.inputL}
-          label="필요옵션 ex) 기본옵션, 선루프, 열선시트"
-          value={option}
-          onChangeText={option => setOption(option)}
-        />
-      </View>
+        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+          <Text style={s.label}>희망 가격</Text>
+          <TextInput style={s.inputS}
+            value={price}
+            onChangeText={price => setPrice(price)}
+          />
+          <Text style={s.label2}>만원</Text>
+        </View>
+        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+          <Text style={s.label}>희망 연식</Text>
+          <TextInput style={s.inputS}
+            value={year}
+            onChangeText={year => setYear(year)}
+          />
+          <Text style={s.label2}>년도</Text>
+        </View>
+        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+          <Text style={s.label}>주행거리</Text>
+          <TextInput style={s.inputS}
+            value={distance}
+            onChangeText={distance => setDistance(distance)}
+          />
+          <Text style={s.label2}>km</Text>
+        </View>
+        <View style={s.rowcontainer}>
+          <TextInput style={s.inputL}
+            label="필요옵션 ex) 기본옵션, 선루프, 열선시트"
+            value={option}
+            onChangeText={option => setOption(option)}
+          />
+        </View>
+      </KeyboardAwareScrollView>
       <View style={{alignItems:'center'}}>
         <TouchableOpacity style={s.buttonbg3}
         onPress={() => navigation.navigate('EstimatePage3',{
           kind:kind,
           brand:brand,
+          year:year,
           model:model,
           price:price,
           distance:distance,

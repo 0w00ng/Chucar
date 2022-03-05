@@ -43,7 +43,8 @@ import default_Image from '../../../img/addImage.png'
 // }
 
 export default function EstimatePageScreen5({ route,navigation }) {
-  const {cr_num,cr_key,title,price,distance,option,comment,img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
+  const {cr_num,cr_key,title,year,price,distance,option,comment,
+          img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
   let img=[img1,img2,img3,img4,img5,img6,img7,img8];
 
   useEffect(() => {
@@ -80,7 +81,6 @@ export default function EstimatePageScreen5({ route,navigation }) {
       
     (async () => {
       const userid = await storage.getData('id');
-      const nickname = await storage.getData('nickname');
       const access_token = await storage.getData('access_token');
 
       for(i=0;i<8;i++){
@@ -101,12 +101,12 @@ export default function EstimatePageScreen5({ route,navigation }) {
         },
         data:{
           cr_title:title,
-          cr_nickname:nickname,
           cr_num:cr_num,
-          cr_comment:comment, //딜러에게할말
+          cr_year:year,
           cr_price:price, //가격
           cr_distance:distance, //최대주행거리 희망
           cr_option:option, //희망옵션 ex)선루프,,
+          cr_comment:comment, //딜러에게할말
           img0:img[0],
           img1:img[1],
           img2:img[2],
@@ -119,7 +119,7 @@ export default function EstimatePageScreen5({ route,navigation }) {
         }
       })
       .then(function (res) { //성공
-        console.log(`res : ${res.data}`);
+        console.log(res.data);
       })
       .catch(function (err) { //실패
         console.log(`err : ${err}`);

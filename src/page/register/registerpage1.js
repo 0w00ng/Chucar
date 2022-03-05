@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text,TouchableOpacity } from 'react-native';
+import { View, Text,TouchableOpacity,Alert } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
@@ -46,12 +46,15 @@ export default function RegisterPageScreen2({route,navigation }) {
       </View>
       <View style={{alignItems:'center',margin:20}}>
         <TouchableOpacity style={s.buttonbg3}
-        onPress={() => {navigation.navigate('RegisterPage2',{       // Page3로 화면전환 및 정보송신
-          company:company,
-          name:name,
-          email:email,
-          phone:phone
-        })
+        onPress={() => {
+          company&&name&&email&&phone
+          ? navigation.navigate('RegisterPage2',{       // Page3로 화면전환 및 정보송신
+            company:company,
+            name:name,
+            email:email,
+            phone:phone
+          })
+          : Alert.alert('알림','항목을 입력해주세요')
         }}>
             <Text style={s.buttontxt3}>다음으로(1/2)</Text>
         </TouchableOpacity>

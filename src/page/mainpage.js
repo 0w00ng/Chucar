@@ -149,10 +149,11 @@ export default function MainPageScreen ({ navigation }) {
 
         <View style={{flex:1,justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
           <TouchableOpacity style={s.buttonbg2} 
-          onPress={async () => {
-            isDealer
-            ? alert('딜러는 견적신청이 불가합니다.')
-            : navigation.navigate('EstimatePage')   //견적신청 화면전환
+          onPress={() => {
+            // isDealer
+            // ? alert('딜러는 견적신청이 불가합니다.')
+            // : navigation.navigate('EstimatePage')   //견적신청 화면전환
+            navigation.navigate('EstimatePage')   //견적신청 화면전환
           }}>
             <Image style={s.headericon} source={edit}/>
             <Text style={s.buttontxt2}>견적 신청하기</Text>

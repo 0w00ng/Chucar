@@ -1,22 +1,24 @@
 import React, { useState } from "react";
-import { View, Text,TouchableOpacity } from 'react-native';
+import { View, Text,TouchableOpacity, Alert } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
 export default function EstimatePageScreen4({ route, navigation }) {
-  const {kind,brand,model,price,distance,option} = route.params;
-  const [title, setTitle] = React.useState("");
-  const [comment, setComment] = React.useState("");
+  const {kind,year,brand,model,price,distance,option} = route.params;
+  const [title, setTitle] = useState("");
+  const [comment, setComment] = useState("");
 
     return (
       <View style={{ flex: 1, backgroundColor:'white'}}>
-          <View>
-            <Text style={s.title}>
-                견적 추가사항을{'\n'}
-                입력 해주세요
-            </Text>
-          </View>
+        <View>
+          <Text style={s.title}>
+              견적 추가사항을{'\n'}
+              입력 해주세요
+          </Text>
+        </View>
+        <KeyboardAwareScrollView style={{ flex: 1, backgroundColor:'white'}}>
           <View style={s.rowcontainer}>
             <TextInput style={s.inputL}
               label="요청서 제목"
@@ -24,6 +26,14 @@ export default function EstimatePageScreen4({ route, navigation }) {
               onChangeText={title => setTitle(title)}
             />
           </View>
+          <Text
+          style={{
+            marginLeft:30,
+            marginBottom:10,
+            color:'red',
+            display: title ? 'none' : 'flex'
+          }}
+          >* 제목을 입력해주세요 !</Text>
           <View style={{
             flexDirection:'row',
             justifyContent:'center',
@@ -44,21 +54,35 @@ export default function EstimatePageScreen4({ route, navigation }) {
               onChangeText={comment => setComment(comment)}
             />
           </View>
-          <View style={{alignItems:'center'}}>
-            <TouchableOpacity style={s.buttonbg3}
-            onPress={() => navigation.navigate('EstimatePage4',{
-              kind:kind,
-              brand:brand,
-              model:model,
-              price:price,
-              distance:distance,
-              option:option,
-              title:title,
-              comment:comment,
-            })}>
-                <Text style={s.buttontxt3}>완료(3/3)</Text>
-            </TouchableOpacity>
-          </View>
+          <Text
+          style={{
+            marginLeft:30,
+            marginBottom:10,
+            color:'red',
+            display: comment ? 'none' : 'flex'
+          }}
+          >* 내용을 입력해주세요 !</Text>
+        </KeyboardAwareScrollView>
+        <View style={{alignItems:'center'}}>
+          <TouchableOpacity style={s.buttonbg3}
+          onPress={() => {
+            title&&comment 
+            ? navigation.navigate('EstimatePage4',{
+                kind:kind,
+                year:year,
+                brand:brand,
+                model:model,
+                price:price,
+                distance:distance,
+                option:option,
+                title:title,
+                comment:comment,
+              })
+            : Alert.alert('알림','제목과 내용을 입력해주세요')
+          }}>
+              <Text style={s.buttontxt3}>완료(3/3)</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
 }

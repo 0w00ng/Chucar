@@ -12,60 +12,81 @@ import { useState,useEffect } from 'react';
 
 export default function MyPageScreen({route,navigation}) {
     const [id,setId] = useState();
-    const [isDealer,setIsDealer] = useState();
-    const [userName,setUserName] = useState('null');
+    const [isDealer,setIsDealer] = useState(0);
+    const [userName,setUserName] = useState('');
     const [profile,setProfile] = useState('null');
+    const [payDate,setPayDate] = useState('');
 
     useEffect(()=>{
       (async()=>{
-        try {
-          setId(await storage.getData('id'));
-          setUserName(await storage.getData('name'));
-          const access_token = await storage.getData('access_token');
-          await axios({
-            method: 'get',
-            url: `${storage.chucar_url}/pro/${id}`,
-            headers:{
-              Authorization: `${access_token}`,
-              'Content-type':'application/x-www-form-urlencoded;utf-8'
-            }
-          })
-          .then(function(res) {
-            console.log(res.data[0].PRO_PROFILE)
-            setProfile(res.data[0].PRO_PROFILE)
-            console.log({profile})
-          })
-          .catch(function(err) {
-            console.log(err)
-          })
-        } catch(err) {
-            console.log(err);
-        }
+        setId(await storage.getData('id'));
+        setUserName(await storage.getData('name'));
+        const access_token = await storage.getData('access_token');
 
         try{
-          const temp = await axios({
+          await axios({
             method: 'GET',
             url:`${storage.chucar_url}/isdealer/${id}`,
           })
-          setIsDealer(temp.data);
-          console.log('isDealer : ' + temp.data);
+          .then(function(res) {
+            setIsDealer(res.data);
+            console.log('isDealer : ' + res.data);
+          })
         } 
         catch(err) {
           console.log(err);
         }
+        
+        if(isDealer) {
+          try{
+            await axios({
+              method: 'GET',
+              url:`${storage.chucar_url}/pro/${id}`,
+              headers:{
+                Authorization: `${access_token}`,
+                'Content-type':'application/x-www-form-urlencoded;utf-8'
+              }
+            })
+            .then(function(res) {
+              const result = res.data[0];
+              //profile
+              console.log(result.PRO_PROFILE)
+              setProfile(res.data[0].PRO_PROFILE)
+              console.log({profile})
+  
+              //date
+              const date = new Date(result.PRO_END * 1000);
+              const yyyy = (date.getFullYear())
+              const mm = (date.getMonth()+1)
+              const dd = (date.getDate())
+  
+              if(result.PRO_END){
+                setPayDate(`~ ${yyyy}년 ${mm}월 ${dd}일 까지`);
+                console.log({date})
+              }
+  
+              //name
+              setUserName(result.PRO_NAME)
+             
+            })
+          } 
+          catch(err) {
+            console.log(err);
+          }
+        }
 
       })();    
-    },[id,profile])
+    },[id,isDealer])
 
     return (
       <View>
         <View style={{
           backgroundColor:'white',width:'100%',height:150,justifyContent:'center',
           }}>
-          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',margin:50}}>
-            {isDealer && profile
+          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-around',margin:50}}>
+            {isDealer
             ? <TouchableOpacity
-              style={{width:100,height:100,borderWidth:0.2}}
+              style={{width:100,height:100}}
               onPress={()=>{
                 navigation.navigate('DealerProfilePage')
               }}>
@@ -106,10 +127,13 @@ export default function MyPageScreen({route,navigation}) {
           onPress={() => isDealer==2 ? navigation.navigate('UnPaymentPage') : Alert.alert('알림','이용권이 없습니다.')}
           >
             <Text style={{color:'#a0a0a0', fontSize:15}}>이용권 해지</Text>
+            <Text style={{
+              color:'#a0a0a0',
+              fontSize:12,
+              display: isDealer==2 ? 'flex' : 'none'
+            }}>이용권 기한 : {payDate}</Text>
           </TouchableOpacity>
         </View>
       </View>
-    );
-
-    
+    ); 
   }

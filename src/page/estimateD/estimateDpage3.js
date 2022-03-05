@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { View, Text,TouchableOpacity } from 'react-native';
+import { View, Text,TouchableOpacity, KeyboardAvoidingView,Dimensions,Alert } from 'react-native';
 import CheckBox from '@react-native-community/checkbox'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+const { width } = Dimensions.get('window')
+
 import { TextInput } from 'react-native-paper';
 import s from '../../style'
 
 export default function EstimatePageScreen4({ route, navigation }) {
-  const {price,distance,option,img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
+  const {price,distance,option,year,img1,img2,img3,img4,img5,img6,img7,img8} = route.params;
   const [title, setTitle] = React.useState("");
   const [comment, setComment] = React.useState("");
 
@@ -17,51 +20,71 @@ export default function EstimatePageScreen4({ route, navigation }) {
                 입력 해주세요
             </Text>
           </View>
-          <View style={s.rowcontainer}>
-          <TextInput style={s.inputL}
-                label="요청서 제목"
-                value={title}
-                onChangeText={title => setTitle(title)}
+          <KeyboardAwareScrollView>
+            <View style={s.rowcontainer}>
+              <TextInput style={s.inputL}
+                    label="견적서 제목"
+                    value={title}
+                    onChangeText={title => setTitle(title)}
+                  />
+            </View>
+            <Text
+            style={{
+              marginLeft:30,
+              marginBottom:10,
+              color:'red',
+              display: title ? 'none' : 'flex'
+            }}
+            >* 제목을 입력해주세요 !</Text>
+            <View style={{alignItems:'center'}}>
+              <TextInput 
+                style={{
+                  borderColor:'navy',
+                  borderWidth:2,
+                  backgroundColor: 'white',
+                  fontSize: 20,
+                  width:'90%',
+                  height:400,
+                }}
+                multiline
+                maxLength={500}
+                label="견적서 내용"
+                value={comment}
+                onChangeText={comment => setComment(comment)}
               />
-          </View>
-          <View style={{
-            flexDirection:'row',
-            justifyContent:'center',
-          }}>
-            <TextInput 
-              style={{
-                borderColor:'navy',
-                borderWidth:2,
-                backgroundColor: 'white',
-                fontSize: 20,
-                width:'90%',
-                height:400
-              }}
-              multiline
-              maxLength={500}
-              label="요청서 내용"
-              value={comment}
-              onChangeText={comment => setComment(comment)}
-            />
-          </View>
+            </View>
+            <Text
+            style={{
+              marginLeft:30,
+              marginBottom:10,
+              color:'red',
+              display: comment ? 'none' : 'flex'
+            }}
+            >* 내용을 입력해주세요 !</Text>
+          </KeyboardAwareScrollView>
           <View style={{alignItems:'center'}}>
             <TouchableOpacity 
             style={s.buttonbg3}
-            onPress={() => navigation.navigate('EstimatePage4',{
-              price:price,
-              distance:distance,
-              option:option,
-              comment:comment,
-              title:title,
-              img1:img1,
-              img2:img2,
-              img3:img3,
-              img4:img4,
-              img5:img5,
-              img6:img6,
-              img7:img7,
-              img8:img8,
-            })}>
+            onPress={() => {
+              title&&comment 
+              ? navigation.navigate('EstimatePage4',{
+                price:price,
+                distance:distance,
+                option:option,
+                comment:comment,
+                title:title,
+                year:year,
+                img1:img1,
+                img2:img2,
+                img3:img3,
+                img4:img4,
+                img5:img5,
+                img6:img6,
+                img7:img7,
+                img8:img8,
+              })
+              : Alert.alert('알림','제목과 내용을 입력해주세요')
+            }}>
               <Text style={s.buttontxt3}>완료(3/3)</Text>
             </TouchableOpacity>
           </View>

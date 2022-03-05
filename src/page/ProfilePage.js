@@ -12,9 +12,11 @@ export default function RegisterPageScreen2({route,navigation }) {
 
   const showImage = () => {
     launchImageLibrary({}, (response)=>{
-      const uri = response.assets[0].uri
-      console.log(uri);
-      setProfile(uri);
+      if(!response.didCancel) {
+        const uri = response.assets[0].uri
+        console.log(uri);
+        setProfile(uri);
+      }
     })
   }
 

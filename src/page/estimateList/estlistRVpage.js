@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { View, Text,TouchableOpacity,Image,StyleSheet,StatusBar,FlatList,Dimensions } from 'react-native';
 import Swiper from 'react-native-swiper';
+import ImageModal from 'react-native-image-modal';
 import storage from '../../storage';
 import axios from "axios";
 import s from '../../style';
 const { width } = Dimensions.get('window')
 
 export default function EstlistReplyViewPageScreen({ route, navigation }) {
-  const { CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME,CR_TITLE,CR_OPTION,PRO_PROFILE,PRO_COMPANY,PRO_PHONE } = route.params;
+  const { CR_MODEL,CR_PRICE,CR_COMMENT,CR_DISTANCE,phone,CR_NICKNAME,CR_TITLE,CR_OPTION,CR_YEAR,PRO_PROFILE,PRO_COMPANY,PRO_PHONE,PRO_NAME } = route.params;
   const { CR_CARIMG0,CR_CARIMG1,CR_CARIMG2,CR_CARIMG3,CR_CARIMG4,CR_CARIMG5,CR_CARIMG6,CR_CARIMG7 } = route.params;
   const CR_CARIMG = [CR_CARIMG0,CR_CARIMG1,CR_CARIMG2,CR_CARIMG3,CR_CARIMG4,CR_CARIMG5,CR_CARIMG6,CR_CARIMG7];
 
@@ -20,10 +21,10 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
       </View>
 
       <View style={{flexDirection:'row',borderWidth:1.5}}>
-        <Image style={{width:100,height:100,borderWidth:0.2}} source={{url:`${PRO_PROFILE}`}}/> 
+        <Image style={{width:100,height:100,borderWidth:0.2}} resizeMethod='resize' source={{uri:`${PRO_PROFILE}`}}/> 
         <View style={{flexDirection:'column',justifyContent:'space-evenly',margin:10}}>
           <Text style={s.estlistText}>[{PRO_COMPANY}]</Text>
-          <Text style={s.estlistText}>{CR_NICKNAME + ' 딜러'}</Text>
+          <Text style={s.estlistText}>{PRO_NAME + ' 딜러'}</Text>
           <Text style={{
             color:'blue',
             fontWeight:'bold'
@@ -52,7 +53,7 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
           activeDot={
             <View
               style={{
-                backgroundColor: '#000',
+                backgroundColor: 'navy',
                 width: 8,
                 height: 8,
                 borderRadius: 4,
@@ -70,78 +71,24 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
           }}
           loop
         >
-          <View
-            style={styles.slide}
-          >
-            <Image
-              resizeMode="contain"
-              style={styles.image}
-              source={CR_CARIMG0}
-            />
-          </View>
-          <View
-            style={styles.slide}
-          >
-            <Image
-              resizeMode="stretch"
-              style={styles.image}
-              source={CR_CARIMG1}
-            />
-          </View>
-          <View
-            style={styles.slide}
-          >
-            <Image
-              resizeMode="stretch"
-              style={styles.image}
-              source={CR_CARIMG2}
-            />
-          </View>
-          <View
-            style={styles.slide}
-          >
-            <Image
-              resizeMode="stretch"
-              style={styles.image}
-              source={CR_CARIMG3}
-            />
-          </View>
-          <View
-            style={styles.slide}
-          >
-            <Image
-              resizeMode="stretch"
-              style={styles.image}
-              source={CR_CARIMG4}
-            />
-          </View>
-          <View
-            style={styles.slide}
-          >
-            <Image
-              resizeMode="stretch"
-              style={styles.image}
-              source={CR_CARIMG5}
-            />
-          </View>
-          <View
-            style={styles.slide}
-          >
-            <Image
-              resizeMode="stretch"
-              style={styles.image}
-              source={CR_CARIMG6}
-            />
-          </View>
-          <View
-            style={styles.slide}
-          >
-            <Image
-              resizeMode="stretch"
-              style={styles.image}
-              source={CR_CARIMG7}
-            />
-          </View>
+          {CR_CARIMG.map ((img)=>(
+          img
+          ? <View
+              style={styles.slide}
+            >
+              <ImageModal
+                swipeToDismiss={true}
+                resizeMode="contain"
+                resizeMethod="scale"
+                imageBackgroundColor="#000000"
+                style={styles.image}
+                source={{
+                  uri:img,
+                }}
+              />
+            </View>
+          : ''
+          ))}
         </Swiper>
       </View>
 
@@ -157,6 +104,13 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
         fontWeight:'bold',
         margin:5
       }}>{`주행거리 : ${CR_DISTANCE} km`}
+      </Text>
+
+      <Text style={{
+        color:'green',
+        fontWeight:'bold',
+        margin:5
+      }}>{`연식 : ${CR_YEAR} km`}
       </Text>
 
       <Text style={{

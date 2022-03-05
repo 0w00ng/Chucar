@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text,TouchableOpacity,Image } from 'react-native';
+import { View, Text,TouchableOpacity,Image,Alert } from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import default_Image from '../../../img/addImage.png'
 import { TextInput } from 'react-native-paper';
@@ -11,9 +11,11 @@ export default function RegisterPageScreen2({route,navigation }) {
 
   const showImage = () => {
     launchImageLibrary({}, (response)=>{
-      const uri = response.assets[0].uri
-      console.log(uri);
-      setFace(uri);
+      if(!response.didCancel) {
+        const uri = response.assets[0].uri
+        console.log(uri);
+        setFace(uri);
+      }
     })
   }
 
@@ -41,13 +43,16 @@ export default function RegisterPageScreen2({route,navigation }) {
 
       <View style={{alignItems:'center',margin:20}}>
         <TouchableOpacity style={s.buttonbg3}
-        onPress={() => {navigation.navigate('RegisterPage3',{       // Page3로 화면전환 및 정보송신
-          company:company,
-          name:name,
-          email:email,
-          phone:phone,
-          face:face,
-        })
+        onPress={() => {
+          face 
+          ? navigation.navigate('RegisterPage3',{       // Page3로 화면전환 및 정보송신
+              company:company,
+              name:name,
+              email:email,
+              phone:phone,
+              face:face,
+            })
+          : Alert.alert('알림','사원증을 입력해주세요')
         }}>
             <Text style={s.buttontxt3}>완료(2/2)</Text>
         </TouchableOpacity>

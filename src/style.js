@@ -194,7 +194,7 @@ module.exports = StyleSheet.create({
     },
     estlistTitle: {
         color:'navy',
-        fontSize:20,
+        fontSize:15,
         fontWeight: 'bold',
         textAlign:'center',
     },
