@@ -5,6 +5,8 @@ import ImageModal from 'react-native-image-modal';
 import storage from '../../storage';
 import axios from "axios";
 import s from '../../style';
+import FastImage from 'react-native-fast-image'
+
 const { width } = Dimensions.get('window')
 
 export default function EstlistReplyViewPageScreen({ route, navigation }) {
@@ -77,14 +79,13 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
               style={styles.slide}
             >
               <ImageModal
+                style={styles.image}
                 swipeToDismiss={true}
-                resizeMode="contain"
+                isTranslucent={false}
+                resizeMode='contain'
                 resizeMethod="scale"
                 imageBackgroundColor="#000000"
-                style={styles.image}
-                source={{
-                  uri:img,
-                }}
+                source={{uri:img}}
               />
             </View>
           : ''
@@ -107,22 +108,23 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
       </Text>
 
       <Text style={{
-        color:'green',
+        color:'blue',
         fontWeight:'bold',
         margin:5
       }}>{`연식 : ${CR_YEAR} km`}
       </Text>
 
-      <Text style={{
+      {/* <Text style={{
         color:'blue',
         fontWeight:'bold',
         margin:5
       }}>
         옵션 : {CR_OPTION}
-      </Text>
+      </Text> */}
 
       <Text style={{margin:5}}>
-        소개 : {CR_COMMENT}
+        {'\n'}
+        {CR_COMMENT}
       </Text>
     </View>
   );

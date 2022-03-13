@@ -11,10 +11,10 @@ import axios from 'axios';
 
 export default function EstimatePageScreen2({ route, navigation }) {
   const {kind} = route.params;
-  const [price, setPrice] = useState("-");
-  const [year, setYear] = useState("-");
-  const [distance, setDistance] = useState("-");
-  const [option, setOption] = useState("무관");
+  const [price, setPrice] = useState("");
+  const [year, setYear] = useState("");
+  const [distance, setDistance] = useState("");
+  const [option, setOption] = useState("");
 
   const [openBrand, setOpenBrand] = useState(false);
   const [openModel, setOpenModel] = useState(false);
@@ -22,16 +22,6 @@ export default function EstimatePageScreen2({ route, navigation }) {
   const [model, setModel] = useState("전차종");
   const [itemsBrand, setItemsBrand] = useState([])
   const [itemsModel, setItemsModel] = useState([]);
-
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('');
-  const [items, setItems] = useState([
-    {label: '전체보기', value:''},
-    {label: '신차', value:1},
-    {label: '중고차', value:2},
-    {label: '렌트', value:3},
-    {label: '리스', value:4},
-  ]);
 
   useEffect(()=>{
     (async ()=>{
@@ -69,6 +59,10 @@ export default function EstimatePageScreen2({ route, navigation }) {
     })();
   },[brand]);
 
+  useEffect(()=>{
+    setOpenModel(false);
+  },[openBrand]);
+
 
   return (
     <View style={{ flex: 1, backgroundColor:'white'}}>                                                                                                                                                   
@@ -78,16 +72,20 @@ export default function EstimatePageScreen2({ route, navigation }) {
             입력 해주세요
         </Text>
       </View>
-      <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView style={{
+        padding:5
+      }}>
         <DropDownPicker
         style={{ zIndex: 10,
-          elevation: 10,}}
+          elevation: 10,
+        marginBottom:10,}}
         open={openBrand}
         value={brand}
         items={itemsBrand}
         setOpen={setOpenBrand}
         setValue={setBrand}
         setItems={setItemsBrand}
+        //categorySelectable={false}
         translation={{
           PLACEHOLDER: "제조사를 선택해주세요.",
         }}
@@ -120,6 +118,8 @@ export default function EstimatePageScreen2({ route, navigation }) {
           <TextInput style={s.inputS}
             value={price}
             onChangeText={price => setPrice(price)}
+            maxLength={20}
+            keyboardType="number-pad"
           />
           <Text style={s.label2}>만원</Text>
         </View>
@@ -128,6 +128,8 @@ export default function EstimatePageScreen2({ route, navigation }) {
           <TextInput style={s.inputS}
             value={year}
             onChangeText={year => setYear(year)}
+            maxLength={20}
+            keyboardType="number-pad"
           />
           <Text style={s.label2}>년도</Text>
         </View>
@@ -136,16 +138,18 @@ export default function EstimatePageScreen2({ route, navigation }) {
           <TextInput style={s.inputS}
             value={distance}
             onChangeText={distance => setDistance(distance)}
+            maxLength={20}
+            keyboardType="number-pad"
           />
           <Text style={s.label2}>km</Text>
         </View>
-        <View style={s.rowcontainer}>
+        {/* <View style={s.rowcontainer}>
           <TextInput style={s.inputL}
             label="필요옵션 ex) 기본옵션, 선루프, 열선시트"
             value={option}
             onChangeText={option => setOption(option)}
           />
-        </View>
+        </View> */}
       </KeyboardAwareScrollView>
       <View style={{alignItems:'center'}}>
         <TouchableOpacity style={s.buttonbg3}

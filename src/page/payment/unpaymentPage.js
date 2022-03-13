@@ -10,7 +10,6 @@ export default function UnPaymentPage({navigation}) {
     useEffect(()=>{
         (async()=>{
             setUserid(await storage.getData('id'));
-            console.log('id : '+userid);
             await axios({
                 url: `${storage.chucar_url}/subscribe/payments/unschedule`,
                 method: "post",

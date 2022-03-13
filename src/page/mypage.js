@@ -20,7 +20,6 @@ export default function MyPageScreen({route,navigation}) {
     useEffect(()=>{
       (async()=>{
         setId(await storage.getData('id'));
-        setUserName(await storage.getData('name'));
         const access_token = await storage.getData('access_token');
 
         try{
@@ -73,6 +72,8 @@ export default function MyPageScreen({route,navigation}) {
           catch(err) {
             console.log(err);
           }
+        } else {
+          setUserName(await storage.getData('name'));
         }
 
       })();    

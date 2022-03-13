@@ -30,6 +30,8 @@ export default function EstimatePageScreen2({ route, navigation }) {
           <TextInput style={s.inputS}
             value={price}
             onChangeText={price => setPrice(price)}
+            maxLength={20}
+            keyboardType="number-pad"
           />
           <Text style={s.label2}>만원</Text>
         </View>
@@ -38,6 +40,8 @@ export default function EstimatePageScreen2({ route, navigation }) {
           <TextInput style={s.inputS}
             value={year}
             onChangeText={year => setYear(year)}
+            maxLength={20}
+            keyboardType="number-pad"
           />
           <Text style={s.label2}>년도</Text>
         </View>
@@ -46,16 +50,18 @@ export default function EstimatePageScreen2({ route, navigation }) {
           <TextInput style={s.inputS}
             value={distance}
             onChangeText={distance => setDistance(distance)}
+            maxLength={20}
+            keyboardType="number-pad"
           />
           <Text style={s.label2}>km</Text>
         </View>
-        <View style={s.rowcontainer}>
+        {/* <View style={s.rowcontainer}>
           <TextInput style={s.inputL}
             label="필요옵션 ex) 기본옵션, 선루프, 열선시트"
             value={option}
             onChangeText={option => setOption(option)}
           />
-        </View>
+        </View> */}
       </KeyboardAwareScrollView>
       <View style={{alignItems:'center'}}>
         <TouchableOpacity style={s.buttonbg3}

@@ -108,7 +108,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     );
   }
 
-  const Item = ({ CR_PRICE,CR_COMMENT,CR_DISTANCE,PRO_PHONE,PRO_NAME,PRO_PROFILE,PRO_COMPANY,CR_TITLE,CR_OPTION,CR_YEAR,
+  const Item = ({ CR_PRICE,CR_COMMENT,CR_DISTANCE,PRO_PHONE,PRO_NAME,PRO_PROFILE,PRO_COMPANY,CR_TITLE,CR_OPTION,CR_YEAR,CR_PROID,
     CR_CARIMG0,CR_CARIMG1,CR_CARIMG2,CR_CARIMG3,CR_CARIMG4,CR_CARIMG5,CR_CARIMG6,CR_CARIMG7 }) => (
     <TouchableOpacity 
       style={{
@@ -117,26 +117,30 @@ export default function EstlistViewPageScreen({ route, navigation }) {
         borderColor:'navy',
         padding:10
       }}
-      onPress={()=>navigation.navigate('EstlistRVPage',{
-        CR_PRICE:CR_PRICE,
-        CR_COMMENT:CR_COMMENT,
-        CR_DISTANCE:CR_DISTANCE,
-        PRO_PHONE:PRO_PHONE,
-        PRO_NAME:PRO_NAME,
-        PRO_COMPANY:PRO_COMPANY,
-        PRO_PROFILE:PRO_PROFILE,
-        CR_TITLE:CR_TITLE,
-        CR_OPTION:CR_OPTION,
-        CR_YEAR:CR_YEAR,
-        CR_CARIMG0:CR_CARIMG0,
-        CR_CARIMG1:CR_CARIMG1,
-        CR_CARIMG2:CR_CARIMG2,
-        CR_CARIMG3:CR_CARIMG3,
-        CR_CARIMG4:CR_CARIMG4,
-        CR_CARIMG5:CR_CARIMG5,
-        CR_CARIMG6:CR_CARIMG6,
-        CR_CARIMG7:CR_CARIMG7,
-      })}
+      onPress={()=>{
+        CT_USRID==id || CR_PROID==id
+        ? navigation.navigate('EstlistRVPage',{
+            CR_PRICE:CR_PRICE,
+            CR_COMMENT:CR_COMMENT,
+            CR_DISTANCE:CR_DISTANCE,
+            PRO_PHONE:PRO_PHONE,
+            PRO_NAME:PRO_NAME,
+            PRO_COMPANY:PRO_COMPANY,
+            PRO_PROFILE:PRO_PROFILE,
+            CR_TITLE:CR_TITLE,
+            CR_OPTION:CR_OPTION,
+            CR_YEAR:CR_YEAR,
+            CR_CARIMG0:CR_CARIMG0,
+            CR_CARIMG1:CR_CARIMG1,
+            CR_CARIMG2:CR_CARIMG2,
+            CR_CARIMG3:CR_CARIMG3,
+            CR_CARIMG4:CR_CARIMG4,
+            CR_CARIMG5:CR_CARIMG5,
+            CR_CARIMG6:CR_CARIMG6,
+            CR_CARIMG7:CR_CARIMG7,
+          })
+        : Alert.alert('글 작성자만 열람할 수 있습니다.')
+      }}
     >
       <Text style={s.estlistTitle}>{CR_TITLE}</Text>
       <View style={{flexDirection:'row'}}>
@@ -146,7 +150,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
             color:'orange',
             fontWeight:'bold'
             }}>
-              {`가격 : ${CT_USRID==id ? CR_PRICE : '???'} 만원`}
+              {`가격 : ${CT_USRID==id || CR_PROID==id ? CR_PRICE : '???'} 만원`}
           </Text>
           <Text style={{
             color:'green',
@@ -172,6 +176,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
     CR_TITLE ={item.CR_TITLE}
     CR_OPTION ={item.CR_OPTION}
     CR_YEAR ={item.CR_YEAR}
+    CR_PROID ={item.CR_PROID}
     CR_CARIMG0 ={item.CR_CARIMG0}
     CR_CARIMG1 ={item.CR_CARIMG1}
     CR_CARIMG2 ={item.CR_CARIMG2}
@@ -204,7 +209,7 @@ console.log('id : '+ id)
             <Text style={s.estlistText}>{'가격 : ' + CT_PRICE + ' 만원'}</Text>
             <Text style={s.estlistText}>{'연식 : ' + CT_YEAR + ' 년도'}</Text>
             <Text style={s.estlistText}>{'주행거리 : ' + CT_DISTANCE + ' km'}</Text>
-            <Text style={s.estlistText}>{'옵션 : ' + CT_OPTION}</Text>
+            {/* <Text style={s.estlistText}>{'옵션 : ' + CT_OPTION}</Text> */}
           </View>
           <Text></Text>
           <Text>{CT_COMMENT}</Text>

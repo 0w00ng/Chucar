@@ -5,6 +5,8 @@ import axios from "axios";
 import storage from '../../storage';
 import s from '../../style'
 
+import carSerch from '../../../img/carSerch.png'
+
 import { TextInput } from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -64,7 +66,7 @@ export default function EstlistPageScreen({ route,navigation }) {
     }
   };
 
-  const Item = ({ CT_TITLE,CT_BRAND,CT_MODEL,CT_PRICE,CT_KIND,CT_YEAR,CT_COMMENT,CT_NUM,CT_STAT,CT_USRID,CT_DISTANCE,CT_OPTION }) => (
+  const Item = ({ CT_TITLE,CT_BRAND,CT_MODEL,CT_PRICE,CT_KIND,CT_YEAR,CT_COMMENT,CT_NUM,CT_STAT,CT_USRID,CT_DISTANCE,CT_OPTION,CT_REPLYCNT }) => (
     <TouchableOpacity 
       style={
         CT_STAT
@@ -91,10 +93,13 @@ export default function EstlistPageScreen({ route,navigation }) {
         <Text style={s.estlistTitle}>{CT_TITLE}</Text>
         <View style={s.estlistTextV}>
           <View style={{...s.estlistTextV,flexDirection:'column'}}>
-            <Text style={s.estlistText}>{`차종 : ${CT_BRAND} ${CT_MODEL}`} </Text>
+            <Text style={s.estlistText}>{`\n차종 : ${CT_BRAND} ${CT_MODEL}`} </Text>
             <Text style={s.estlistText}>{'희망가격 : ' + CT_PRICE + ' 만원'}</Text>
           </View>
-          <Text style={s.estlistText}>{CheckKind(CT_KIND)}</Text>
+          <View style={{...s.estlistTextV,flexDirection:'column',alignItems:'center'}}>
+            <Text style={s.estlistText}>{`${CheckKind(CT_KIND)}`} </Text>
+            <Text style={{...s.estlistText,backgroundColor:'navy',color:'white',borderRadius:100,padding:5}}>{CT_REPLYCNT}</Text>
+          </View>
         </View>
     </TouchableOpacity>
   );
@@ -113,6 +118,7 @@ export default function EstlistPageScreen({ route,navigation }) {
     CT_NUM ={item.CT_NUM}
     CT_STAT ={item.CT_STAT}
     CT_USRID ={item.CT_USRID}
+    CT_REPLYCNT ={item.CT_REPLYCNT}
     />
   );
   console.log('id : ' + id)
@@ -120,13 +126,6 @@ export default function EstlistPageScreen({ route,navigation }) {
 
     return (
       <View style={{ flex: 1 ,backgroundColor:'white'}}>
-        <View style={s.rowcontainer}>
-            <TextInput style={s.inputL}
-              label="검색..."
-              value={keyword}
-              onChangeText={keyword => setKeyword(keyword)}
-            />
-        </View>
         <DropDownPicker
           open={open}
           value={value}
@@ -135,6 +134,13 @@ export default function EstlistPageScreen({ route,navigation }) {
           setValue={setValue}
           setItems={setItems}
         />
+        <View style={s.rowcontainer}>
+          <TextInput style={{...s.inputL,margin:10}}
+            label="제목 또는 차종을 검색하세요..."
+            value={keyword}
+            onChangeText={keyword => setKeyword(keyword)}
+          />
+        </View>
         <TouchableOpacity
           style={{
             flexDirection:'row',

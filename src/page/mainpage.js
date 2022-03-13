@@ -62,7 +62,7 @@ export default function MainPageScreen ({ navigation }) {
             method: 'GET',
             url:`${storage.chucar_url}/isdealer/${id}`,
           })
-          //setIsDealer(0);
+          //setIsDealer(1);
           setIsDealer(temp.data);
           console.log('isDealer : ' + temp.data)
         } 
@@ -147,52 +147,52 @@ export default function MainPageScreen ({ navigation }) {
         </Swiper>
       </View>
 
-        <View style={{flex:1,justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
-          <TouchableOpacity style={s.buttonbg2} 
-          onPress={() => {
-            // isDealer
-            // ? Alert.alert('알림','딜러는 견적신청이 불가합니다.')
-            // : navigation.navigate('EstimatePage')   //견적신청 화면전환
-            navigation.navigate('EstimatePage')   //견적신청 화면전환
+      <View style={{flex:1,justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+        <TouchableOpacity style={s.buttonbg2} 
+        onPress={() => {
+          // isDealer
+          // ? Alert.alert('알림','딜러는 견적신청이 불가합니다.')
+          // : navigation.navigate('EstimatePage')   //견적신청 화면전환
+          navigation.navigate('EstimatePage')   //견적신청 화면전환
+        }}>
+          <Image style={s.headericon} source={edit}/>
+          <Text style={s.buttontxt2}>견적 신청하기</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={s.buttonbg2}
+        onPress={() => {
+          navigation.navigate('EstlistPage',{  //견적내역 화면전환
+            isDealer:isDealer,
+            id:id
+          })    
+        }}>
+          <Image style={s.headericon} source={list}/>
+          <Text style={s.buttontxt2}>견적신청서 내역</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={s.buttonbg2} 
+          onPress={async () => {
+            isDealer
+            ? Alert.alert('알림','이미 딜러입니다.')
+            : navigation.navigate("RegisterPage")
           }}>
-            <Image style={s.headericon} source={edit}/>
-            <Text style={s.buttontxt2}>견적 신청하기</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={s.buttonbg2}
+          <Image style={s.headericon} source={signin}/>
+          <Text style={s.buttontxt2}>딜러 회원가입</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity style={s.buttonbg2}
           onPress={() => {
-            navigation.navigate('EstlistPage',{  //견적내역 화면전환
-              isDealer:isDealer,
-              id:id
-            })    
+            switch(isDealer){
+              case 0: Alert.alert('알림','딜러만 이용권 결제할 수 있습니다.');break;
+              case 1: navigation.navigate("Root",{screen:'PaymentPage'});break;
+              case 2: Alert.alert('알림','이미 이용권을 보유중입니다.');break;
+            }
           }}>
-            <Image style={s.headericon} source={list}/>
-            <Text style={s.buttontxt2}>견적신청서 내역</Text>
-          </TouchableOpacity>
+          <Image style={s.headericon} source={card}/>
+          <Text style={s.buttontxt2}>딜러 이용권 결제</Text>
+        </TouchableOpacity>
 
-          {
-            isDealer==undefined
-            ? <View style={s.buttonbg2}></View>
-            : isDealer
-              ? (<TouchableOpacity style={s.buttonbg2}
-                onPress={() => {
-                  isDealer == 2
-                  ? Alert.alert('알림','이미 이용권을 보유중입니다.')
-                  : navigation.navigate("Root",{screen:'PaymentPage'})    //결제하기
-                }}>
-                <Image style={s.headericon} source={card}/>
-                <Text style={s.buttontxt2}>딜러 이용권 결제</Text>
-                </TouchableOpacity>)
-
-              : (<TouchableOpacity style={s.buttonbg2} 
-                onPress={async () => {
-                  navigation.navigate('RegisterPage')   //딜러가입
-                }}>
-                <Image style={s.headericon} source={signin}/>
-                <Text style={s.buttontxt2}>딜러 회원가입</Text>
-                </TouchableOpacity>)
-          }
-        </View>
+      </View>
     </View>
   );
 }
