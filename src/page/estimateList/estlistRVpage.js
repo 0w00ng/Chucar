@@ -83,7 +83,7 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
       </View>
 
       <Text style={{
-        color:'orange',
+        color:'red',
         fontWeight:'bold',
         margin:5
         }}>{`가격 : ${CR_PRICE} 만원`}
@@ -97,7 +97,7 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
       </Text>
 
       <Text style={{
-        color:'blue',
+        color:'orange',
         fontWeight:'bold',
         margin:5
       }}>{`연식 : ${CR_YEAR} km`}

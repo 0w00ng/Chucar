@@ -147,7 +147,7 @@ export default function EstlistViewPageScreen({ route, navigation }) {
         <Image style={{width:100,height:100,borderWidth:0.2,margin:10}} resizeMethod='resize' source={{uri:`${PRO_PROFILE}`}}/> 
         <View style={{flexDirection:'column',justifyContent:'space-evenly',margin:10}}>
           <Text style={{
-            color:'orange',
+            color:'red',
             fontWeight:'bold'
             }}>
               {`가격 : ${CT_USRID==id || CR_PROID==id ? CR_PRICE : '???'} 만원`}

@@ -26,7 +26,7 @@ export default function EstimatePageScreen2({ route, navigation }) {
       </View>
       <KeyboardAwareScrollView>
         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-          <Text style={s.label}>희망 가격</Text>
+          <Text style={s.label}>차량 가격</Text>
           <TextInput style={s.inputS}
             value={price}
             onChangeText={price => setPrice(price)}
@@ -36,7 +36,7 @@ export default function EstimatePageScreen2({ route, navigation }) {
           <Text style={s.label2}>만원</Text>
         </View>
         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
-          <Text style={s.label}>희망 연식</Text>
+          <Text style={s.label}>차량 연식</Text>
           <TextInput style={s.inputS}
             value={year}
             onChangeText={year => setYear(year)}
