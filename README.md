@@ -5,16 +5,18 @@
 
   로그인 / 회원가입 / 결제
   견적서 요청 / 견적서 송신
-  보낸 견적서 리스트 확인
+  보낸 견적서 리스트 확인, 검색
 
 # 적용기술
 
 [COMMON]
-  Axios,
-  RestAPI(Kakao,IamPort)
+  AWS(S3,EC2), 
+  GIT, 
+  RestAPI(Kakao,IamPort,Axios)
 
 [F/E]
-  ReactNative
+  ReactNative.
+  NPM
 
 [B/E]
   NodeJS,
