@@ -5,7 +5,8 @@ import ImageModal from 'react-native-image-modal';
 import storage from '../../storage';
 import axios from "axios";
 import s from '../../style';
-import FastImage from 'react-native-fast-image'
+import ImageView from "react-native-image-viewing";
+
 
 const { width } = Dimensions.get('window')
 
@@ -15,6 +16,15 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
   const CR_CARIMG = [CR_CARIMG0,CR_CARIMG1,CR_CARIMG2,CR_CARIMG3,CR_CARIMG4,CR_CARIMG5,CR_CARIMG6,CR_CARIMG7];
 
   for(img of CR_CARIMG) console.log(img);
+
+  const images = [];
+  CR_CARIMG.map ((img)=>{
+    if(img){
+      images.push({uri:img})
+    }
+  })
+  
+  const [visible, setIsVisible] = useState(false);
 
   return (
     <View style={{flex:1,backgroundColor:'white'}}>
@@ -38,34 +48,6 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
         <Swiper
           style={styles.wrapper}
           height={170}
-          dot={
-            <View
-              style={{
-                backgroundColor: 'rgba(0,0,0,.2)',
-                width: 5,
-                height: 5,
-                borderRadius: 4,
-                marginLeft: 3,
-                marginRight: 3,
-                marginTop: 3,
-                marginBottom: 3
-              }}
-            />
-          }
-          activeDot={
-            <View
-              style={{
-                backgroundColor: 'navy',
-                width: 8,
-                height: 8,
-                borderRadius: 4,
-                marginLeft: 3,
-                marginRight: 3,
-                marginTop: 3,
-                marginBottom: 3
-              }}
-            />
-          }
           paginationStyle={{
             bottom: -23,
             left: null,
@@ -75,22 +57,29 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
         >
           {CR_CARIMG.map ((img)=>(
           img
-          ? <View
+          ? <TouchableOpacity
               style={styles.slide}
+              onPress={()=>{
+                setIsVisible(true);
+              }}
             >
-              <ImageModal
+              <Image
                 style={styles.image}
-                swipeToDismiss={true}
-                isTranslucent={false}
+                resizeMethod='scale'
                 resizeMode='contain'
-                resizeMethod="scale"
-                imageBackgroundColor="#000000"
                 source={{uri:img}}
               />
-            </View>
+            </TouchableOpacity>
           : ''
           ))}
         </Swiper>
+        <ImageView
+          images={images}
+          imageIndex={2}
+          visible={visible}
+          onRequestClose={() => setIsVisible(false)}
+        />
+        
       </View>
 
       <Text style={{

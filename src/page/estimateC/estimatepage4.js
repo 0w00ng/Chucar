@@ -26,12 +26,12 @@ export default function EstimatePageScreen5({ route,navigation }) {
             ct_kind:kind,
             ct_brand:brand,
             ct_model:model, //모델
-            ct_year:year,
+            ct_year:year? year:'-',
             ct_title:title,
             ct_content:comment, //딜러에게할말
-            ct_price:price, //가격
-            ct_distance:distance, //최대주행거리 희망
-            ct_option:option, //희망옵션 ex)선루프,,
+            ct_price:price? title:'-', //가격
+            ct_distance:distance? distance:'-', //최대주행거리 희망
+            ct_option:option? option:'-', //희망옵션 ex)선루프,,
             ct_usrid:userid
           }
         })

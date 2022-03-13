@@ -27,7 +27,7 @@ export default function MainPageScreen ({ navigation }) {
     DropDownPicker.addTranslation("KR", {
       PLACEHOLDER: "항목을 선택해주세요",
       SEARCH_PLACEHOLDER: "검색할 항목을 입력해주세요...",
-      SELECTED_ITEMS_COUNT_TEXT: "{count} éléments ont été sélectionnés",
+      SELECTED_ITEMS_COUNT_TEXT: "",
       NOTHING_TO_SHOW: "아무 것도 없습니다 !"
     });
     DropDownPicker.setLanguage("KR");
@@ -121,7 +121,7 @@ export default function MainPageScreen ({ navigation }) {
             style={styles.slide}
           >
             <Image
-              resizeMode="stretch"
+              resizeMode="contain"
               style={styles.image}
               source={banner1}
             />
@@ -130,7 +130,7 @@ export default function MainPageScreen ({ navigation }) {
             style={styles.slide}
           >
             <Image
-              resizeMode="stretch"
+              resizeMode="contain"
               style={styles.image}
               source={banner2}
             />
@@ -139,7 +139,7 @@ export default function MainPageScreen ({ navigation }) {
             style={styles.slide}
           >
             <Image
-              resizeMode="stretch"
+              resizeMode="contain"
               style={styles.image}
               source={banner3}
             />

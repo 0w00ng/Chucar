@@ -17,6 +17,7 @@ export default function EstimatePageScreen1({ navigation }) {
     if(check==2) setcheckstate2(true);
     if(check==3) setcheckstate3(true);
     if(check==4) setcheckstate4(true);
+
     if(check!=1) setcheckstate1(false);     // Other False
     if(check!=2) setcheckstate2(false);
     if(check!=3) setcheckstate3(false);
@@ -27,7 +28,7 @@ export default function EstimatePageScreen1({ navigation }) {
       <View style={{ flex: 1, backgroundColor:'white'}}>
           <View>
             <Text style={s.title}>
-                견적 종류를{'\n'}
+                거래 방식을{'\n'}
                 선택 해주세요
             </Text>
           </View>

@@ -70,7 +70,13 @@ export default function EstlistPageScreen({ route,navigation }) {
     <TouchableOpacity 
       style={
         CT_STAT
-          ? s.estlistContainer
+          ? CT_KIND==2
+              ? {...s.estlistContainer,backgroundColor:'#FDFFEB'}
+              : CT_KIND==3
+                ? {...s.estlistContainer,backgroundColor:'#EBFEFF'}
+                : CT_KIND==4
+                  ? {...s.estlistContainer,backgroundColor:'#EBFFEE'}
+                  : s.estlistContainer
           : s.estlistContainer_Dead
       }
       onPress={()=>navigation.navigate('EstlistVPage',{

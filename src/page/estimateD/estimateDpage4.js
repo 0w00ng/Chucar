@@ -102,10 +102,10 @@ export default function EstimatePageScreen5({ route,navigation }) {
         data:{
           cr_title:title,
           cr_num:cr_num,
-          cr_year:year,
-          cr_price:price, //가격
-          cr_distance:distance, //최대주행거리 희망
-          cr_option:option, //희망옵션 ex)선루프,,
+          cr_year:year? year:'-',
+          cr_price:price? price:'-', //가격
+          cr_distance:distance? distance:'-', //최대주행거리 희망
+          cr_option:option? option:'-', //희망옵션 ex)선루프,,
           cr_comment:comment, //딜러에게할말
           img0:img[0],
           img1:img[1],

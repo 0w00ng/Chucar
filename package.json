@@ -44,6 +44,8 @@
     "react-native-image-slider": "^2.0.3",
     "react-native-image-slider-box": "^1.1.19",
     "react-native-image-slider-show": "^1.0.3",
+    "react-native-image-viewing": "^0.2.1",
+    "react-native-image-zoom-viewer": "^3.0.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-paper": "^4.11.2",
     "react-native-reanimated": "^2.3.1",

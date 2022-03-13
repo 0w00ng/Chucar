@@ -87,6 +87,9 @@ export default function EstimatePageScreen4({ route, navigation }) {
             <Text style={s.buttontxt3}>계속하기(1/3)</Text>
           </TouchableOpacity>
         </View>
+        <Text style={{...s.titleS,fontSize:15}}>
+              * 차량사진, 보험이력, 성능기록부 등을 넣어주세요.
+          </Text>
     </View>
   );
 }

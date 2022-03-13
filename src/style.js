@@ -157,9 +157,8 @@ module.exports = StyleSheet.create({
     },
     estlistContainer: {
         backgroundColor:'#F8F8FF',
-        borderColor:'navy',
         borderWidth:0.2,
-        borderRadius:10,
+        borderRadius:5,
         margin: 10,
         padding: 10,
         alignItems:'stretch',
