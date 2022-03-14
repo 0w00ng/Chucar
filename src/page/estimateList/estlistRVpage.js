@@ -75,7 +75,7 @@ export default function EstlistReplyViewPageScreen({ route, navigation }) {
         </Swiper>
         <ImageView
           images={images}
-          imageIndex={2}
+          imageIndex={0}
           visible={visible}
           onRequestClose={() => setIsVisible(false)}
         />
