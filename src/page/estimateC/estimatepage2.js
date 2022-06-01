@@ -33,7 +33,7 @@ export default function EstimatePageScreen2({ route, navigation }) {
               'content-type':'application/x-www-form-urlencoded;charset=utf-8',
           }
         })
-        setItemsBrand([{"CF_BRAND" : "국산차"},{"CF_BRAND" : "외제차"},...temp.data]);
+        setItemsBrand(temp.data);
         console.log(itemsBrand);
       } catch(err) {
         console.log(err)
@@ -92,7 +92,6 @@ export default function EstimatePageScreen2({ route, navigation }) {
         schema={{
           label: 'CF_BRAND',
           value: 'CF_BRAND',
-          parent: 'CF_REGION',
         }}
         />
         <DropDownPicker

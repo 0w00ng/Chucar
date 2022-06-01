@@ -1,16 +1,8 @@
-// React Native App Intro Slider using AppIntroSlider
-// https://aboutreact.com/react-native-app-intro-slider/
-// Simple Intro Slider
-
-// import React in our code
 import React from 'react';
 import { StyleSheet,View,Text,Image,TouchableOpacity } from 'react-native';
 // img
 import Titlelogo from '../../img/chucar-logoN1.png';
 import kakaoTalk from '../../img/kakao-talk.png';
-
-import storage from '../storage'
-import axios from 'axios';
 
 export default function IntroScreenPage({ navigation }) {
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import s from '../style'
 import { View,TouchableOpacity,Text,Alert } from "react-native";
 import storage from '../storage';
 import { WebView } from 'react-native-webview';

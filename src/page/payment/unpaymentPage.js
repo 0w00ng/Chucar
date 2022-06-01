@@ -27,7 +27,7 @@ export default function UnPaymentPage({navigation}) {
     },[userid]);
 
     navigation.navigate('Root',{screen:'MainPage'})
-    Alert.alert('알림','정기결제가 해지되었습니다.')
+    Alert.alert('알림','다음 달 정기결제가 해지되었습니다. (기존 이용권 유지됩니다.)')
 
     return (
         <View>

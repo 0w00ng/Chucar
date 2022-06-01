@@ -62,8 +62,8 @@ export default function MainPageScreen ({ navigation }) {
             method: 'GET',
             url:`${storage.chucar_url}/isdealer/${id}`,
           })
-          //setIsDealer(1);
-          setIsDealer(temp.data);
+          setIsDealer(1);
+          //setIsDealer(temp.data);
           console.log('isDealer : ' + temp.data)
         } 
         catch(err) {
