@@ -15,9 +15,7 @@
 
 [COMMON]
   AWS(S3,EC2), 
-
   GIT, 
-
   RestAPI(Kakao,Axios)
 
 [F/E]
@@ -33,4 +31,5 @@
 # 실행방법
 
   npm i
+  
   react-native run-ios
