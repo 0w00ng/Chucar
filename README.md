@@ -21,7 +21,6 @@
 [F/E]
   HTML/CSS,
   JavaScript,
-  ES6,
   ReactNative
 
 [B/E]
