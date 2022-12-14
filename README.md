@@ -2,6 +2,8 @@
   신차/중고차 견적 어플리케이션
   
   2인 개발 프로젝트
+  
+  <img width="{해상도 비율}" src="{https://user-images.githubusercontent.com/84401963/207488429-4238dd27-87c1-4eee-9844-4308f2b3046f.png}"/>
 
 # 주요기능
 
