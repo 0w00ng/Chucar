@@ -9,10 +9,8 @@
   </div>
   
   <div>
-    <img width="40%" src="https://user-images.githubusercontent.com/84401963/207488953-5430cfcb-e948-412f-9cc6-5a67bb3e868b.png"/>
-    로그인 완료 후 메인페이지
-    <img width="40%" src="https://user-images.githubusercontent.com/84401963/207488924-4f83aa2d-7fe0-4c47-afab-cc965dca4308.png"/>
-    '견적 신청하기' 선택
+    <img width="40%" src="https://user-images.githubusercontent.com/84401963/207488953-5430cfcb-e948-412f-9cc6-5a67bb3e868b.png"/>로그인 완료 후 메인페이지
+    <img width="40%" src="https://user-images.githubusercontent.com/84401963/207488924-4f83aa2d-7fe0-4c47-afab-cc965dca4308.png"/>'견적 신청하기' 선택
   </div>
   
   <div>
