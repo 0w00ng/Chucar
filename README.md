@@ -3,8 +3,9 @@
   
   2인 개발 프로젝트
   
-  <img width="50%" src="https://user-images.githubusercontent.com/84401963/207488429-4238dd27-87c1-4eee-9844-4308f2b3046f.png"/>
-  <img width="50%" src="https://user-images.githubusercontent.com/84401963/207488952-23c43870-46ee-46d1-b6ab-8a5f414cf4ec.png"/>
+  <img width="30%" src="https://user-images.githubusercontent.com/84401963/207488429-4238dd27-87c1-4eee-9844-4308f2b3046f.png"/>
+  <img width="30%" src="https://user-images.githubusercontent.com/84401963/207488952-23c43870-46ee-46d1-b6ab-8a5f414cf4ec.png"/>
+  <img width="30%" src=""/>
 
 # 주요기능
 
