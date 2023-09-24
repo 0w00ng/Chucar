@@ -49,11 +49,11 @@
   AWS(S3,EC2)
 
 [F/E]
-  HTML/CSS/JS
+  HTML/CSS/JS,
   ReactNative
 
 [B/E]
-  NodeJS
+  NodeJS,
   MySQL
 
 # 기여도
