@@ -46,22 +46,16 @@
 
 # 사용기술
 
-[COMMON]
-  AWS(S3,EC2), 
-  GIT, 
-  RestAPI(Kakao,Axios)
+  AWS(S3,EC2)
 
 [F/E]
-  HTML/CSS,
-  JavaScript,
+  HTML/CSS/JS
   ReactNative
 
 [B/E]
-  NodeJS,
+  NodeJS
   MySQL
 
-# 실행방법
+# 기여도
 
-  npm i
-  
-  react-native run-ios
+프론트엔드 100%를 담당했습니다.
