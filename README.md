@@ -31,6 +31,10 @@
     <img width="40%" src="https://user-images.githubusercontent.com/84401963/207488951-b8695cfb-f224-41a8-ae92-2ac7cf87cb81.png"/>
     <img width="40%" src="https://user-images.githubusercontent.com/84401963/207488954-0c44ba92-9e73-4030-bd97-01aff6af8f5e.png"/>
   </div>
+  <div>
+    <img width="40%" src="https://user-images.githubusercontent.com/84401963/207488963-8d040e9f-feb4-43e4-bbeb-360b557a683e.png"/>
+    <img width="40%" src="https://user-images.githubusercontent.com/84401963/207488964-6effe7ad-beec-4b5a-b144-679b7ed386b8.png"/>
+  </div>
 
 # 주요기능
 
